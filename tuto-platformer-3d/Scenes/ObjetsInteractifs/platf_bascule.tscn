@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=4 uid="uid://caiqcecwmfyt8"]
 
 [ext_resource type="Script" uid="uid://on6gw0iyl4av" path="res://Scripts/PlatfBascule.cs" id="1_ep686"]
-[ext_resource type="Texture2D" uid="uid://14431u4mcmgi" path="res://Assets/Kenney assets/Textures/colormap.png" id="1_w55dk"]
+[ext_resource type="Texture2D" uid="uid://lrx5um20i36a" path="res://Assets/Kenney assets/Textures/colormap.png" id="1_w55dk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ep686"]
 albedo_color = Color(0.2155819, 0.5991777, 0.5213472, 1)

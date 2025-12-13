@@ -2,14 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d10ih2bnn3p3i"
+uid="uid://ch04yuovqawde"
 path.s3tc="res://.godot/imported/Boss Coxane Anim 1_texture_normal.png-03f9291c42e880786a7e9cd94a6fbfcb.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
-}
-generator_parameters={
-"md5": "258c4a81f853f6ad01406ef9c798ac49"
 }
 
 [deps]

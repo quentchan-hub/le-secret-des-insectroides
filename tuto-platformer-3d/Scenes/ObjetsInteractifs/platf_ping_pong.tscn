@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=4 uid="uid://dp1yex4kd3jw4"]
 
-[ext_resource type="Texture2D" uid="uid://14431u4mcmgi" path="res://Assets/Kenney assets/Textures/colormap.png" id="1_2gg7m"]
+[ext_resource type="Texture2D" uid="uid://lrx5um20i36a" path="res://Assets/Kenney assets/Textures/colormap.png" id="1_2gg7m"]
 [ext_resource type="Script" uid="uid://dv63ouauhi5aa" path="res://Scripts/PlatfPingPong.cs" id="1_685t2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_685t2"]

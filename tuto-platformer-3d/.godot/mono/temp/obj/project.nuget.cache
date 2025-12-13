@@ -1,14 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "UZk4bCQ+hIo=",
+  "dgSpecHash": "Esj0AmnHeD0=",
   "success": true,
-  "projectFilePath": "/Users/maximepoix/Desktop/le-secret-des-insectroides/tuto-platformer-3d/TutoPlatformer3D.csproj",
+  "projectFilePath": "C:\\Users\\quent\\PROJETS GODOT\\le-secret-des-insectroides\\tuto-platformer-3d\\TutoPlatformer3D.csproj",
   "expectedPackageFiles": [
-    "/Users/maximepoix/.nuget/packages/godot.sourcegenerators/4.5.1/godot.sourcegenerators.4.5.1.nupkg.sha512",
-    "/Users/maximepoix/.nuget/packages/godotsharp/4.5.1/godotsharp.4.5.1.nupkg.sha512",
-    "/Users/maximepoix/.nuget/packages/godotsharpeditor/4.5.1/godotsharpeditor.4.5.1.nupkg.sha512",
-    "/Users/maximepoix/.nuget/packages/microsoft.netcore.app.ref/8.0.22/microsoft.netcore.app.ref.8.0.22.nupkg.sha512",
-    "/Users/maximepoix/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.22/microsoft.aspnetcore.app.ref.8.0.22.nupkg.sha512"
+    "C:\\Users\\quent\\.nuget\\packages\\godot.sourcegenerators\\4.5.0\\godot.sourcegenerators.4.5.0.nupkg.sha512",
+    "C:\\Users\\quent\\.nuget\\packages\\godotsharp\\4.5.0\\godotsharp.4.5.0.nupkg.sha512",
+    "C:\\Users\\quent\\.nuget\\packages\\godotsharpeditor\\4.5.0\\godotsharpeditor.4.5.0.nupkg.sha512"
   ],
   "logs": []
 }

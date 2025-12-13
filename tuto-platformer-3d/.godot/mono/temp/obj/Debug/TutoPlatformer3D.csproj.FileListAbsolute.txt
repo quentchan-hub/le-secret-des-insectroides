@@ -50,3 +50,21 @@ C:/Users/quent/PROJETS GODOT/Jeu platformer 3D Tuto/tuto-platformer-3d/.godot/mo
 /Users/maximepoix/Desktop/le-secret-des-insectroides/tuto-platformer-3d/.godot/mono/temp/obj/Debug/TutoPlatformer3D.pdb
 /Users/maximepoix/Desktop/le-secret-des-insectroides/tuto-platformer-3d/.godot/mono/temp/obj/Debug/TutoPlatformer3D.genruntimeconfig.cache
 /Users/maximepoix/Desktop/le-secret-des-insectroides/tuto-platformer-3d/.godot/mono/temp/obj/Debug/ref/TutoPlatformer3D.dll
+C:\Users\quent\PROJETS GODOT\le-secret-des-insectroides\tuto-platformer-3d\.godot\mono\temp\bin\Debug\TutoPlatformer3D.deps.json
+C:\Users\quent\PROJETS GODOT\le-secret-des-insectroides\tuto-platformer-3d\.godot\mono\temp\bin\Debug\TutoPlatformer3D.runtimeconfig.json
+C:\Users\quent\PROJETS GODOT\le-secret-des-insectroides\tuto-platformer-3d\.godot\mono\temp\bin\Debug\TutoPlatformer3D.dll
+C:\Users\quent\PROJETS GODOT\le-secret-des-insectroides\tuto-platformer-3d\.godot\mono\temp\bin\Debug\TutoPlatformer3D.pdb
+C:\Users\quent\PROJETS GODOT\le-secret-des-insectroides\tuto-platformer-3d\.godot\mono\temp\bin\Debug\GodotSharp.dll
+C:\Users\quent\PROJETS GODOT\le-secret-des-insectroides\tuto-platformer-3d\.godot\mono\temp\bin\Debug\GodotSharpEditor.dll
+C:\Users\quent\PROJETS GODOT\le-secret-des-insectroides\tuto-platformer-3d\.godot\mono\temp\obj\Debug\TutoPlatformer3D.csproj.AssemblyReference.cache
+C:\Users\quent\PROJETS GODOT\le-secret-des-insectroides\tuto-platformer-3d\.godot\mono\temp\obj\Debug\TutoPlatformer3D.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\quent\PROJETS GODOT\le-secret-des-insectroides\tuto-platformer-3d\.godot\mono\temp\obj\Debug\TutoPlatformer3D.AssemblyInfoInputs.cache
+C:\Users\quent\PROJETS GODOT\le-secret-des-insectroides\tuto-platformer-3d\.godot\mono\temp\obj\Debug\TutoPlatformer3D.AssemblyInfo.cs
+C:\Users\quent\PROJETS GODOT\le-secret-des-insectroides\tuto-platformer-3d\.godot\mono\temp\obj\Debug\TutoPlatformer3D.csproj.CoreCompileInputs.cache
+C:\Users\quent\PROJETS GODOT\le-secret-des-insectroides\tuto-platformer-3d\.godot\mono\temp\obj\Debug\TutoPlatformer3D.sourcelink.json
+C:\Users\quent\PROJETS GODOT\le-secret-des-insectroides\tuto-platformer-3d\.godot\mono\temp\obj\Debug\TutoPlat.4CC298F6.Up2Date
+C:\Users\quent\PROJETS GODOT\le-secret-des-insectroides\tuto-platformer-3d\.godot\mono\temp\obj\Debug\TutoPlatformer3D.dll
+C:\Users\quent\PROJETS GODOT\le-secret-des-insectroides\tuto-platformer-3d\.godot\mono\temp\obj\Debug\refint\TutoPlatformer3D.dll
+C:\Users\quent\PROJETS GODOT\le-secret-des-insectroides\tuto-platformer-3d\.godot\mono\temp\obj\Debug\TutoPlatformer3D.pdb
+C:\Users\quent\PROJETS GODOT\le-secret-des-insectroides\tuto-platformer-3d\.godot\mono\temp\obj\Debug\TutoPlatformer3D.genruntimeconfig.cache
+C:\Users\quent\PROJETS GODOT\le-secret-des-insectroides\tuto-platformer-3d\.godot\mono\temp\obj\Debug\ref\TutoPlatformer3D.dll

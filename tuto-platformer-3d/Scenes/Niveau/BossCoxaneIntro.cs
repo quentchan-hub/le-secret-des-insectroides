@@ -15,7 +15,7 @@ public partial class BossCoxaneIntro : Node3D
 		player.Visible = false;
 		var inventaire = GetNode<Control>("/root/World1/ControlInventaire");
 		inventaire.Visible = false;
-		var piecesEtVie = GetNode<MarginContainer>("/root/World1/UIHeart&Coin");
+		var piecesEtVie = GetNode<Control>("/root/World1/UIControlHeartCoin");
 		piecesEtVie.Visible = false;
 		animBoss.Play("Idle");
 		AnimPlayerIntroCombat.Play("DescenteBoss");
@@ -77,7 +77,7 @@ public partial class BossCoxaneIntro : Node3D
 			player.Visible = true;
 			var inventaire = GetNode<Control>("/root/World1/ControlInventaire");
 			inventaire.Visible = true;
-			var piecesEtVie = GetNode<MarginContainer>("/root/World1/UIHeart&Coin");
+			var piecesEtVie = GetNode<Control>("/root/World1/UIControlHeartCoin");
 			piecesEtVie.Visible = true;
 			this.QueueFree();
 	}

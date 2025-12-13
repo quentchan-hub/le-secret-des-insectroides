@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=4 uid="uid://bx7i6njcgmh2v"]
 
-[ext_resource type="Texture2D" uid="uid://14431u4mcmgi" path="res://Assets/Kenney assets/Textures/colormap.png" id="1_78vrx"]
+[ext_resource type="Texture2D" uid="uid://lrx5um20i36a" path="res://Assets/Kenney assets/Textures/colormap.png" id="1_78vrx"]
 [ext_resource type="Script" uid="uid://cjhla7640ydh6" path="res://Scenes/ObjetsInteractifs/PlatfDisapear.cs" id="1_p12rt"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p12rt"]
@@ -52,6 +52,33 @@ size = Vector3(1, 0.41333008, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ara14"]
 size = Vector3(5.022461, 4.395752, 10.331055)
 
+[sub_resource type="Animation" id="Animation_6fbpd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Plateform/block-moving:transparency")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Plateform/block-moving:process_mode")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_4j1ww"]
 resource_name = "disapear"
 length = 4.0
@@ -78,33 +105,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [0, 4, 0]
-}
-
-[sub_resource type="Animation" id="Animation_6fbpd"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Plateform/block-moving:transparency")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Plateform/block-moving:process_mode")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_so3rl"]

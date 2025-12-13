@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="TutoPlatformer3D"
+config/name="Le secret des insectroïdes"
 run/main_scene="uid://dbtwrsnn3kwts"
 config/features=PackedStringArray("4.5", "C#", "Forward Plus")
 config/icon="res://icon.svg"
