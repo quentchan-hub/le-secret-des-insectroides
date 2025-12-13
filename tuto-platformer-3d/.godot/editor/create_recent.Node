@@ -1,3 +1,4 @@
+Control
 Sprite2D
 Node3D
 AudioStreamPlayer
@@ -9,7 +10,5 @@ PanelContainer
 ColorRect
 Panel
 CenterContainer
-Control
 Button
 HBoxContainer
-CheckButton

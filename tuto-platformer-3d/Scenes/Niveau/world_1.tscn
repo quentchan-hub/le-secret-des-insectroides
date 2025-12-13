@@ -80,7 +80,6 @@
 [ext_resource type="Script" uid="uid://boica5rv2dcmd" path="res://Scenes/Niveau/ControlHearts.cs" id="66_5whru"]
 [ext_resource type="Script" uid="uid://cbyt171pldrpq" path="res://Scenes/Niveau/BossIntroSceneFinal.cs" id="66_680bi"]
 [ext_resource type="PackedScene" uid="uid://lodpfcd4sw6f" path="res://Scenes/Niveau/boss_coxane_intro.tscn" id="67_wdhda"]
-[ext_resource type="Script" uid="uid://b711j18xa7yil" path="res://Scenes/Niveau/UiHeartCoin.cs" id="69_3diqw"]
 [ext_resource type="Texture2D" uid="uid://mgooe4pstmj" path="res://Assets Persos/zoneenfeu/flammes_bleues.png" id="70_mntbb"]
 [ext_resource type="PackedScene" uid="uid://dc4giriqklvay" path="res://Scenes/ObjetsInteractifs/coeur_bonus.tscn" id="75_btuph"]
 [ext_resource type="PackedScene" uid="uid://bx7i6njcgmh2v" path="res://Scenes/ObjetsInteractifs/platf_disapear.tscn" id="76_5whru"]
@@ -101,6 +100,7 @@
 [ext_resource type="AudioStream" uid="uid://dydi7qbtrjo" path="res://Sounds/GameOver.wav" id="94_8nbp3"]
 [ext_resource type="AudioStream" uid="uid://d1akm3jafvwfm" path="res://Sounds/MainThemeMusic-chiptune-symphony-8bit.mp3" id="96_rpul7"]
 [ext_resource type="AudioStream" uid="uid://dn4bscdgpqu6h" path="res://Sounds/NewIslandThemeMusic - TheMysteryOfOrient.mp3" id="97_3diqw"]
+[ext_resource type="Script" uid="uid://bl0e011gti0ox" path="res://Scenes/Niveau/UiControlHeartCoin.cs" id="99_41apc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5utqk"]
 size = Vector3(1.3027344, 1.1853027, 0.82421875)
@@ -956,6 +956,18 @@ size = Vector3(16.220459, 3.9281616, 24.567871)
 [sub_resource type="BoxShape3D" id="BoxShape3D_jcgp5"]
 size = Vector3(4.515503, 3.2938232, 4.463745)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ol6l5"]
+atlas = ExtResource("54_1s8rm")
+region = Rect2(307, 188, 13, 14)
+margin = Rect2(1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kykdr"]
+atlas = ExtResource("54_1s8rm")
+region = Rect2(324, 171, 13, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_680dx"]
+atlas = SubResource("AtlasTexture_kykdr")
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5q2ao"]
 bg_color = Color(0.7294118, 0.7294118, 0.7294118, 0.7058824)
 
@@ -975,18 +987,6 @@ size = Vector3(8.282227, 5.720337, 8.636475)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8nbp3"]
 size = Vector3(10.586182, 6.54834, 5.015869)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ol6l5"]
-atlas = ExtResource("54_1s8rm")
-region = Rect2(307, 188, 13, 14)
-margin = Rect2(1, 1, 1, 1)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kykdr"]
-atlas = ExtResource("54_1s8rm")
-region = Rect2(324, 171, 13, 14)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_680dx"]
-atlas = SubResource("AtlasTexture_kykdr")
 
 [node name="World1" type="Node3D"]
 
@@ -1108,7 +1108,7 @@ gravity = 1.0
 maxTerminalVelocity = 50.0
 jumpForce = 21.0
 lifeHeart = ExtResource("37_58kno")
-heartContainer = NodePath("../UIHeartCoin/VBoxContainer/VContainerHeart/ControlHearts/BG/HeartContainer")
+heartContainer = NodePath("../UIControlHeartCoin/UIHeartCoin/VBoxContainer/VContainerHeart/ControlHearts/BG/HeartContainer")
 minPitch = -15.0
 maxPitch = 80.0
 quitMenu = NodePath("../QuitMenu")
@@ -1401,8 +1401,8 @@ script = ExtResource("43_o5akm")
 coffreRessort = NodePath("Coffre3Ressort")
 coffreBomba = NodePath("Coffre4Bomba")
 coinsNode = NodePath("../../Coins")
-coinScore = NodePath("../../UIHeartCoin/VBoxContainer/VContainerCoins/ControlCoins/BG/CoinContainer/coinScore")
-controlCoins = NodePath("../../UIHeartCoin/VBoxContainer/VContainerCoins/ControlCoins")
+coinScore = NodePath("../../UIControlHeartCoin/UIHeartCoin/VBoxContainer/VContainerCoins/ControlCoins/BG/CoinContainer/coinScore")
+controlCoins = NodePath("../../UIControlHeartCoin/UIHeartCoin/VBoxContainer/VContainerCoins/ControlCoins")
 coffresBonusDebloques = NodePath("CoffresBonusDebloques")
 
 [node name="Coffre3Ressort" type="Node3D" parent="InteractItems/CoffresBonus" node_paths=PackedStringArray("avertissementCoffre", "_lootTimer")]
@@ -3036,118 +3036,6 @@ visible = false
 [node name="Label" parent="EndLevel/EndLevelScreen" index="0"]
 text = ""
 
-[node name="UIHeartCoin" type="MarginContainer" parent="."]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 395
-script = ExtResource("69_3diqw")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UIHeartCoin"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme_override_constants/separation = 12
-metadata/_edit_use_anchors_ = true
-
-[node name="VContainerCoins" type="PanelContainer" parent="UIHeartCoin/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 3
-
-[node name="ControlCoins" type="Control" parent="UIHeartCoin/VBoxContainer/VContainerCoins"]
-layout_mode = 2
-
-[node name="BG" type="PanelContainer" parent="UIHeartCoin/VBoxContainer/VContainerCoins/ControlCoins"]
-layout_direction = 1
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -266.0
-offset_bottom = -8.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5q2ao")
-
-[node name="CoinContainer" type="HBoxContainer" parent="UIHeartCoin/VBoxContainer/VContainerCoins/ControlCoins/BG"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="UIHeartCoin/VBoxContainer/VContainerCoins/ControlCoins/BG/CoinContainer"]
-layout_mode = 2
-texture = ExtResource("46_o5akm")
-expand_mode = 2
-
-[node name="coinScore" type="Label" parent="UIHeartCoin/VBoxContainer/VContainerCoins/ControlCoins/BG/CoinContainer"]
-layout_mode = 2
-text = "12/33"
-label_settings = SubResource("LabelSettings_vqnff")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="VContainerHeart" type="PanelContainer" parent="UIHeartCoin/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 3
-
-[node name="ControlHearts" type="Control" parent="UIHeartCoin/VBoxContainer/VContainerHeart"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-script = ExtResource("66_5whru")
-
-[node name="BG" type="PanelContainer" parent="UIHeartCoin/VBoxContainer/VContainerHeart/ControlHearts"]
-layout_direction = 1
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -8.0
-grow_horizontal = 0
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5q2ao")
-
-[node name="HeartContainer" type="HBoxContainer" parent="UIHeartCoin/VBoxContainer/VContainerHeart/ControlHearts/BG"]
-layout_mode = 2
-size_flags_horizontal = 8
-alignment = 2
-
-[node name="LifeHeart" parent="UIHeartCoin/VBoxContainer/VContainerHeart/ControlHearts/BG/HeartContainer" instance=ExtResource("37_58kno")]
-layout_mode = 2
-
-[node name="LifeHeart2" parent="UIHeartCoin/VBoxContainer/VContainerHeart/ControlHearts/BG/HeartContainer" instance=ExtResource("37_58kno")]
-layout_mode = 2
-
-[node name="LifeHeart3" parent="UIHeartCoin/VBoxContainer/VContainerHeart/ControlHearts/BG/HeartContainer" instance=ExtResource("37_58kno")]
-layout_mode = 2
-
-[node name="LifeHeart4" parent="UIHeartCoin/VBoxContainer/VContainerHeart/ControlHearts/BG/HeartContainer" instance=ExtResource("37_58kno")]
-layout_mode = 2
-
-[node name="LifeHeart5" parent="UIHeartCoin/VBoxContainer/VContainerHeart/ControlHearts/BG/HeartContainer" instance=ExtResource("37_58kno")]
-layout_mode = 2
-
-[node name="Area3D" type="Area3D" parent="UIHeartCoin/VBoxContainer/VContainerHeart/ControlHearts"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0002365, 8.696787, -16.365614)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="UIHeartCoin/VBoxContainer/VContainerHeart/ControlHearts/Area3D"]
-transform = Transform3D(0.9994385, 0, 0.033504035, 0, 1, 0, -0.033504035, 0, 0.9994385, 1.2538404, -1.2384644, -0.024585724)
-shape = SubResource("BoxShape3D_680bi")
-
-[node name="TriggerAreaUIHeartCoin" type="Area3D" parent="UIHeartCoin"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.43959, 5.514162, -16.257029)
-
-[node name="TriggerUICollisionBox" type="CollisionShape3D" parent="UIHeartCoin/TriggerAreaUIHeartCoin"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.68847656, 0)
-shape = SubResource("BoxShape3D_8nbp3")
-
 [node name="ControlInventaire" type="Control" parent="." node_paths=PackedStringArray("item1", "item2", "item3", "item4", "item5", "item6", "toucheItem1", "toucheItem2", "toucheItem3", "toucheItem4", "toucheItem5", "toucheItem6", "fondItem1", "fondItem2", "fondItem3", "fondItem4", "fondItem5", "fondItem6")]
 visible = false
 layout_mode = 3
@@ -3400,6 +3288,125 @@ prelude = NodePath("../PreludeStudio")
 introJeu = NodePath("../IntroJeu")
 playerBotCtrl = NodePath("../PlayerBotCtrl")
 
+[node name="UIControlHeartCoin" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("99_41apc")
+
+[node name="UIHeartCoin" type="MarginContainer" parent="UIControlHeartCoin"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 395
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UIControlHeartCoin/UIHeartCoin"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 12
+metadata/_edit_use_anchors_ = true
+
+[node name="VContainerCoins" type="PanelContainer" parent="UIControlHeartCoin/UIHeartCoin/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 3
+
+[node name="ControlCoins" type="Control" parent="UIControlHeartCoin/UIHeartCoin/VBoxContainer/VContainerCoins"]
+layout_mode = 2
+
+[node name="BG" type="PanelContainer" parent="UIControlHeartCoin/UIHeartCoin/VBoxContainer/VContainerCoins/ControlCoins"]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -266.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5q2ao")
+
+[node name="CoinContainer" type="HBoxContainer" parent="UIControlHeartCoin/UIHeartCoin/VBoxContainer/VContainerCoins/ControlCoins/BG"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="UIControlHeartCoin/UIHeartCoin/VBoxContainer/VContainerCoins/ControlCoins/BG/CoinContainer"]
+layout_mode = 2
+texture = ExtResource("46_o5akm")
+expand_mode = 2
+
+[node name="coinScore" type="Label" parent="UIControlHeartCoin/UIHeartCoin/VBoxContainer/VContainerCoins/ControlCoins/BG/CoinContainer"]
+layout_mode = 2
+text = "12/33"
+label_settings = SubResource("LabelSettings_vqnff")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VContainerHeart" type="PanelContainer" parent="UIControlHeartCoin/UIHeartCoin/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 3
+
+[node name="ControlHearts" type="Control" parent="UIControlHeartCoin/UIHeartCoin/VBoxContainer/VContainerHeart"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("66_5whru")
+
+[node name="BG" type="PanelContainer" parent="UIControlHeartCoin/UIHeartCoin/VBoxContainer/VContainerHeart/ControlHearts"]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5q2ao")
+
+[node name="HeartContainer" type="HBoxContainer" parent="UIControlHeartCoin/UIHeartCoin/VBoxContainer/VContainerHeart/ControlHearts/BG"]
+layout_mode = 2
+size_flags_horizontal = 8
+alignment = 2
+
+[node name="LifeHeart" parent="UIControlHeartCoin/UIHeartCoin/VBoxContainer/VContainerHeart/ControlHearts/BG/HeartContainer" instance=ExtResource("37_58kno")]
+layout_mode = 2
+
+[node name="LifeHeart2" parent="UIControlHeartCoin/UIHeartCoin/VBoxContainer/VContainerHeart/ControlHearts/BG/HeartContainer" instance=ExtResource("37_58kno")]
+layout_mode = 2
+
+[node name="LifeHeart3" parent="UIControlHeartCoin/UIHeartCoin/VBoxContainer/VContainerHeart/ControlHearts/BG/HeartContainer" instance=ExtResource("37_58kno")]
+layout_mode = 2
+
+[node name="LifeHeart4" parent="UIControlHeartCoin/UIHeartCoin/VBoxContainer/VContainerHeart/ControlHearts/BG/HeartContainer" instance=ExtResource("37_58kno")]
+layout_mode = 2
+
+[node name="LifeHeart5" parent="UIControlHeartCoin/UIHeartCoin/VBoxContainer/VContainerHeart/ControlHearts/BG/HeartContainer" instance=ExtResource("37_58kno")]
+layout_mode = 2
+
+[node name="Area3D" type="Area3D" parent="UIControlHeartCoin/UIHeartCoin/VBoxContainer/VContainerHeart/ControlHearts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0002365, 8.696787, -16.365614)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="UIControlHeartCoin/UIHeartCoin/VBoxContainer/VContainerHeart/ControlHearts/Area3D"]
+transform = Transform3D(0.9994385, 0, 0.033504035, 0, 1, 0, -0.033504035, 0, 0.9994385, 1.2538404, -1.2384644, -0.024585724)
+shape = SubResource("BoxShape3D_680bi")
+
+[node name="TriggerAreaUIHeartCoin" type="Area3D" parent="UIControlHeartCoin/UIHeartCoin"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.43959, 5.514162, -16.257029)
+
+[node name="TriggerUICollisionBox" type="CollisionShape3D" parent="UIControlHeartCoin/UIHeartCoin/TriggerAreaUIHeartCoin"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.68847656, 0)
+shape = SubResource("BoxShape3D_8nbp3")
+
 [connection signal="area_entered" from="InteractItems/DoorSystem2/Area3D" to="InteractItems/DoorSystem2" method="_on_area_3d_area_entered"]
 [connection signal="area_entered" from="InteractItems/Coffre1/Area3D" to="InteractItems/Coffre1" method="_on_area_3d_area_entered"]
 [connection signal="area_entered" from="InteractItems/Coffre5/Area3D" to="InteractItems/Coffre5" method="_on_area_3d_area_entered"]
@@ -3412,9 +3419,9 @@ playerBotCtrl = NodePath("../PlayerBotCtrl")
 [connection signal="area_entered" from="SceneBossLvl1/BossIntroSceneFinal/PorteBoss1" to="SceneBossLvl1/BossIntroSceneFinal" method="_on_area_3d_area_entered"]
 [connection signal="timeout" from="SceneBossLvl1/CombatFinal/AreaZoneMitraillee/FireTimer" to="SceneBossLvl1/CombatFinal/AreaZoneMitraillee" method="_on_fire_timer_timeout"]
 [connection signal="area_entered" from="EndLevel" to="EndLevel" method="_on_area_entered"]
-[connection signal="body_entered" from="UIHeartCoin/VBoxContainer/VContainerHeart/ControlHearts/Area3D" to="PreludeStudio" method="_on_area_3d_body_entered"]
-[connection signal="body_entered" from="UIHeartCoin/VBoxContainer/VContainerHeart/ControlHearts/Area3D" to="UIHeartCoin/VBoxContainer/VContainerHeart/ControlHearts" method="_on_area_3d_body_entered"]
-[connection signal="area_entered" from="UIHeartCoin/TriggerAreaUIHeartCoin" to="UIHeartCoin" method="_on_trigger_area_ui_heart_coin_area_entered"]
+[connection signal="body_entered" from="UIControlHeartCoin/UIHeartCoin/VBoxContainer/VContainerHeart/ControlHearts/Area3D" to="PreludeStudio" method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="UIControlHeartCoin/UIHeartCoin/VBoxContainer/VContainerHeart/ControlHearts/Area3D" to="UIControlHeartCoin/UIHeartCoin/VBoxContainer/VContainerHeart/ControlHearts" method="_on_area_3d_body_entered"]
+[connection signal="area_entered" from="UIControlHeartCoin/UIHeartCoin/TriggerAreaUIHeartCoin" to="UIControlHeartCoin" method="_on_trigger_area_ui_heart_coin_area_entered"]
 
 [editable path="PlayerBotCtrl"]
 [editable path="PlayerBotCtrl/PlayerBot"]
