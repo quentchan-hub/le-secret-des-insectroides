@@ -1,0 +1,71 @@
+[gd_scene load_steps=5 format=3 uid="uid://c716uj13hvx87"]
+
+[ext_resource type="Script" uid="uid://6inmavqvtpwu" path="res://Scripts/DialogueUi.cs" id="1_2gaqt"]
+[ext_resource type="Texture2D" uid="uid://cc80xm0gxv7gb" path="res://Assets Persos/boss_coxane/BossCoxane-disto-carre-24-64px.png" id="2_bnx85"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_012rl"]
+bg_color = Color(0.09803922, 0.09803922, 0.09803922, 0.61960787)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.73333335, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_012rl"]
+font_size = 34
+
+[node name="DialogueUI" type="CanvasLayer" node_paths=PackedStringArray("speakerName", "dialogue", "panel")]
+layer = 0
+script = ExtResource("1_2gaqt")
+speakerName = NodePath("Panel/VBoxContainer/LabelSpeakerName")
+dialogue = NodePath("Panel/VBoxContainer/LabelDialogue")
+panel = NodePath("Panel")
+dialogueContent = PackedStringArray("Que viens-tu faire ici aventurier ?!", "Sache qu\'il n\'y a aucun trésor dans les environs.", "Pas plus qu\'un accès à une grotte secrete, sur la plus haute montagne de cet île.", "Ne t\'avise pas de chercher des clés pour ouvrir des portes ou des boutons pour activer des pateformes ça ne marcherait pas du tout !", "Et si tu crois que ramasser absolument toutes les pièces d\'or pouvait faire apparaître un bonus supplémentaire c\'est mal nous connaître !", "Bref fais demi tour jeune avorton ça vaut mieux pour toi. Allez Zou !")
+
+[node name="Panel" type="Panel" parent="."]
+z_as_relative = false
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 124.99999
+offset_top = -221.0
+offset_right = 122.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.8, 0.8)
+theme_override_styles/panel = SubResource("StyleBoxFlat_012rl")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 0
+offset_left = 279.0
+offset_top = 1.0
+offset_right = 1195.0
+offset_bottom = 259.0
+
+[node name="LabelSpeakerName" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 25
+text = "Nom Emetteur"
+vertical_alignment = 1
+
+[node name="LabelDialogue" type="Label" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(800, 0)
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+theme_override_font_sizes/font_size = 19
+text = "Et je te préviens ne t'avise pas de chercher des clés pour ouvrir des portes ou des boutons pour activer des pateformes ça ne marcherait pas du tout !"
+label_settings = SubResource("LabelSettings_012rl")
+autowrap_mode = 2
+
+[node name="TextureRectPortrait" type="TextureRect" parent="Panel"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 258.0
+offset_bottom = 257.0
+texture = ExtResource("2_bnx85")

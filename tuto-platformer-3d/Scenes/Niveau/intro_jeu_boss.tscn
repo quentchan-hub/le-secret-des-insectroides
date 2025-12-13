@@ -1,0 +1,483 @@
+[gd_scene load_steps=11 format=3 uid="uid://b70qc48ncwa00"]
+
+[ext_resource type="Script" uid="uid://cv31cakjt6cyn" path="res://Scripts/IntroJeuBoss.cs" id="1_gd51o"]
+[ext_resource type="PackedScene" uid="uid://xaeepe37bpap" path="res://Scenes/PlayerEnnemy/Boss Coxane/boss_coxane_char_intro.tscn" id="2_ljepx"]
+[ext_resource type="PackedScene" uid="uid://c716uj13hvx87" path="res://Scenes/Niveau/dialogue_ui.tscn" id="3_es0n3"]
+
+[sub_resource type="Curve3D" id="Curve3D_nm0xu"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 6, 0, 0, 0, 0.95598984, -0.1449213, -1.8776035, -0.95598984, 0.1449213, 1.8776035, -0.23670578, 0.9910984, 9.856361, 1.4138641, -1.1133537, 0.48375702, -1.4138641, 1.1133537, -0.48375702, -4.8481255, 2.2147121, 13.332926, 0.87729263, -0.50219727, 3.5514355, -0.87729263, 0.50219727, -3.5514355, -7.1172695, 4.1486683, 6.265291, 0.29663086, -1.4281197, 4.875536, -0.29663086, 1.4281197, -4.875536, -8.48835, 6.595482, -7.9116554, 4.6522274, -2.314951, 5.0374527, -4.6522274, 2.314951, -5.0374527, -12.02573, 11.570438, -25.796991, 7.8014374, -1.7812576, -2.405943, -7.8014374, 1.7812576, 2.405943, -33.159546, 19.992609, -26.871483, 3.003212, 0.99803734, -8.1883335, -3.003212, -0.99803734, 8.1883335, -49.567192, 20.79164, -2.7286568, 1.9247665, 1.6882191, -7.385067, -1.9247665, -1.6882191, 7.385067, -56.474472, 15.678022, 20.793304, -9.540047, 3.5582294, 0.16441727, 9.540047, -3.5582294, -0.16441727, -43.639366, 2.8211975, 41.013462, -3.0633907, 0.87079954, 2.5347176, 3.0633907, -0.87079954, -2.5347176, -22.876268, -7.290815, 33.792255, 0, 0, 0, 0, 0, 0, -13.399181, -8.962496, 23.937239, -1.5076084, 0.23556423, 0.4946289, 1.5076084, -0.23556423, -0.4946289, -10.195511, -9.339449, 21.109547, -1.1906986, -0.019501686, -0.23967743, 1.1906986, 0.019501686, 0.23967743, -6.595726, -9.975617, 20.865364),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 14
+up_vector_enabled = false
+
+[sub_resource type="Curve3D" id="Curve3D_012rl"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -6.596, -9.976, 19.672, 1.9207215, -0.21252155, -2.827013, -1.9207215, 0.21252155, 2.827013, -7.9016113, -8.4183445, 31.327179, 4.319233, -0.054258347, 0.48464584, -4.319233, 0.054258347, -0.48464584, -21.901611, -2.4183445, 38.32718, 0, 0, 0, 0, 0, 0, -54.17433, 9.503832, 40.433765, 0, 0, 0, 0, 0, 0, -85.9514, 15.018263, 41.42063, 0, 0, 0, 0, 0, 0, -110.030914, 16.91979, 41.42063, 0, 0, 0, 0, 0, 0, -137.77444, 9.441896, 40.648926, 0, 0, 0, 0, 0, 0, -148.4941, 6.6680145, 33.68127, 0, 0, 0, 0, 0, 0, -148.97507, 5.859007, 41.76211, 0, 0, 0, 0, 0, 0, -147.22383, 5.5815067, 41.06366),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 10
+up_vector_enabled = false
+
+[sub_resource type="Animation" id="Animation_kuqsu"]
+resource_name = "CheminBoss"
+length = 17.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"DecolVol"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"Vol"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(16),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"Atter"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Path3D/PathFollow3D:progress_ratio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(5, 16),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Camera3DIntro:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Camera3DIntro:current")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Camera3DIntro:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(2, 3.5, 5.5, 6, 7.5, 13, 14),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.5661325, 0, 0), Vector3(-0.11644828, 0, 0), Vector3(-0.11644828, 0, 0), Vector3(-0.11644829, 0.54152316, 0), Vector3(-0.116937056, 1.43117, 0), Vector3(-0.116937056, 1.7453293, 0), Vector3(-0.1164483, 1.2515231, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Camera3DIntro:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(2, 3.5, 5.5, 6, 7.5, 9, 13, 14),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -9.514875, 18.88823), Vector3(0, 4.5565424, 13.853088), Vector3(0, 4.5565424, 13.853088), Vector3(0, 4.5565424, 13.853088), Vector3(12.683914, 4.5565424, -3.0587692), Vector3(12.683914, 9.012773, -3.0587692), Vector3(12.683914, 4.5565424, -3.0587692), Vector3(7.7842407, -5.78972, 24.336685)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Camera3DIntro:fov")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(2, 3.504948, 5.5049477, 6, 7.5, 13, 14),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [50.0, 40.0, 40.0, 45.0, 70.0, 70.0, 55.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("DialogueUI:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 17),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("ColorRect:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("ColorRect:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_012rl"]
+resource_name = "CheminBoss2"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path3D2/PathFollow3D:progress_ratio")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Path3D2/PathFollow3D/ColorRectFonduFinIntro:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Path3D2/PathFollow3D/ColorRectFonduFinIntro:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.8000002, 3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Camera3DIntro:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.4666667, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Camera3DIntro:current")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1.4666667, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_u08lv"]
+resource_name = "FonduIntro"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path3D2/PathFollow3D/ColorRectFonduFinIntro:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6k2se"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Path3D2/PathFollow3D/ColorRectFonduFinIntro:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Path3D/PathFollow3D:progress_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Path3D2/PathFollow3D:progress_ratio")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Path3D2/PathFollow3D/ColorRectFonduFinIntro:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Camera3DIntro:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Camera3DIntro:current")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Camera3DIntro:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.5661325, 0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Camera3DIntro:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -9.514875, 18.88823)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Camera3DIntro:fov")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [50.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("DialogueUI:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("ColorRect:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("ColorRect:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g56dd"]
+_data = {
+&"CheminBoss": SubResource("Animation_kuqsu"),
+&"CheminBoss2": SubResource("Animation_012rl"),
+&"FonduIntro": SubResource("Animation_u08lv"),
+&"RESET": SubResource("Animation_6k2se")
+}
+
+[node name="IntroJeuBoss" type="Node3D" node_paths=PackedStringArray("animIntro", "animBoss", "colorRect")]
+script = ExtResource("1_gd51o")
+animIntro = NodePath("AnimIntro")
+animBoss = NodePath("BossCoxaneChar/BossLvl1Coxane/AnimationPlayer")
+colorRect = NodePath("ColorRect")
+
+[node name="BossCoxaneChar" parent="." instance=ExtResource("2_ljepx")]
+transform = Transform3D(-0.37045193, 0, 0.92883384, 0, 0.9999965, 0, -0.92883795, 0, -0.3704503, -147.22382, 5.5815077, 41.063663)
+
+[node name="CollisionShape3D" parent="BossCoxaneChar" index="1"]
+transform = Transform3D(0.9999943, 0, 0, 0, 0.9999943, 0, 0, 0, 0.9999943, -4.2632564e-14, 2.861395, 1.1766148)
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_nm0xu")
+debug_custom_color = Color(0.609079, 0.015673814, 0.017376067, 1)
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
+transform = Transform3D(0.9998421, 0, 8.740897e-08, 0, 0.9999257, 0, -8.740897e-08, 0, 0.9998421, 0, 0, 0)
+rotation_mode = 1
+use_model_front = true
+loop = false
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Path3D/PathFollow3D"]
+remote_path = NodePath("../../../BossCoxaneChar")
+
+[node name="DialogueUI" parent="." instance=ExtResource("3_es0n3")]
+speakerNameText = "BOSS "
+dialogueContent = PackedStringArray("Que viens-tu faire ici aventurier ?!", "Sache qu\'il n\'y a aucun trésor dans les environs.", "Pas plus qu\'un accès à une grotte secrète, sur la plus haute montagne de cet île.", "Et si tu crois que ramasser absolument toutes les pièces d\'or pouvait faire apparaître un bonus supplémentaire c\'est mal nous connaître !", "Bref fais demi tour jeune avorton ça vaut mieux pour toi. Allez Zou !")
+
+[node name="Path3D2" type="Path3D" parent="."]
+curve = SubResource("Curve3D_012rl")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D2"]
+transform = Transform3D(0.9975687, 0, 0.06950626, 0, 0.9999965, 0, -0.06950656, 0, 0.9975643, -6.596, -9.976, 19.672)
+rotation_mode = 1
+use_model_front = true
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Path3D2/PathFollow3D"]
+remote_path = NodePath("../../../BossCoxaneChar")
+
+[node name="ColorRectFonduFinIntro" type="ColorRect" parent="Path3D2/PathFollow3D"]
+visible = false
+modulate = Color(0, 0, 0, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Camera3DIntro" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.8439815, -0.5363718, 0, 0.5363718, 0.8439815, 0, -9.514875, 18.88823)
+current = true
+fov = 50.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(0, 0, 0, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimIntro" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_g56dd")
+}
+
+[connection signal="DialogueTerminey" from="DialogueUI" to="." method="_on_dialogue_ui_dialogue_terminey"]
+
+[editable path="BossCoxaneChar"]

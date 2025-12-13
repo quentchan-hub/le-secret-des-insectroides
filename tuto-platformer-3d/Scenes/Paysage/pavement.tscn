@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbpkks48jj5os"]
+
+[ext_resource type="PackedScene" uid="uid://ch752ayedw0bp" path="res://Assets/Kenney assets/stones.glb" id="1_nw64k"]
+
+[node name="Pavement" instance=ExtResource("1_nw64k")]

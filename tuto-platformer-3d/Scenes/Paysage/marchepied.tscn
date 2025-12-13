@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://1egeasp55n3k"]
+
+[ext_resource type="Material" uid="uid://d2gj7f4rc2gix" path="res://Textures/marchepied.tres" id="1_w8kuu"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_854at"]
+
+[node name="MarchePied" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 10.978395, 0, 0, 0)
+mesh = SubResource("BoxMesh_854at")
+surface_material_override/0 = ExtResource("1_w8kuu")

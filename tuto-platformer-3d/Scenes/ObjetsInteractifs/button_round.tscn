@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://djsumvdfqhxcn"]
+
+[ext_resource type="PackedScene" uid="uid://dsfqo3jrlxe68" path="res://Assets/Kenney assets/button-round.glb" id="1_kq8we"]
+[ext_resource type="Script" uid="uid://cnd18evm43dh5" path="res://Scripts/ButtonRound.cs" id="2_pbwrk"]
+[ext_resource type="Texture2D" uid="uid://vqumgy47y65a" path="res://Assets/outdoor_environment/trees/simple_bark/simple_bark_albedo.png" id="3_a3dv1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wivg1"]
+albedo_texture = ExtResource("3_a3dv1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a3dv1"]
+albedo_color = Color(1, 0.7490196, 0.25490198, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_pbwrk"]
+height = 0.14265442
+radius = 0.17871094
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_a3dv1"]
+points = PackedVector3Array(-0.086636715, 0.089999996, -0.1500004, -0.1732056, 0.089999996, -2.9370189e-05, -0.086636715, 0.13499853, -0.1500004, 0.08656888, 0.089999996, -0.1500004, -0.1732056, 0.13499853, -2.9370189e-05, -0.086636715, 0.089999996, 0.1500004, -0.11549301, 0.18499999, -2.9370189e-05, -0.057746507, 0.18499999, -0.10001984, 0.08656888, 0.13499853, -0.1500004, 0.1732056, 0.089999996, -2.9370189e-05, -0.086636715, 0.13499853, 0.1500004, 0.08656888, 0.089999996, 0.1500004, -0.057746507, 0.18499999, 0.09999047, 0.057712585, 0.18499999, -0.10001984, 0.1732056, 0.13499853, -2.9370189e-05, 0.08656888, 0.13499853, 0.1500004, 0.057712585, 0.18499999, 0.09999047, 0.1154591, 0.18499999, -2.9370189e-05)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_pbwrk"]
+radial_segments = 6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fxp1n"]
+albedo_texture = ExtResource("3_a3dv1")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fxp1n"]
+points = PackedVector3Array(0, 1, 0.5, 0.43301272, 1, 0.25, -0.43301272, 1, 0.24990213, 0, -1, 0.5, 0.43301272, 1, -0.25009787, 0.43301272, -1, 0.25, -0.43301272, 1, -0.25, -0.43301272, -1, 0.24990213, 0, 1, -0.5, 0.43301272, -1, -0.25009787, -0.43301272, -1, -0.25, 0, -1, -0.5)
+
+[node name="ButtonRound" instance=ExtResource("1_kq8we")]
+script = ExtResource("2_pbwrk")
+
+[node name="button-round" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_wivg1")
+
+[node name="button" parent="button-round" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_a3dv1")
+
+[node name="Area3D" type="Area3D" parent="button-round/button" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="button-round/button/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.16057205, 0)
+shape = SubResource("CylinderShape3D_pbwrk")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="button-round/button" index="1"]
+freeze = true
+freeze_mode = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="button-round/button/RigidBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_a3dv1")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="button-round" index="1"]
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="button-round/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.059233323, 0)
+depth = 0.15
+polygon = PackedVector2Array(-0.15098703, 0.2738239, -0.30294842, 0.015832545, -0.1535461, -0.25846928, 0.16122341, -0.25846928, 0.31221044, 0.0025590821, 0.15354621, 0.2738239)
+
+[node name="AnimationPlayer" parent="." index="1"]
+autoplay = "toggle-on"
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="2"]
+transform = Transform3D(0.51768297, 0, 0.29888442, 0, 0.08294571, 0, -0.29888442, 0, 0.51768297, 0, -0.083800636, 0)
+mesh = SubResource("CylinderMesh_pbwrk")
+surface_material_override/0 = SubResource("StandardMaterial3D_fxp1n")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_fxp1n")
+
+[connection signal="area_entered" from="button-round/button/Area3D" to="." method="_on_area_3d_area_entered"]

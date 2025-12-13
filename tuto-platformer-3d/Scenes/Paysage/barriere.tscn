@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://djiruxpogkr8x"]
+
+[ext_resource type="PackedScene" uid="uid://d1u8u5s7eetvm" path="res://Assets/Kenney assets/fence-straight.glb" id="1_teetf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cqx40"]
+size = Vector3(1.3300781, 1.1759758, 0.24121094)
+
+[node name="Barriere" instance=ExtResource("1_teetf")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="fence-straight" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="fence-straight/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.58164024, 0.41687012)
+shape = SubResource("BoxShape3D_cqx40")

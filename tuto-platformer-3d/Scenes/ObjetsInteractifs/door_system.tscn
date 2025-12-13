@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://v33vbhsjas0w"]
+
+[ext_resource type="Script" uid="uid://daaofwgustxip" path="res://Scripts/DoorSystem.cs" id="1_5utqk"]
+[ext_resource type="PackedScene" uid="uid://chyjledf8765x" path="res://Scenes/ObjetsInteractifs/large_door.tscn" id="2_pim1r"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5utqk"]
+size = Vector3(1.3027344, 1.1853027, 0.8457031)
+
+[node name="DoorSystem" type="Node3D"]
+script = ExtResource("1_5utqk")
+
+[node name="LargeDoor" parent="." instance=ExtResource("2_pim1r")]
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0048217773, 0.46520996, 0)
+shape = SubResource("BoxShape3D_5utqk")
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

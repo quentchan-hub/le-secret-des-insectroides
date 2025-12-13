@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcoa0yb8ntber"]
+
+[ext_resource type="PackedScene" uid="uid://bnb3j2n12sxyl" path="res://Assets Persos/Spring/CopperSpring.glb" id="1_6lh4b"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_apap6"]
+albedo_color = Color(0.72156864, 0.4509804, 0.2, 1)
+metallic = 0.67
+metallic_specular = 0.89
+roughness = 0.54
+
+[node name="CopperSpring" instance=ExtResource("1_6lh4b")]
+
+[node name="model" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_apap6")

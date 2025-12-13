@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dancr2t240vmw"]
+
+[ext_resource type="PackedScene" uid="uid://crd45pssa1707" path="res://Assets/Kenney assets/block-moving.glb" id="1_1hvq5"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_1hvq5"]
+points = PackedVector3Array(-0.40005875, 0, -0.5, -0.46838292, 0, -0.46838292, -0.40005875, 0.3, -0.5, 0.39996088, 0, -0.5, -0.5, 0, -0.40005875, -0.46838292, 0.3, -0.46838292, 0.39996088, 0.3, -0.5, 0.46828502, 0, -0.46838292, -0.5, 0.3, -0.40005875, -0.5, 0, 0.39996088, 0.46828502, 0.3, -0.46838292, 0.5, 0, -0.40005875, -0.5, 0.3, 0.39996088, -0.46838292, 0, 0.46828502, 0.5, 0.3, -0.40005875, 0.5, 0, 0.39996088, -0.46838292, 0.3, 0.46828502, -0.40005875, 0, 0.5, 0.5, 0.3, 0.39996088, 0.46828502, 0, 0.46828502, -0.40005875, 0.3, 0.5, 0.39996088, 0, 0.5, 0.46828502, 0.3, 0.46828502, 0.39996088, 0.3, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3i65o"]
+size = Vector3(1, 0.52978516, 1)
+
+[node name="block-moving2" instance=ExtResource("1_1hvq5")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="block-moving" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="block-moving/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_1hvq5")
+
+[node name="Area3D" type="Area3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23510742, 0)
+shape = SubResource("BoxShape3D_3i65o")

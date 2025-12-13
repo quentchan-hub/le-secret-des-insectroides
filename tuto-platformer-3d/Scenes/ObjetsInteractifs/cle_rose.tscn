@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://nyj3xpfj4c41"]
+
+[ext_resource type="PackedScene" uid="uid://wl3ngdrhl7xr" path="res://Assets/Kenney assets/key.glb" id="1_6ub5j"]
+[ext_resource type="Script" uid="uid://grwd7p8kftxj" path="res://Scripts/CleRose.cs" id="2_6ub5j"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6ub5j"]
+albedo_color = Color(0.99866575, 0.27585548, 1, 1)
+metallic = 0.65
+metallic_specular = 0.0
+roughness = 0.41
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j6meo"]
+size = Vector3(2.0856934, 1.9296875, 1.6474609)
+
+[node name="CleRose" instance=ExtResource("1_6ub5j")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+script = ExtResource("2_6ub5j")
+
+[node name="key" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_6ub5j")
+
+[node name="Area3D" type="Area3D" parent="key" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="key/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10986328, 0)
+shape = SubResource("BoxShape3D_j6meo")
+
+[connection signal="area_entered" from="key/Area3D" to="." method="_on_area_3d_area_entered"]

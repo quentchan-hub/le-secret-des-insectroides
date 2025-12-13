@@ -1,0 +1,101 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7yht1d5fdars"]
+
+[ext_resource type="Script" uid="uid://bp4mpi7y2fxch" path="res://Jeu Kenney Sophie/Script/quit_pop_up.gd" id="1_pfwip"]
+
+[sub_resource type="SystemFont" id="SystemFont_bkieh"]
+font_names = PackedStringArray("Century Schoolbook")
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_pfwip"]
+font = SubResource("SystemFont_bkieh")
+font_size = 30
+
+[sub_resource type="SystemFont" id="SystemFont_bcu6f"]
+font_names = PackedStringArray("Century Schoolbook")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_yyxbx"]
+font_names = PackedStringArray("Century Schoolbook")
+subpixel_positioning = 0
+
+[node name="QuitPopUp" type="Control"]
+custom_minimum_size = Vector2(300, 150)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+script = ExtResource("1_pfwip")
+
+[node name="VoileBlanc" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.41960785)
+
+[node name="PopUpWindow" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(300, 150)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -75.0
+offset_right = 150.0
+offset_bottom = 75.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.15127608, 0.15127608, 0.15127608, 1)
+
+[node name="Titre" type="Label" parent="PopUpWindow"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 5.0
+offset_right = 133.0
+offset_bottom = 47.0
+text = "Quitter ?"
+label_settings = SubResource("LabelSettings_pfwip")
+
+[node name="ArrangementBoutons" type="HBoxContainer" parent="PopUpWindow"]
+custom_minimum_size = Vector2(300, 150)
+layout_direction = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 0.9)
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="BoutonValider" type="Button" parent="PopUpWindow/ArrangementBoutons"]
+custom_minimum_size = Vector2(120, 90)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.3137255, 0.8745098, 0.8745098, 1)
+theme_override_colors/font_focus_color = Color(0.9860222, 0.9402329, 0.9053865, 1)
+theme_override_fonts/font = SubResource("SystemFont_bcu6f")
+theme_override_font_sizes/font_size = 17
+text = "Oui, Ciao ! "
+
+[node name="BoutonAnnuler" type="Button" parent="PopUpWindow/ArrangementBoutons"]
+custom_minimum_size = Vector2(120, 90)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(1, 0.6666667, 0.14509805, 1)
+theme_override_fonts/font = SubResource("SystemFont_yyxbx")
+theme_override_font_sizes/font_size = 17
+text = "Non, 
+malheureux !"
+
+[connection signal="pressed" from="PopUpWindow/ArrangementBoutons/BoutonValider" to="." method="_on_yes_button_pressed"]
+[connection signal="pressed" from="PopUpWindow/ArrangementBoutons/BoutonAnnuler" to="." method="_on_no_button_pressed"]

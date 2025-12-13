@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://h6u8fqasjixr"]
+
+[ext_resource type="Texture2D" uid="uid://cncdkrva0tj6o" path="res://Assets Persos/StunStars/StunStars.png" id="1_khnxn"]
+[ext_resource type="Script" uid="uid://ds6c8bj5icpeb" path="res://Scenes/ObjetsInteractifs/StunStar.cs" id="2_ikrjd"]
+
+[node name="StunStar" type="Sprite3D"]
+billboard = 1
+texture = ExtResource("1_khnxn")
+script = ExtResource("2_ikrjd")

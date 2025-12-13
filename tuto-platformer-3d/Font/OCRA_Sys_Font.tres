@@ -1,0 +1,5 @@
+[gd_resource type="SystemFont" format=3 uid="uid://ctdq1chr8q1jr"]
+
+[resource]
+font_names = PackedStringArray("OCR A")
+subpixel_positioning = 0

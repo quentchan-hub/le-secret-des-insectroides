@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://mwwnmgaf2dgd"]
+
+[ext_resource type="PackedScene" uid="uid://c7s5a3rhg50nh" path="res://Assets/Kenney assets/poles.glb" id="1_5mnr0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_88mvs"]
+size = Vector3(1.1396484, 1, 0.43164063)
+
+[node name="poles2" instance=ExtResource("1_5mnr0")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="poles" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="poles/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.478971, 0)
+shape = SubResource("BoxShape3D_88mvs")

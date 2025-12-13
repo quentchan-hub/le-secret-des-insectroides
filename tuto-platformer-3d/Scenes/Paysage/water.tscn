@@ -1,0 +1,38 @@
+[gd_scene load_steps=9 format=3 uid="uid://nobe5wgytiu2"]
+
+[ext_resource type="Shader" uid="uid://blklcebmrmd75" path="res://Assets/outdoor_environment/materials/water/water_shader.gdshader" id="1_gf5bf"]
+[ext_resource type="Texture2D" uid="uid://ssrlnj65d4bs" path="res://Assets/outdoor_environment/materials/water/textures/caustic_texture.png" id="2_qq3op"]
+
+[sub_resource type="Gradient" id="Gradient_2xcke"]
+offsets = PackedFloat32Array(0, 0.771883)
+colors = PackedColorArray(0.20871, 0.20871, 0.20871, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mdphv"]
+gradient = SubResource("Gradient_2xcke")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_s2shw"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uv5os"]
+noise = SubResource("FastNoiseLite_s2shw")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8wsvm"]
+render_priority = 0
+shader = ExtResource("1_gf5bf")
+shader_parameter/main_noise_sampler = SubResource("NoiseTexture2D_uv5os")
+shader_parameter/caustic_sampler = ExtResource("2_qq3op")
+shader_parameter/caustic_fade_sampler = SubResource("GradientTexture1D_mdphv")
+shader_parameter/water_color = Color(0.133333, 0.490196, 0.823529, 1)
+shader_parameter/water_depth_color = Color(0.0352941, 0.298039, 0.533333, 1)
+shader_parameter/water_edge_distance = 0.5
+shader_parameter/water_depth_distance = 4.0
+shader_parameter/water_texture_scale = 40.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ijeke"]
+size = Vector2(400, 400)
+subdivide_width = 40
+subdivide_depth = 40
+
+[node name="Water" type="MeshInstance3D"]
+material_override = SubResource("ShaderMaterial_8wsvm")
+mesh = SubResource("PlaneMesh_ijeke")

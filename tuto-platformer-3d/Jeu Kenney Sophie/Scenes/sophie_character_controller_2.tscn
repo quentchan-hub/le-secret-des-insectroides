@@ -1,0 +1,114 @@
+[gd_scene load_steps=15 format=3 uid="uid://dqbb4smmddkhn"]
+
+[ext_resource type="Script" uid="uid://csyk2xa1nk17w" path="res://Assets/shared/sophie_character_controller/sophie_character_controller2.gd" id="1_s2dry"]
+[ext_resource type="AudioStream" uid="uid://bx0t7f2nuk2lr" path="res://Assets/shared/sophie_character_controller/Sounds/03_Step_grass_03.wav" id="2_7wl6s"]
+[ext_resource type="PackedScene" uid="uid://dgvq4io2wgwv" path="res://Assets/shared/models/sophia/sophia_skin.tscn" id="4_mjdcb"]
+[ext_resource type="Script" uid="uid://c5if1oooy2bok" path="res://Assets/shared/sophie_character_controller/camera_controller3.gd" id="4_s2dry"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4it54"]
+height = 1.6
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_0gixm"]
+length = 0.3
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_s5n07"]
+
+[sub_resource type="Gradient" id="Gradient_4qby2"]
+colors = PackedColorArray(1, 1, 1, 1, 0.991164, 0.991164, 0.991164, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ahyk3"]
+gradient = SubResource("Gradient_4qby2")
+
+[sub_resource type="Curve" id="Curve_o6s0e"]
+_data = [Vector2(0, 0.418182), 0.0, 0.816529, 0, 0, Vector2(1, 1), 0.606652, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_tigny"]
+curve = SubResource("Curve_o6s0e")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ws674"]
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 2, 0)
+scale_min = 2.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_tigny")
+color_ramp = SubResource("GradientTexture1D_ahyk3")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x5x50"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.917647, 0.917647, 0.917647, 1)
+disable_receive_shadows = true
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_c5lqg"]
+material = SubResource("StandardMaterial3D_x5x50")
+size = Vector2(0.3, 0.3)
+
+[node name="SophieCharacterController2" type="CharacterBody3D" node_paths=PackedStringArray("camPivot") groups=["player"]]
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+floor_constant_speed = true
+floor_block_on_wall = false
+floor_snap_length = 0.2
+script = ExtResource("1_s2dry")
+camPivot = NodePath("CamPivot")
+
+[node name="StepSounds" type="AudioStreamPlayer3D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("2_7wl6s")
+
+[node name="CapsuleCollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+shape = SubResource("CapsuleShape3D_4it54")
+
+[node name="RayCollisionShape" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.3, 0)
+shape = SubResource("SeparationRayShape3D_0gixm")
+
+[node name="GroundShapeCast" type="ShapeCast3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.978282, 0)
+shape = SubResource("CylinderShape3D_s5n07")
+target_position = Vector3(0, -2.4, 0)
+max_results = 1
+debug_shape_custom_color = Color(0.658824, 1, 0, 1)
+
+[node name="CharacterRotationRoot" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="CharacterSkin" parent="CharacterRotationRoot" instance=ExtResource("4_mjdcb")]
+unique_name_in_owner = true
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="FloorSlideParticles" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
+cast_shadow = 0
+emitting = false
+amount = 2
+lifetime = 0.3
+process_material = SubResource("ParticleProcessMaterial_ws674")
+draw_pass_1 = SubResource("QuadMesh_c5lqg")
+
+[node name="CamPivot" type="Node3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.89894855, 0)
+script = ExtResource("4_s2dry")
+target = NodePath("..")
+mouse_sensitivity = 0.15
+min_pitch = -20.0
+max_pitch = 90.0
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CamPivot"]
+transform = Transform3D(-1, -1.7056166e-15, -8.742278e-08, -9.0896055e-09, 0.99458015, 0.103973, 8.694896e-08, 0.103973, -0.99458015, 0, 2.5733418, -5.374366)
+spring_length = 3.0
+metadata/_edit_group_ = true
+
+[node name="Camera3D" type="Camera3D" parent="CamPivot/SpringArm3D"]
+current = true

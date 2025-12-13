@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://d4lc6bu54r520"]
+
+[ext_resource type="PackedScene" uid="uid://ithpi4vct0e8" path="res://Assets Persos/Spring/ressort2.glb" id="1_g23ul"]
+[ext_resource type="Script" uid="uid://dj12dc23lh4q4" path="res://Scripts/Ressort.cs" id="2_aynrw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cwcs7"]
+albedo_color = Color(0.84330285, 0.7734677, 0.33839545, 1)
+metallic = 0.84
+metallic_specular = 0.69
+metallic_texture_channel = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bus14"]
+size = Vector3(3.241211, 2.8396606, 3.0384521)
+
+[node name="Ressort" instance=ExtResource("1_g23ul")]
+script = ExtResource("2_aynrw")
+
+[node name="model" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_cwcs7")
+
+[node name="Area3DRessort" type="Area3D" parent="model" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="model/Area3DRessort" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.052246094, 1.086385, -0.039855957)
+shape = SubResource("BoxShape3D_bus14")
+debug_color = Color(3.9324918, 1.6279502, 3.7583218, 1)
+
+[connection signal="area_entered" from="model/Area3DRessort" to="." method="_on_area_3d_ressort_area_entered"]

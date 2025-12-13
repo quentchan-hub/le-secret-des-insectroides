@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://4i0udwgpbjnb"]
+
+[ext_resource type="PackedScene" uid="uid://crd45pssa1707" path="res://Assets/Kenney assets/block-moving.glb" id="1_nb2wl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d00s7"]
+size = Vector3(1, 0.44680786, 1)
+
+[node name="movingblock" type="CharacterBody3D"]
+
+[node name="block-moving" parent="." instance=ExtResource("1_nb2wl")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0.20570791, -0.00030778444)
+shape = SubResource("BoxShape3D_d00s7")
+
+[editable path="block-moving"]

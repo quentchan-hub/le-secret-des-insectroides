@@ -1,0 +1,95 @@
+[gd_scene load_steps=16 format=3 uid="uid://bf7syhtffmsr7"]
+
+[ext_resource type="PackedScene" uid="uid://cagv4c6o2bqp" path="res://Assets/Kenney assets/door-open.glb" id="1_ob7ym"]
+
+[sub_resource type="Gradient" id="Gradient_2encm"]
+offsets = PackedFloat32Array(0.3753754, 0.993994)
+colors = PackedColorArray(0.54509807, 0.91764706, 0.54509807, 1, 0.29997024, 0.51160645, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5t7sw"]
+gradient = SubResource("Gradient_2encm")
+fill_from = Vector2(0.41452992, 0.6282051)
+fill_to = Vector2(0.525641, 0.9273504)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gf7jw"]
+albedo_color = Color(0.09019608, 0.5647059, 1, 1)
+albedo_texture = SubResource("GradientTexture2D_5t7sw")
+metallic_specular = 0.75
+roughness = 0.12
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sqp37"]
+size = Vector3(0.47558594, 0.88934326, 0.18164063)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_b1srj"]
+points = PackedVector3Array(-0.3, 0, -0.1, -0.3, 0, 0.1, -0.3, 0.69998044, -0.1, 0.3, 0, -0.1, 0.3, 0, 0.1, -0.3, 0.69998044, 0.1, -0.25982773, 0.84994125, -0.1, 0.3, 0.69998044, -0.1, 0.3, 0.69998044, 0.1, -0.25982773, 0.84994125, 0.1, -0.15005875, 0.959769, -0.1, 0.25976896, 0.84994125, -0.1, 0.25976896, 0.84994125, 0.1, -0.15005875, 0.959769, 0.1, -5.8740377e-05, 1, -0.1, 0.14994127, 0.959769, -0.1, 0.14994127, 0.959769, 0.1, -5.8740377e-05, 1, 0.1)
+
+[sub_resource type="Gradient" id="Gradient_ob7ym"]
+offsets = PackedFloat32Array(0, 0.36636636, 0.8018018)
+colors = PackedColorArray(0, 0.90038294, 0.35703668, 1, 0.55521727, 0.99999994, 0.62522346, 1, 0, 1, 0.4, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2encm"]
+gradient = SubResource("Gradient_ob7ym")
+
+[sub_resource type="Curve" id="Curve_5t7sw"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.50720465, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_gf7jw"]
+curve = SubResource("Curve_5t7sw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sqp37"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+spread = 100.0
+initial_velocity_min = 0.099999994
+initial_velocity_max = 1.0
+radial_velocity_min = -1.0000223
+radial_velocity_max = 0.99997765
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_gf7jw")
+color_ramp = SubResource("GradientTexture1D_2encm")
+
+[sub_resource type="Curve" id="Curve_b1srj"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.52136743, 0.3065732), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_aq8xv"]
+curve = SubResource("Curve_b1srj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nc5w8"]
+albedo_color = Color(0.9947513, 0.37051907, 0.807715, 1)
+albedo_texture = SubResource("CurveTexture_aq8xv")
+
+[sub_resource type="SphereMesh" id="SphereMesh_a2ir1"]
+material = SubResource("StandardMaterial3D_nc5w8")
+radius = 0.1
+height = 0.2
+
+[node name="StarGate" instance=ExtResource("1_ob7ym")]
+transform = Transform3D(1, 0, 0, 0, 0.9, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="door-open" parent="." index="0"]
+transform = Transform3D(14.667012, 0, 0, 0, 14.667011, 0, 0, 0, 17.833675, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_gf7jw")
+
+[node name="Area3D" type="Area3D" parent="door-open" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="door-open/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44631594, -0.003326416)
+shape = SubResource("BoxShape3D_sqp37")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="door-open" index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="door-open/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_b1srj")
+
+[node name="MagieTeleportation" type="GPUParticles3D" parent="." index="1"]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 7.485448, 0)
+amount = 200
+lifetime = 1.5
+process_material = SubResource("ParticleProcessMaterial_sqp37")
+draw_pass_1 = SubResource("SphereMesh_a2ir1")

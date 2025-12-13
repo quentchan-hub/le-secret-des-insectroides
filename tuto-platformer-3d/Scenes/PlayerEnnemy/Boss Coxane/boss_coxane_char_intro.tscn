@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://xaeepe37bpap"]
+
+[ext_resource type="PackedScene" uid="uid://dmirtonafnwin" path="res://Scenes/PlayerEnnemy/Boss Coxane/boss_lvl_1_coxane.tscn" id="1_qmeau"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_inq6r"]
+size = Vector3(6.069336, 5.6016846, 8.547852)
+
+[node name="BossCoxaneChar" type="CharacterBody3D"]
+
+[node name="BossLvl1Coxane" parent="." instance=ExtResource("1_qmeau")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5748291, 2.56629, 1.1766148)
+shape = SubResource("BoxShape3D_inq6r")

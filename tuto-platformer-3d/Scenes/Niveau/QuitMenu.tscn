@@ -1,0 +1,165 @@
+[gd_scene load_steps=5 format=3 uid="uid://xdx6pidc1xjf"]
+
+[ext_resource type="Script" uid="uid://4j0of87e7n6y" path="res://Scripts/QuitMenu.cs" id="1_enubt"]
+[ext_resource type="LabelSettings" uid="uid://om6pf4d0up42" path="res://Scenes/Niveau/QuitMenu.tres" id="2_c6jg4"]
+
+[sub_resource type="SystemFont" id="SystemFont_bcu6f"]
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_nb8ns"]
+font_size = 32
+font_color = Color(0.3137255, 0.8745098, 0.8745098, 1)
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[node name="QuitMenu" type="Control" node_paths=PackedStringArray("boutonValider")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_enubt")
+boutonValider = NodePath("MarginContainer/VBoxContainer/PanelContainer0/CouleurFond/MarginContainer/VBoxContainer/MarginContainer/ArrangementBoutons/BoutonValider")
+
+[node name="FondViolet" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.22938663, 4.803449e-05, 0.23979968, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.0018472463
+theme_override_constants/margin_left = 140
+theme_override_constants/margin_top = 70
+theme_override_constants/margin_right = 140
+theme_override_constants/margin_bottom = 70
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="PanelContainer0" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CouleurFond" type="ColorRect" parent="MarginContainer/VBoxContainer/PanelContainer0"]
+layout_mode = 2
+color = Color(0.09019608, 0.23921569, 0.3882353, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer0/CouleurFond"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer0/CouleurFond/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Titre" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer0/CouleurFond/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quitter ?"
+label_settings = ExtResource("2_c6jg4")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer0/CouleurFond/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 140
+theme_override_constants/margin_right = 140
+
+[node name="ArrangementBoutons" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer0/CouleurFond/MarginContainer/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(600, 150)
+layout_direction = 1
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="BoutonValider" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer0/CouleurFond/MarginContainer/VBoxContainer/MarginContainer/ArrangementBoutons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.3137255, 0.8745098, 0.8745098, 1)
+theme_override_colors/font_focus_color = Color(0.9860222, 0.9402329, 0.9053865, 1)
+theme_override_fonts/font = SubResource("SystemFont_bcu6f")
+theme_override_font_sizes/font_size = 32
+text = "Yep"
+
+[node name="BoutonAnnuler" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer0/CouleurFond/MarginContainer/VBoxContainer/MarginContainer/ArrangementBoutons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.3137255, 0.8745098, 0.8745098, 1)
+theme_override_colors/font_focus_color = Color(0.9860222, 0.9402329, 0.9053865, 1)
+theme_override_fonts/font = SubResource("SystemFont_bcu6f")
+theme_override_font_sizes/font_size = 32
+text = "Jamais !
+Tu m'entends ?!"
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="CouleurFond" type="ColorRect" parent="MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+color = Color(0.09183752, 0.24113208, 0.38858363, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Titre" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Passer en mode furtif ? "
+label_settings = ExtResource("2_c6jg4")
+text_overrun_behavior = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_override_constants/separation = 30
+
+[node name="Mute" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+text = "Bouton qui coupe la zik ---->"
+label_settings = SubResource("LabelSettings_nb8ns")
+
+[node name="MusicMuteButton" type="CheckButton" parent="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0.73333335, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 20
+text = "
+"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer0/CouleurFond/MarginContainer/VBoxContainer/MarginContainer/ArrangementBoutons/BoutonValider" to="." method="_on_bouton_valider_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/PanelContainer0/CouleurFond/MarginContainer/VBoxContainer/MarginContainer/ArrangementBoutons/BoutonAnnuler" to="." method="_on_bouton_annuler_pressed"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/CenterContainer/HBoxContainer2/MusicMuteButton" to="." method="_on_music_mute_button_toggled"]

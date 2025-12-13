@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://jutk1jsbm12q"]
+
+[ext_resource type="PackedScene" uid="uid://cnqtx5sllknin" path="res://Assets/Kenney assets/chest.glb" id="1_gmdvf"]
+[ext_resource type="Script" uid="uid://carfqop45huxr" path="res://Scripts/Coffre.cs" id="2_gmdvf"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_najnx"]
+radius = 0.33206034
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ddwwk"]
+radius = 0.8257363
+
+[sub_resource type="LabelSettings" id="LabelSettings_cc3a6"]
+font_size = 32
+font_color = Color(0.029506557, 0.029506557, 0.029506557, 1)
+outline_size = 6
+outline_color = Color(0.83608687, 0.93952113, 0.36882272, 1)
+shadow_size = 0
+shadow_color = Color(0.17641911, 0.17641908, 0.17641908, 1)
+
+[node name="Coffre" node_paths=PackedStringArray("avertissementCoffre", "_lootTimer") instance=ExtResource("1_gmdvf")]
+script = ExtResource("2_gmdvf")
+avertissementCoffre = NodePath("")
+_lootTimer = NodePath("LootTimer")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="chest" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="chest/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1663368, 0)
+shape = SubResource("SphereShape3D_najnx")
+
+[node name="lid" parent="chest" index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.7071067, 0.7071067, 0, -0.7071067, 0.7071067, -3.7252983e-09, 0.2, -0.2)
+
+[node name="Area3D" type="Area3D" parent="." index="2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21426117, 0)
+shape = SubResource("SphereShape3D_ddwwk")
+
+[node name="LootTimer" type="Timer" parent="." index="3"]
+one_shot = true
+
+[node name="AvertissementCoffre" type="Label" parent="." index="4"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -297.0
+offset_top = 204.0
+offset_right = 297.0
+offset_bottom = 268.0
+grow_horizontal = 2
+text = "Touche (E) pour ouvrir le coffre."
+label_settings = SubResource("LabelSettings_cc3a6")
+horizontal_alignment = 1
+
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]

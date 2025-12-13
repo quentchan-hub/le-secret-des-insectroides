@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2fdh52r2or2x"]
+
+[ext_resource type="PackedScene" uid="uid://ygg1kscadnp3" path="res://Assets/Kenney assets/tree.glb" id="1_6mcgh"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_6mcgh"]
+height = 1.9820557
+radius = 0.42285156
+
+[node name="TroenRond" instance=ExtResource("1_6mcgh")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="tree" index="15"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tree/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9907837, 0)
+shape = SubResource("CylinderShape3D_6mcgh")

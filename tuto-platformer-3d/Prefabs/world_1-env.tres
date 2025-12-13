@@ -1,0 +1,30 @@
+[gd_resource type="Environment" load_steps=3 format=3 uid="uid://b3fx13le35rlq"]
+
+[ext_resource type="Material" uid="uid://cbceraxhc2dpp" path="res://Assets/outdoor_environment/sky_mat.tres" id="1_ucnqo"]
+
+[sub_resource type="Sky" id="Sky_dj43f"]
+sky_material = ExtResource("1_ucnqo")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_dj43f")
+ambient_light_color = Color(0.7576854, 0.6593055, 0.625154, 1)
+ambient_light_sky_contribution = 0.5
+tonemap_mode = 3
+tonemap_exposure = 0.9
+tonemap_white = 1.1
+ssao_enabled = true
+ssao_radius = 2.0
+ssao_intensity = 3.0
+ssao_power = 1.6076602
+ssao_detail = 3.59
+ssao_horizon = 0.05
+glow_enabled = true
+glow_intensity = 3.15
+glow_strength = 1.02
+glow_bloom = 0.08
+fog_enabled = true
+fog_light_color = Color(0.7912786, 0.95662147, 0.9856263, 1)
+fog_light_energy = 0.2
+fog_density = 0.0001
+fog_aerial_perspective = 0.677

@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "nCfBUmtjHTY=",
+  "success": true,
+  "projectFilePath": "/Users/maximepoix/Desktop/Jeu platformer 3D Tuto/tuto-platformer-3d/TutoPlatformer3D.csproj",
+  "expectedPackageFiles": [
+    "/Users/maximepoix/.nuget/packages/godot.sourcegenerators/4.5.1/godot.sourcegenerators.4.5.1.nupkg.sha512",
+    "/Users/maximepoix/.nuget/packages/godotsharp/4.5.1/godotsharp.4.5.1.nupkg.sha512",
+    "/Users/maximepoix/.nuget/packages/godotsharpeditor/4.5.1/godotsharpeditor.4.5.1.nupkg.sha512",
+    "/Users/maximepoix/.nuget/packages/microsoft.netcore.app.ref/8.0.22/microsoft.netcore.app.ref.8.0.22.nupkg.sha512",
+    "/Users/maximepoix/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.22/microsoft.aspnetcore.app.ref.8.0.22.nupkg.sha512"
+  ],
+  "logs": []
+}

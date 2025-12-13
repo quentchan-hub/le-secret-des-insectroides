@@ -1,0 +1,90 @@
+[gd_scene load_steps=9 format=3 uid="uid://dthaqqbsjx7b8"]
+
+[ext_resource type="PackedScene" uid="uid://b6tqbewm78q8p" path="res://Scenes/PlayerEnnemy/Player/bot_player_base.tscn" id="1_833sn"]
+[ext_resource type="Script" uid="uid://cm37lohk6eth3" path="res://Scripts/PlayerBotCtrl.cs" id="1_c4nwy"]
+[ext_resource type="Shader" uid="uid://cj4yf6wler47c" path="res://Assets/shared/models/shared/shaders/screen_shader.gdshader" id="3_bfnft"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c4nwy"]
+radius = 0.3125
+height = 1.6833158
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bfnft"]
+size = Vector3(0.40454102, 0.21619415, 0.57592773)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ogtnu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0dbvs"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("3_bfnft")
+shader_parameter/face_texture = SubResource("ViewportTexture_ogtnu")
+shader_parameter/intensity = 2.0
+shader_parameter/screen_color = Color(0.101961, 0.662745, 1, 0.0196078)
+shader_parameter/screen_red_offset = Vector2(0, 0)
+shader_parameter/screen_green_offset = Vector2(0, 0)
+shader_parameter/screen_blue_offset = Vector2(0, 0)
+shader_parameter/pixel_size = 32.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mpquo"]
+size = Vector3(1, 1.5410156, 0.72821045)
+
+[node name="PlayerBotCtrl" type="CharacterBody3D" node_paths=PackedStringArray("playerMesh", "cameraPivot", "camera", "animationPlayer")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+collision_mask = 7
+floor_snap_length = 0.2
+script = ExtResource("1_c4nwy")
+speed = 2.0
+acceleration = 1.75
+airAcceleration = 1.5
+gravity = 0.4
+maxTerminalVelocity = 7.5
+playerMesh = NodePath("PlayerBot/gdbot/Armature/Skeleton3D/gdbot_mesh")
+mouseSensivity = 0.25
+minPitch = -48.0
+maxPitch = 75.0
+cameraPivot = NodePath("CamPivot")
+camera = NodePath("CamPivot/SpringArm3D/Camera3D")
+animationPlayer = NodePath("PlayerBot/gdbot/AnimationPlayer")
+
+[node name="CamPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.89894855, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CamPivot"]
+transform = Transform3D(-1, 0, -8.742278e-08, -1.521837e-08, 0.9847319, 0.17407787, 8.6088e-08, 0.17407787, -0.9847319, 0, 1.2133356, -4.555003)
+
+[node name="Camera3D" type="Camera3D" parent="CamPivot/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.113422e-08, 0.06295633, -0.35613394)
+current = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90189683, 0)
+shape = SubResource("CapsuleShape3D_c4nwy")
+
+[node name="Area3DPlayer" type="Area3D" parent="."]
+collision_mask = 7
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3DPlayer"]
+transform = Transform3D(1.0147651, 0, 0, 0, 1.0147651, 0, 0, 0, 1.0147651, 0.003, 0.0636757, 0.025)
+shape = SubResource("BoxShape3D_bfnft")
+
+[node name="PlayerBot" parent="." instance=ExtResource("1_833sn")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
+
+[node name="Skeleton3D" parent="PlayerBot/gdbot/Armature" index="0"]
+bones/4/rotation = Quaternion(-0.055881478, -0.26054087, -0.094529554, 0.9591976)
+bones/17/rotation = Quaternion(2.781742e-09, 2.4416606e-08, -0.45792612, 0.8889903)
+bones/30/rotation = Quaternion(2.781742e-09, 2.4416606e-08, -0.45792612, 0.8889903)
+
+[node name="gdbot_mesh" parent="PlayerBot/gdbot/Armature/Skeleton3D" index="0"]
+surface_material_override/1 = SubResource("ShaderMaterial_0dbvs")
+
+[node name="Area3DDommage" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3DDommage"]
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0, 0.97886723, 0.051727276)
+shape = SubResource("BoxShape3D_mpquo")
+
+[connection signal="area_entered" from="Area3DPlayer" to="." method="_on_area_3d_area_entered"]
+
+[editable path="PlayerBot"]
+[editable path="PlayerBot/gdbot"]

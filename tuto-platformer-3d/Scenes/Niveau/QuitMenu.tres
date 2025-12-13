@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://om6pf4d0up42"]
+
+[sub_resource type="SystemFont" id="SystemFont_bkieh"]
+font_names = PackedStringArray("Berlin Sans FB")
+subpixel_positioning = 0
+
+[resource]
+font = SubResource("SystemFont_bkieh")
+font_size = 42

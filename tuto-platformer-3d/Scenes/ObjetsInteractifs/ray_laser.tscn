@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqjqa4mvpsdar"]
+
+[ext_resource type="Script" uid="uid://bs25pqlrx7buc" path="res://Scenes/ObjetsInteractifs/RayLaser.cs" id="1_mv1yq"]
+[ext_resource type="PackedScene" uid="uid://ciho3ciktan1h" path="res://Scenes/ObjetsInteractifs/impact_sol.tscn" id="2_mv1yq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_f1dcx"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_color = Color(0.6233232, 0.4146105, 0.19471842, 1)
+emission_enabled = true
+emission = Color(0.3810671, 0.22733298, 0.13234624, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_v3auk"]
+material = SubResource("StandardMaterial3D_f1dcx")
+top_radius = 0.1
+bottom_radius = 0.1
+height = 1.0
+
+[node name="RayLaser" type="RayCast3D" node_paths=PackedStringArray("impactSol", "meshRay")]
+transform = Transform3D(0.99999845, -0.0017453283, 0, -7.6290724e-11, -4.371132e-08, 1, -0.0017453283, -0.99999845, -4.371139e-08, 0, 0, 0)
+target_position = Vector3(0, 20, 0)
+collide_with_areas = true
+collide_with_bodies = false
+script = ExtResource("1_mv1yq")
+impactSol = NodePath("ImpactSol")
+meshRay = NodePath("MeshRay")
+
+[node name="MeshRay" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.0000008, 0, 0, 0, 1.0000008, 0, 0, 0, 1, 0, 0.50000006, 0)
+mesh = SubResource("CylinderMesh_v3auk")
+
+[node name="ImpactSol" parent="." instance=ExtResource("2_mv1yq")]
+transform = Transform3D(1, -2.3283064e-10, -1.3877788e-17, 2.3283064e-10, 1, 0, 6.938894e-18, -1.0658141e-14, 1, 0, 0, 0)
+emitting = false
+one_shot = true

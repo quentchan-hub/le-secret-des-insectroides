@@ -1,0 +1,32 @@
+[gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://d2lqhxyc4dtw0"]
+
+[ext_resource type="Shader" uid="uid://blklcebmrmd75" path="res://Assets/outdoor_environment/materials/water/water_shader.gdshader" id="1_1xjjr"]
+[ext_resource type="Texture2D" uid="uid://ssrlnj65d4bs" path="res://Assets/outdoor_environment/materials/water/textures/caustic_texture.png" id="2_ymplv"]
+
+[sub_resource type="Gradient" id="Gradient_2xcke"]
+offsets = PackedFloat32Array(0.108475, 0.79661)
+colors = PackedColorArray(0.20871, 0.20871, 0.20871, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mdphv"]
+gradient = SubResource("Gradient_2xcke")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_s2shw"]
+noise_type = 2
+frequency = 0.0001
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uv5os"]
+generate_mipmaps = false
+normalize = false
+noise = SubResource("FastNoiseLite_s2shw")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_1xjjr")
+shader_parameter/water_color = Color(0.133333, 0.490196, 0.823529, 1)
+shader_parameter/water_depth_color = Color(0.0352941, 0.298039, 0.533333, 1)
+shader_parameter/water_edge_distance = 0.0
+shader_parameter/water_depth_distance = 3.0
+shader_parameter/water_texture_scale = 100.0
+shader_parameter/main_noise_sampler = SubResource("NoiseTexture2D_uv5os")
+shader_parameter/caustic_sampler = ExtResource("2_ymplv")
+shader_parameter/caustic_fade_sampler = SubResource("GradientTexture1D_mdphv")

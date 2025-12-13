@@ -1,0 +1,89 @@
+[gd_scene load_steps=13 format=3 uid="uid://sg2i817l4c2u"]
+
+[ext_resource type="PackedScene" uid="uid://bb15s2222kbth" path="res://Assets/shared/models/beetle_bot/beetlebot_skin.tscn" id="1_plnl8"]
+[ext_resource type="Script" uid="uid://s4t7i3yltl2n" path="res://Scripts/Mob1.cs" id="1_vgiye"]
+[ext_resource type="Texture2D" uid="uid://d070jfaxsmdif" path="res://Assets/shared/models/beetle_bot/beetle_bot_fused_beetle_albedo.png" id="2_vgiye"]
+[ext_resource type="Texture2D" uid="uid://c5d4ddwlbcsus" path="res://Assets/shared/models/beetle_bot/beetle_bot_fused_beetle_roughness.png" id="3_8bche"]
+[ext_resource type="Texture2D" uid="uid://cletbxaglon1q" path="res://Assets/shared/models/beetle_bot/beetle_bot_fused_beetle_normal.png" id="4_lcu1l"]
+[ext_resource type="Shader" uid="uid://cj4yf6wler47c" path="res://Assets/shared/models/shared/shaders/screen_shader.gdshader" id="5_64hg5"]
+[ext_resource type="Texture2D" uid="uid://bvxkh2pa1nqdq" path="res://Assets/shared/models/shared/textures/eye_mask.png" id="6_qinod"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h8w7i"]
+resource_local_to_scene = true
+resource_name = "BeetleMat"
+cull_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_vgiye")
+metallic_texture = ExtResource("3_8bche")
+metallic_texture_channel = 2
+roughness_texture = ExtResource("3_8bche")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_texture = ExtResource("4_lcu1l")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kuew5"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("5_64hg5")
+shader_parameter/face_texture = ExtResource("6_qinod")
+shader_parameter/intensity = 2.0
+shader_parameter/screen_color = Color(0.619608, 0.862745, 0, 0.0784314)
+shader_parameter/screen_red_offset = Vector2(0, 0)
+shader_parameter/screen_green_offset = Vector2(0, 0)
+shader_parameter/screen_blue_offset = Vector2(0, 0)
+shader_parameter/pixel_size = 32.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jaygo"]
+size = Vector3(0.68725586, 0.29492188, 1.0537109)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_177k8"]
+size = Vector3(0.4416504, 0.14057922, 0.66791916)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8x2o7"]
+size = Vector3(1, 0.30297852, 1.219305)
+
+[node name="Mob" type="CharacterBody3D" node_paths=PackedStringArray("points", "animPlayer", "beettleMesh")]
+collision_layer = 4
+script = ExtResource("1_vgiye")
+points = []
+animPlayer = NodePath("BeetlebotSkin/beetle_bot/AnimationPlayer")
+beettleMesh = NodePath("BeetlebotSkin/beetle_bot/Armature/Skeleton3D/Beetle")
+
+[node name="BeetlebotSkin" parent="." instance=ExtResource("1_plnl8")]
+
+[node name="Beetle" parent="BeetlebotSkin/beetle_bot/Armature/Skeleton3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_h8w7i")
+surface_material_override/1 = SubResource("ShaderMaterial_kuew5")
+
+[node name="AnimationPlayer" parent="BeetlebotSkin/beetle_bot" index="1"]
+speed_scale = 1.5
+
+[node name="AnimationTree" parent="BeetlebotSkin" index="1"]
+active = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.30409837, 0.05687982)
+shape = SubResource("BoxShape3D_jaygo")
+
+[node name="Area3DTop" type="Area3D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3DTop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4514312, 0.041811228)
+shape = SubResource("BoxShape3D_177k8")
+debug_color = Color(0.29803923, 0.39215687, 0.9137255, 0.9372549)
+
+[node name="Area3DBottom" type="Area3D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3DBottom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01625985, 0.0675993)
+shape = SubResource("BoxShape3D_8x2o7")
+
+[connection signal="area_entered" from="Area3DTop" to="." method="_on_area_3d_top_area_entered"]
+[connection signal="area_entered" from="Area3DBottom" to="." method="_on_area_3d_bottom_area_entered"]
+[connection signal="body_entered" from="Area3DBottom" to="." method="_on_area_3d_bottom_body_entered"]
+
+[editable path="BeetlebotSkin"]
+[editable path="BeetlebotSkin/beetle_bot"]

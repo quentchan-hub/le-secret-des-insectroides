@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqjiybj7mfl13"]
+
+[ext_resource type="PackedScene" uid="uid://3q06gwkw5e26" path="res://Assets Persos/Bomba/LaBomba.glb" id="1_xjkv8"]
+[ext_resource type="Script" uid="uid://vy2gg7lm31e3" path="res://Scripts/LaBomba.cs" id="2_8rvfg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xjkv8"]
+size = Vector3(1.4619141, 1, 1.4064941)
+
+[node name="LaBomba" instance=ExtResource("1_xjkv8")]
+script = ExtResource("2_8rvfg")
+
+[node name="Cube" parent="." index="0"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+
+[node name="Area3DBomb" type="Area3D" parent="Cube" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube/Area3DBomb" index="0"]
+shape = SubResource("BoxShape3D_xjkv8")
+debug_color = Color(0.29411766, 0.8745098, 1, 1)
+
+[connection signal="area_entered" from="Cube/Area3DBomb" to="." method="_on_area_3d_bomb_area_entered"]

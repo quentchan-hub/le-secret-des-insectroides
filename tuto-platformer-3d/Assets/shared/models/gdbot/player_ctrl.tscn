@@ -1,0 +1,112 @@
+[gd_scene load_steps=8 format=3 uid="uid://bq53f6p1vin1p"]
+
+[ext_resource type="Script" uid="uid://djdp0lwj4cc6l" path="res://Assets/shared/models/gdbot/player_ctrl.cs" id="1_5f55v"]
+[ext_resource type="PackedScene" uid="uid://eh7fbt2qkexc" path="res://Assets/shared/models/gdbot/gdbot_controller.tscn" id="1_cftem"]
+[ext_resource type="Shader" uid="uid://cj4yf6wler47c" path="res://Assets/shared/models/shared/shaders/screen_shader.gdshader" id="3_g5ewu"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_b6kch"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s412v"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("3_g5ewu")
+shader_parameter/intensity = 2.0
+shader_parameter/screen_color = Color(0.101961, 0.662745, 1, 0.0196078)
+shader_parameter/screen_red_offset = Vector2(0, 0)
+shader_parameter/screen_green_offset = Vector2(0, 0)
+shader_parameter/screen_blue_offset = Vector2(0, 0)
+shader_parameter/pixel_size = 32.0
+shader_parameter/face_texture = SubResource("ViewportTexture_b6kch")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gi4gc"]
+height = 1.6286
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e2cac"]
+size = Vector3(0.882641, 0.2288, 0.911334)
+
+[node name="PlayerCtrl" type="CharacterBody3D" node_paths=PackedStringArray("cameraPivot", "camera", "animationPlayer")]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_5f55v")
+cameraPivot = NodePath("CamPivot")
+camera = NodePath("CamPivot/SpringArm3D/Camera3D")
+animationPlayer = NodePath("GDbotSkinMeshRenderer/gdbot/AnimationPlayer")
+
+[node name="CamPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.953608, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CamPivot"]
+transform = Transform3D(-1, 8.88178e-16, -8.74228e-08, -1.43145e-08, 0.986504, 0.163739, 8.62429e-08, 0.163739, -0.986504, 0, 0.744938, -3.02706)
+
+[node name="Camera3D" type="Camera3D" parent="CamPivot/SpringArm3D"]
+transform = Transform3D(1, 8.88178e-16, -7.10543e-15, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="GDbotSkinMeshRenderer" parent="." instance=ExtResource("1_cftem")]
+
+[node name="Skeleton3D" parent="GDbotSkinMeshRenderer/gdbot/Armature" index="0"]
+bones/2/position = Vector3(0.0192032, -1.6788e-09, 0.531767)
+bones/2/rotation = Quaternion(0.0625153, 0.705334, 0.704338, 0.0500353)
+bones/3/rotation = Quaternion(1, 5.98305e-12, -7.92232e-08, -2.09787e-11)
+bones/4/rotation = Quaternion(-0.0558815, -0.260541, -0.0945296, 0.959197)
+bones/5/rotation = Quaternion(0.112705, 4.73086e-08, -2.82072e-08, 0.993629)
+bones/7/rotation = Quaternion(-0.121103, 0.0880745, 0.0632333, 0.986701)
+bones/8/rotation = Quaternion(0.24002, -4.69888e-08, 7.40386e-08, 0.970768)
+bones/10/rotation = Quaternion(-0.554183, -0.423676, -0.449594, 0.557893)
+bones/11/rotation = Quaternion(4.30222e-10, 2.22151e-08, -0.00176333, 0.999999)
+bones/13/rotation = Quaternion(0.0819346, 1.62373e-07, 6.18589e-09, 0.996638)
+bones/14/rotation = Quaternion(-0.0819236, 0.00134455, 0.0163548, 0.996504)
+bones/16/rotation = Quaternion(-0.633879, -0.242371, -0.701016, 0.219159)
+bones/17/rotation = Quaternion(-3.10611e-09, 3.28671e-08, -0.453598, 0.891206)
+bones/19/rotation = Quaternion(-0.391114, -0.0079801, -0.00129221, 0.920307)
+bones/20/rotation = Quaternion(-0.277507, -2.52358e-07, -9.94341e-08, 0.960724)
+bones/21/rotation = Quaternion(-0.38504, -0.130181, 0.00239691, 0.913669)
+bones/22/rotation = Quaternion(-0.277506, 6.90892e-07, -4.39039e-08, 0.960724)
+bones/23/rotation = Quaternion(-0.391124, 0.0040795, 0.000660612, 0.920329)
+bones/24/rotation = Quaternion(-0.277506, 5.78611e-07, 1.10348e-07, 0.960724)
+bones/25/rotation = Quaternion(-0.386896, 0.0855178, -0.0227219, 0.917868)
+bones/26/rotation = Quaternion(-0.277506, -2.58292e-09, -9.82245e-08, 0.960724)
+bones/27/rotation = Quaternion(-0.293954, 0.794438, -0.105766, 0.520838)
+bones/28/rotation = Quaternion(-0.277506, -3.63708e-07, -5.31396e-07, 0.960724)
+bones/29/rotation = Quaternion(-0.633879, -0.242371, -0.701016, 0.219159)
+bones/30/rotation = Quaternion(-3.10611e-09, 3.28671e-08, -0.453598, 0.891206)
+bones/32/rotation = Quaternion(0.0219623, -0.0451742, -0.436683, 0.898212)
+bones/33/rotation = Quaternion(-0.506769, 0.5087, 0.478208, 0.505694)
+bones/34/rotation = Quaternion(2.02158e-08, 5.88411e-09, 0.351692, 0.936116)
+bones/37/rotation = Quaternion(-0.714651, 0.21383, 0.618466, 0.247085)
+bones/38/rotation = Quaternion(-6.36487e-09, 6.89045e-09, 0.374228, 0.927337)
+bones/40/rotation = Quaternion(-0.391114, 0.00798011, 0.00129221, 0.920307)
+bones/41/rotation = Quaternion(-0.277507, 2.41907e-07, 1.20579e-07, 0.960724)
+bones/42/rotation = Quaternion(-0.38504, 0.130181, -0.00239689, 0.913669)
+bones/43/rotation = Quaternion(-0.277506, -6.4933e-07, 2.01537e-08, 0.960724)
+bones/44/rotation = Quaternion(-0.391124, -0.00407954, -0.000660702, 0.920329)
+bones/45/rotation = Quaternion(-0.277506, -6.01846e-07, -9.99273e-08, 0.960724)
+bones/46/rotation = Quaternion(-0.386896, -0.0855178, 0.0227219, 0.917868)
+bones/47/rotation = Quaternion(-0.277506, -2.36655e-08, 1.00422e-07, 0.960724)
+bones/48/rotation = Quaternion(-0.293954, -0.794438, 0.105766, 0.520838)
+bones/49/rotation = Quaternion(-0.277506, 3.69605e-07, 5.06519e-07, 0.960724)
+bones/50/rotation = Quaternion(-0.714651, 0.21383, 0.618466, 0.247085)
+bones/51/rotation = Quaternion(-6.36487e-09, 6.89045e-09, 0.374228, 0.927337)
+bones/53/rotation = Quaternion(-0.0314651, -0.0647206, 0.436101, 0.897016)
+bones/54/rotation = Quaternion(0, 0, 0.147009, 0.989135)
+bones/58/rotation = Quaternion(0, 0, -0.15168, 0.98843)
+bones/59/position = Vector3(-1.13183e-08, -5.14319e-09, 4.23749e-08)
+
+[node name="gdbot_mesh" parent="GDbotSkinMeshRenderer/gdbot/Armature/Skeleton3D" index="0"]
+surface_material_override/1 = SubResource("ShaderMaterial_s412v")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.815435, 0)
+shape = SubResource("CapsuleShape3D_gi4gc")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00836744, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.108223, 0)
+shape = SubResource("BoxShape3D_e2cac")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+
+[editable path="GDbotSkinMeshRenderer"]
+[editable path="GDbotSkinMeshRenderer/gdbot"]

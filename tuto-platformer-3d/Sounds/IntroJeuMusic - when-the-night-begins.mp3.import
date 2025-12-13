@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d4llhm2hf8ddk"
+path="res://.godot/imported/IntroJeuMusic - when-the-night-begins.mp3-db218a3e0faf36fdf319290b944b40ba.mp3str"
+
+[deps]
+
+source_file="res://Sounds/IntroJeuMusic - when-the-night-begins.mp3"
+dest_files=["res://.godot/imported/IntroJeuMusic - when-the-night-begins.mp3-db218a3e0faf36fdf319290b944b40ba.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

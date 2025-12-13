@@ -1,0 +1,100 @@
+[gd_scene load_steps=12 format=3 uid="uid://dqs2r7qjx04di"]
+
+[ext_resource type="PackedScene" uid="uid://c28pgdu71100y" path="res://Assets/outdoor_environment/tree_trunk/tree_trunk_long.glb" id="1_77wyt"]
+[ext_resource type="Material" path="res://Assets/outdoor_environment/materials/dark_bark/dark_bark.tres" id="2_hymmc"]
+[ext_resource type="Material" uid="uid://cbwea5kec68u6" path="res://Assets/outdoor_environment/materials/trunk_top/trunk_top.tres" id="3_nyq0t"]
+[ext_resource type="PackedScene" uid="uid://8o56ett8oups" path="res://Assets/outdoor_environment/orange_flowers/orange_flower.tscn" id="4_m617x"]
+[ext_resource type="PackedScene" uid="uid://cndyqf8jamodj" path="res://Assets/outdoor_environment/orange_flowers/orange_flower.glb" id="5_n1tnu"]
+[ext_resource type="PackedScene" uid="uid://d2fdh52r2or2x" path="res://Scenes/Paysage/troen_rond.tscn" id="6_2ss4y"]
+[ext_resource type="PackedScene" uid="uid://d0ell87v7ewmt" path="res://Assets/outdoor_environment/bushes/bush.tscn" id="7_p4tfu"]
+[ext_resource type="PackedScene" uid="uid://delp74i5eckiy" path="res://Assets/Kenney assets/grass.glb" id="8_mn03a"]
+[ext_resource type="PackedScene" uid="uid://dvwriay8nufo" path="res://Assets/Kenney assets/mushrooms.glb" id="9_mxjvt"]
+[ext_resource type="PackedScene" uid="uid://3wq4mu6scx88" path="res://Assets/Kenney assets/flowers-tall.glb" id="10_wm25s"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_204sq"]
+points = PackedVector3Array(-0.07232857, -0.37638068, 1.8105048, -0.89461863, 2.6967008, -0.5002842, -1.666469, -0.4828961, 0.42889336, 0.96854454, 2.6015975, 0.31614757, -0.7795229, 2.6647172, 0.66860133, 1.3623089, -0.4828961, -1.0582036, 0.63252455, 2.6266046, -0.79536694, -0.42928368, -0.45492336, -0.89276755, 0.29944974, -0.53582096, 1.5979731, 0.39941812, 2.5922084, 0.93580276, -0.22654437, 2.545685, -0.973976, 0.7245934, -0.58907866, -1.2707351, -1.5600348, -0.37638068, 0.8539565, -1.347463, -0.64200354, 0.26972872, 0.9368013, -0.46127257, 0.31782022, 1.0433029, -0.4828961, -1.3771571, -0.07722844, 2.6533945, 1.0142761, 1.149737, -0.64200354, -0.7926171, 0.9789688, 2.6159573, -0.28591198, -0.9984608, 2.6054199, 0.1203621, -0.7250836, -0.43735602, -0.68019086, 0.19331208, -0.37638068, 1.7574499, 0.12511866, 2.5704134, -0.993766, -1.347463, -0.53582096, 0.9070114, -0.42203188, 2.5308716, -0.91278833, 1.3089435, -0.53582096, -0.7395623, -1.666469, -0.3234558, 0.6947919, 0.686542, 2.5912342, 0.7436439, 1.0286502, 2.6148868, -0.034446415, 1.2473145, -0.36689016, -1.207993, -0.9980771, 2.6047182, -0.12154231, 0.7776622, -0.64200354, -1.1646254)
+
+[node name="Vegetation" type="Node3D"]
+transform = Transform3D(-0.9746639, 0, -0.41466552, 0, 4.184791, 0, 0.41466552, 0, -0.9746639, 0, 0, 0)
+
+[node name="tree_trunk_long" parent="." instance=ExtResource("1_77wyt")]
+transform = Transform3D(-1.8004107, 0, 0.4350222, 0, 0.6462572, 0, -0.76597506, 0, -1.022512, -56.6073, 3.481332, 8.964964)
+
+[node name="long_trunk" parent="tree_trunk_long" index="0"]
+transform = Transform3D(-0.91227263, 0, -0.3396646, 0, 0.71119744, 0, 0.20425145, 0, -1.5170844, -0.049628258, 0, 0.14521217)
+surface_material_override/0 = ExtResource("2_hymmc")
+surface_material_override/1 = ExtResource("3_nyq0t")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="tree_trunk_long/long_trunk" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tree_trunk_long/long_trunk/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_204sq")
+
+[node name="OrangeFlower" parent="." instance=ExtResource("4_m617x")]
+transform = Transform3D(-0.86874855, 0, 0.3696044, 0, 0.23896056, 0, -0.3696044, 0, -0.86874855, 29.528158, 1.3549523, 21.160799)
+
+[node name="OrangeFlower2" parent="." instance=ExtResource("4_m617x")]
+transform = Transform3D(-0.86874855, 0, 0.3696044, 0, 0.23896056, 0, -0.3696044, 0, -0.86874855, 32.79741, 1.3549529, 24.760519)
+
+[node name="orange_flower" parent="." instance=ExtResource("5_n1tnu")]
+transform = Transform3D(-0.86874855, 0, 0.3696044, 0, 0.23896056, 0, -0.3696044, 0, -0.86874855, 27.332933, 1.3549532, 29.184687)
+
+[node name="TroenRond" parent="." instance=ExtResource("6_2ss4y")]
+transform = Transform3D(-2.2465835, 0, 0.9557969, 0, 0.6179519, 0, -0.9557969, 0, -2.2465835, -34.964287, 1.865472, 8.037073)
+
+[node name="TroenRond2" parent="." instance=ExtResource("6_2ss4y")]
+transform = Transform3D(-1.7213657, 0, 0.7323458, 0, 0.47348398, 0, -0.7323458, 0, -1.7213657, -36.89283, 1.865472, 9.696619)
+
+[node name="TroenRond4" parent="." instance=ExtResource("6_2ss4y")]
+transform = Transform3D(-1.7213657, 0, 0.7323458, 0, 0.47348398, 0, -0.7323458, 0, -1.7213657, -60.012054, 1.9671623, -4.3250413)
+
+[node name="TroenRond6" parent="." instance=ExtResource("6_2ss4y")]
+transform = Transform3D(-2.103271, 0, 0.8948254, 0, 0.57853204, 0, -0.8948254, 0, -2.103271, -61.519974, 1.9671623, -9.849686)
+
+[node name="TroenRond5" parent="." instance=ExtResource("6_2ss4y")]
+transform = Transform3D(-2.5140333, 0, 1.069582, 0, 0.6915175, 0, -1.069582, 0, -2.5140333, -65.04458, 1.9671623, -3.6815438)
+
+[node name="TroenRond3" parent="." instance=ExtResource("6_2ss4y")]
+transform = Transform3D(-2.6954727, 0, 1.1467744, 0, 0.74142474, 0, -1.1467744, 0, -2.6954727, -43.212273, 2.3335822, 15.651663)
+
+[node name="Bush1" parent="." instance=ExtResource("7_p4tfu")]
+transform = Transform3D(-0.86874866, 0, 0.36960444, 0, 0.2389606, 0, -0.36960444, 0, -0.86874866, 11.173147, 1.8516881, 29.70948)
+skeleton = NodePath("../tree_trunk_long")
+
+[node name="Bush2" parent="." instance=ExtResource("7_p4tfu")]
+transform = Transform3D(-0.86874866, 0, 0.36960444, 0, 0.2389606, 0, -0.36960444, 0, -0.86874866, 17.352798, 1.8516876, 31.388538)
+skeleton = NodePath("../tree_trunk_long")
+
+[node name="Bush3" parent="." instance=ExtResource("7_p4tfu")]
+transform = Transform3D(-0.86874866, 0, 0.36960444, 0, 0.2389606, 0, -0.36960444, 0, -0.86874866, 20.868044, 1.8996558, 19.878834)
+skeleton = NodePath("../tree_trunk_long")
+
+[node name="Bush4" parent="." instance=ExtResource("7_p4tfu")]
+transform = Transform3D(-0.86874866, 0, 0.36960444, 0, 0.2389606, 0, -0.36960444, 0, -0.86874866, 16.722858, 1.8996558, 18.196857)
+skeleton = NodePath("../tree_trunk_long")
+
+[node name="grass2" parent="." instance=ExtResource("8_mn03a")]
+transform = Transform3D(-1.800411, 0, 0.43502223, 0, 0.64625716, 0, -0.7659752, 0, -1.022512, -53.662163, 3.481332, 10.217958)
+
+[node name="mushrooms2" parent="." instance=ExtResource("9_mxjvt")]
+transform = Transform3D(-0.44777864, 0, -1.3842523, 0, 0.5197179, 0, 1.3986839, 0, -0.5406667, -34.5027, 1.8703125, 7.116428)
+
+[node name="mushrooms4" parent="." instance=ExtResource("9_mxjvt")]
+transform = Transform3D(-1.565188, 0, 0.67742705, 0, 0.40068695, 0, -0.6659008, 0, -1.5922801, -37.934616, 1.8684708, 9.494495)
+
+[node name="mushrooms5" parent="." instance=ExtResource("9_mxjvt")]
+transform = Transform3D(-1.5693585, 0, 0.6457249, 0, 0.4006866, 0, -0.6558205, 0, -1.6056474, -42.040466, 2.3293946, 15.420347)
+
+[node name="flowers-tall2" parent="." instance=ExtResource("10_wm25s")]
+transform = Transform3D(0.46635208, 0, -1.2248509, 0, 0.3317308, 0, 1.2248509, 0, 0.46635208, -52.265358, 1.3791571, -2.492887)
+
+[node name="flowers-tall3" parent="." instance=ExtResource("10_wm25s")]
+transform = Transform3D(-1.0524813, 0, 0.44777253, 0, 0.28949866, 0, -0.44777253, 0, -1.0524813, -45.54653, 2.328385, 8.013958)
+
+[node name="flowers-tall4" parent="." instance=ExtResource("10_wm25s")]
+transform = Transform3D(-1.2158133, 0, -0.06433374, 0, 0.3081631, 0, 0.06433374, 0, -1.2158133, -47.35441, 2.3219357, 13.008314)
+
+[node name="flowers-tall5" parent="." instance=ExtResource("10_wm25s")]
+transform = Transform3D(-1.1444826, 0, 0.48691398, 0, 0.3148048, 0, -0.48691398, 0, -1.1444826, -37.217026, 1.8452492, 1.0649753)
+
+[editable path="tree_trunk_long"]

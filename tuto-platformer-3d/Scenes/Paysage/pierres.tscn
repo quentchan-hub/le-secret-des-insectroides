@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://3yr3eih143gb"]
+
+[ext_resource type="PackedScene" uid="uid://dn18epn56xfq6" path="res://Assets/Kenney assets/rocks.glb" id="1_pjcr5"]
+[ext_resource type="PackedScene" uid="uid://ch752ayedw0bp" path="res://Assets/Kenney assets/stones.glb" id="2_4av8p"]
+
+[node name="Pierres" type="MeshInstance3D"]
+
+[node name="rocks2" parent="." instance=ExtResource("1_pjcr5")]
+transform = Transform3D(131.06036, 0, -145.74576, 0, 195.79947, 0, 130.26222, 0, 146.63878, -210.26381, -1.2355595, -176.82043)
+
+[node name="rocks3" parent="." instance=ExtResource("1_pjcr5")]
+transform = Transform3D(21.246763, 0, 128.30649, 0, 153.04114, 0, -89.274445, 0, 30.536146, 38.47211, -2.0967617, -139.1399)
+
+[node name="rocks4" parent="." instance=ExtResource("1_pjcr5")]
+transform = Transform3D(21.246763, 0, 128.30649, 0, 153.04114, 0, -89.274445, 0, 30.536146, -34.694874, -38.520775, 136.36172)
+
+[node name="stones2" parent="." instance=ExtResource("2_4av8p")]
+transform = Transform3D(4.385, 0, 0, 0, 1.7634008, 0, 0, 0, 5.126, -81.48323, 5.738607, 3.6284351)
+
+[node name="stones3" parent="." instance=ExtResource("2_4av8p")]
+transform = Transform3D(2.299308, 0, 4.3647795, 0, 1.7634008, 0, -3.7338197, 0, 2.687857, -85.915955, 5.7281485, 6.9595637)
+
+[node name="stones4" parent="." instance=ExtResource("2_4av8p")]
+transform = Transform3D(1.375113, 0, -4.867429, 0, 1.7634008, 0, 4.1638074, 0, 1.6074866, -91.435486, 5.738607, 11.382543)

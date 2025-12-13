@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0hekl8csb6x7"]
+
+[ext_resource type="Texture2D" uid="uid://cy7easox6unfq" path="res://Assets/kenny_ui_assets/arrow_basic_e.png" id="1_3g7uu"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(550, 220)
+texture = ExtResource("1_3g7uu")

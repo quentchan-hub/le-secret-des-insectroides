@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://ciho3ciktan1h"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yn3yh"]
+emission_shape_scale = Vector3(1, -2, 1)
+emission_shape = 1
+emission_sphere_radius = 0.3
+direction = Vector3(0, -2, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 3.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.19999999
+scale_max = 0.39999998
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bvtqo"]
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_4mav7"]
+material = SubResource("StandardMaterial3D_bvtqo")
+radius = 0.2
+height = 0.4
+
+[node name="ImpactSol" type="GPUParticles3D"]
+transform = Transform3D(0.99999994, -2.3283064e-10, -1.3877788e-17, 2.3283064e-10, 0.99999994, 0, 0, -1.0658141e-14, 1, 0, 0, 0)
+amount = 20
+lifetime = 0.3
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_yn3yh")
+draw_pass_1 = SubResource("SphereMesh_4mav7")

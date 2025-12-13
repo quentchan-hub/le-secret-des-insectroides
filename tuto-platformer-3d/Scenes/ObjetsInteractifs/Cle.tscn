@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://rrjbebw7664m"]
+
+[ext_resource type="PackedScene" uid="uid://wl3ngdrhl7xr" path="res://Assets/Kenney assets/key.glb" id="1_q1jkf"]
+[ext_resource type="Script" uid="uid://4rsv7jhscmkh" path="res://Scripts/Cle.cs" id="2_rldjv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_j6meo"]
+size = Vector3(2.0856934, 1.9296875, 1.6474609)
+
+[node name="Clé" instance=ExtResource("1_q1jkf")]
+transform = Transform3D(2.5, 0, 0, 0, 2.5, 0, 0, 0, 2.5, 0, 0, 0)
+script = ExtResource("2_rldjv")
+
+[node name="Area3D" type="Area3D" parent="key" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="key/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10986328, 0)
+shape = SubResource("BoxShape3D_j6meo")
+
+[connection signal="area_entered" from="key/Area3D" to="." method="_on_area_3d_area_entered"]

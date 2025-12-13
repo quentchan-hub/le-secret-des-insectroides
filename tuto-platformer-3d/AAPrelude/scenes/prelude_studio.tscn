@@ -1,0 +1,535 @@
+[gd_scene load_steps=25 format=3 uid="uid://tdkoyyd6teoe"]
+
+[ext_resource type="Script" uid="uid://c4yr5rwgy3sue" path="res://AAPrelude/scenes/PreludeStudio.cs" id="1_itlvt"]
+[ext_resource type="Script" uid="uid://dnthijl1g5inj" path="res://AAPrelude/scripts/ButtonDemarrer.cs" id="2_84g0u"]
+[ext_resource type="StyleBox" uid="uid://cjseuj51cllw8" path="res://AAPrelude/Styles/StyleBoutonMenu1.tres" id="3_84g0u"]
+[ext_resource type="Script" uid="uid://413i7qf2unm7" path="res://AAPrelude/scenes/ButtonOptions.cs" id="4_itlvt"]
+[ext_resource type="SystemFont" uid="uid://ctdq1chr8q1jr" path="res://Font/OCRA_Sys_Font.tres" id="5_brnhn"]
+[ext_resource type="Script" uid="uid://d2wo4cawm2b30" path="res://AAPrelude/scenes/OptionWindow.cs" id="6_hfako"]
+[ext_resource type="LabelSettings" uid="uid://blo02efydoi6y" path="res://AAPrelude/scenes/prelude_studio.tres" id="6_r58em"]
+[ext_resource type="Texture2D" uid="uid://35wcafsk45yd" path="res://Assets/kenny_ui_assets/slide_horizontal_color_section_wide.png" id="8_yu3e8"]
+[ext_resource type="Texture2D" uid="uid://cp7a45seh2e6o" path="res://Assets/kenny_ui_assets/icon_cross.png" id="9_okfbf"]
+
+[sub_resource type="SystemFont" id="SystemFont_uchyk"]
+font_names = PackedStringArray("DFKai-SB", "Dragon FREE")
+subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_0fbet"]
+font_names = PackedStringArray("Super Crawler")
+subpixel_positioning = 0
+
+[sub_resource type="FontVariation" id="FontVariation_62e2m"]
+base_font = SubResource("SystemFont_0fbet")
+
+[sub_resource type="SystemFont" id="SystemFont_e6gic"]
+font_names = PackedStringArray("Super Crawler")
+subpixel_positioning = 0
+
+[sub_resource type="InputEventAction" id="InputEventAction_itlvt"]
+action = &"ui_accept"
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_brnhn"]
+events = [SubResource("InputEventAction_itlvt")]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_137n1"]
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+
+[sub_resource type="SystemFont" id="SystemFont_v2tt4"]
+font_names = PackedStringArray("Super Crawler")
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_hfako"]
+font = SubResource("SystemFont_v2tt4")
+font_size = 32
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_yu3e8"]
+font_names = PackedStringArray("Super Crawler")
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_okfbf"]
+font = SubResource("SystemFont_yu3e8")
+font_size = 26
+font_color = Color(0.76805055, 0.0005758363, 0.7914576, 1)
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(1.5, 2)
+
+[sub_resource type="Animation" id="Animation_itlvt"]
+resource_name = "LancementJeu"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect3:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect3:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_u7go7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect/Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect/Label2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ColorRect3:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ColorRect3:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_5jjfu"]
+resource_name = "fondu"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect/Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect/Label2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(4, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ColorRect3:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [false, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6fe40"]
+_data = {
+&"LancementJeu": SubResource("Animation_itlvt"),
+&"RESET": SubResource("Animation_u7go7"),
+&"fondu": SubResource("Animation_5jjfu")
+}
+
+[node name="PreludeStudio" type="Control" node_paths=PackedStringArray("animationPlayer")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_itlvt")
+animationPlayer = NodePath("AnimationPlayer")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="ColorRect"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -329.5
+offset_top = -118.5
+offset_right = 329.5
+offset_bottom = -25.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("SystemFont_uchyk")
+theme_override_font_sizes/font_size = 100
+text = "Bootey.2.20"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="ColorRect"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -206.0
+offset_top = 47.5
+offset_right = 206.0
+offset_bottom = 116.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_62e2m")
+theme_override_font_sizes/font_size = 60
+text = "Présente"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="ColorRect"]
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="ButtonDEMARRER" type="Button" parent="ColorRect2" node_paths=PackedStringArray("animationPlayer")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -183.0
+offset_top = 120.5
+offset_right = 183.0
+offset_bottom = 209.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_bottom = NodePath("../ButtonOPTIONS")
+focus_next = NodePath("../ButtonOPTIONS")
+theme_override_fonts/font = SubResource("SystemFont_e6gic")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/focus = ExtResource("3_84g0u")
+shortcut = SubResource("Shortcut_brnhn")
+text = "DÉMARRER"
+script = ExtResource("2_84g0u")
+animationPlayer = NodePath("../../AnimationPlayer")
+
+[node name="ButtonOPTIONS" type="Button" parent="ColorRect2" node_paths=PackedStringArray("optionWindow")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -133.0
+offset_top = 216.5
+offset_right = 133.0
+offset_bottom = 293.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_pressed_color = Color(0.7649482, 1, 0.74247926, 1)
+theme_override_fonts/font = SubResource("SystemFont_e6gic")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/hover = ExtResource("3_84g0u")
+theme_override_styles/focus = ExtResource("3_84g0u")
+text = "OPTIONS"
+script = ExtResource("4_itlvt")
+optionWindow = NodePath("../OptionWindow")
+
+[node name="Label" type="Label" parent="ColorRect2"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -218.5
+offset_bottom = 2.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"Header InsectroidesLarge"
+theme_override_colors/font_color = Color(0.31708124, 0.2894372, 0.08031898, 1)
+theme_override_colors/font_outline_color = Color(0, 0.73333335, 0, 1)
+theme_override_constants/line_spacing = 13
+theme_override_constants/outline_size = 29
+theme_override_fonts/font = ExtResource("5_brnhn")
+theme_override_font_sizes/font_size = 100
+text = "Le Mystère des Insectroïdes"
+horizontal_alignment = 1
+autowrap_mode = 2
+language = "fr_FR"
+
+[node name="OptionWindow" type="Control" parent="ColorRect2"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("6_hfako")
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect2/OptionWindow"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 250
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_right = 250
+theme_override_constants/margin_bottom = 150
+
+[node name="PanelContainer" type="PanelContainer" parent="ColorRect2/OptionWindow/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_137n1")
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect2/OptionWindow/MarginContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect2/OptionWindow/MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+color = Color(0.5689727, 0.56897277, 0.56897265, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect2/OptionWindow/MarginContainer/PanelContainer/MarginContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitreReglagesAudio" type="Label" parent="ColorRect2/OptionWindow/MarginContainer/PanelContainer/MarginContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+text = "Réglages Audio"
+label_settings = SubResource("LabelSettings_hfako")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect2/OptionWindow/MarginContainer/PanelContainer/MarginContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="Musique" type="Label" parent="ColorRect2/OptionWindow/MarginContainer/PanelContainer/MarginContainer/ColorRect/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Musique"
+label_settings = SubResource("LabelSettings_okfbf")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect2/OptionWindow/MarginContainer/PanelContainer/MarginContainer/ColorRect/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 54
+
+[node name="MusicVolume" type="Label" parent="ColorRect2/OptionWindow/MarginContainer/PanelContainer/MarginContainer/ColorRect/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+text = "Volume"
+label_settings = ExtResource("6_r58em")
+
+[node name="MusicVolumeSlider" type="HSlider" parent="ColorRect2/OptionWindow/MarginContainer/PanelContainer/MarginContainer/ColorRect/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_icons/grabber = ExtResource("8_yu3e8")
+theme_override_icons/grabber_highlight = ExtResource("8_yu3e8")
+min_value = 0.1
+max_value = 1.0
+step = 0.1
+value = 0.1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ColorRect2/OptionWindow/MarginContainer/PanelContainer/MarginContainer/ColorRect/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 70
+
+[node name="Mute" type="Label" parent="ColorRect2/OptionWindow/MarginContainer/PanelContainer/MarginContainer/ColorRect/VBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Muet"
+label_settings = ExtResource("6_r58em")
+
+[node name="MusicMuteButton" type="CheckButton" parent="ColorRect2/OptionWindow/MarginContainer/PanelContainer/MarginContainer/ColorRect/VBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0.73333335, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 20
+text = "
+"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ColorRect2/OptionWindow/MarginContainer/PanelContainer/MarginContainer/ColorRect/VBoxContainer"]
+layout_mode = 2
+
+[node name="Effets Sonores" type="Label" parent="ColorRect2/OptionWindow/MarginContainer/PanelContainer/MarginContainer/ColorRect/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Effets Sonores"
+label_settings = SubResource("LabelSettings_okfbf")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect2/OptionWindow/MarginContainer/PanelContainer/MarginContainer/ColorRect/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 54
+
+[node name="MusicVolume" type="Label" parent="ColorRect2/OptionWindow/MarginContainer/PanelContainer/MarginContainer/ColorRect/VBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+text = "Volume"
+label_settings = ExtResource("6_r58em")
+
+[node name="FXVolumeSlider" type="HSlider" parent="ColorRect2/OptionWindow/MarginContainer/PanelContainer/MarginContainer/ColorRect/VBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_icons/grabber = ExtResource("8_yu3e8")
+theme_override_icons/grabber_highlight = ExtResource("8_yu3e8")
+min_value = 0.1
+max_value = 1.0
+step = 0.1
+value = 0.1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ColorRect2/OptionWindow/MarginContainer/PanelContainer/MarginContainer/ColorRect/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 70
+
+[node name="Mute" type="Label" parent="ColorRect2/OptionWindow/MarginContainer/PanelContainer/MarginContainer/ColorRect/VBoxContainer/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Muet"
+label_settings = ExtResource("6_r58em")
+
+[node name="FXMuteButton" type="CheckButton" parent="ColorRect2/OptionWindow/MarginContainer/PanelContainer/MarginContainer/ColorRect/VBoxContainer/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0.73333335, 0, 1)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 20
+text = "
+"
+
+[node name="CloseButton" type="Button" parent="ColorRect2/OptionWindow/MarginContainer/PanelContainer/MarginContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -8.0
+offset_bottom = 8.0
+grow_horizontal = 0
+icon = ExtResource("9_okfbf")
+
+[node name="ColorRect3" type="ColorRect" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6fe40")
+}
+
+[connection signal="button_down" from="ColorRect2/ButtonDEMARRER" to="." method="_on_button_demarrer_button_down"]
+[connection signal="pressed" from="ColorRect2/ButtonOPTIONS" to="ColorRect2/ButtonOPTIONS" method="_on_pressed"]
+[connection signal="value_changed" from="ColorRect2/OptionWindow/MarginContainer/PanelContainer/MarginContainer/ColorRect/VBoxContainer/VBoxContainer/HBoxContainer/MusicVolumeSlider" to="ColorRect2/OptionWindow" method="_on_music_volume_slider_value_changed"]
+[connection signal="toggled" from="ColorRect2/OptionWindow/MarginContainer/PanelContainer/MarginContainer/ColorRect/VBoxContainer/VBoxContainer/HBoxContainer2/MusicMuteButton" to="ColorRect2/OptionWindow" method="_on_music_mute_button_toggled"]
+[connection signal="value_changed" from="ColorRect2/OptionWindow/MarginContainer/PanelContainer/MarginContainer/ColorRect/VBoxContainer/VBoxContainer2/HBoxContainer/FXVolumeSlider" to="ColorRect2/OptionWindow" method="_on_fx_volume_slider_value_changed"]
+[connection signal="toggled" from="ColorRect2/OptionWindow/MarginContainer/PanelContainer/MarginContainer/ColorRect/VBoxContainer/VBoxContainer2/HBoxContainer2/FXMuteButton" to="ColorRect2/OptionWindow" method="_on_fx_mute_button_toggled"]
+[connection signal="button_down" from="ColorRect2/OptionWindow/MarginContainer/PanelContainer/MarginContainer/ColorRect/CloseButton" to="ColorRect2/OptionWindow" method="_on_close_button_button_down"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

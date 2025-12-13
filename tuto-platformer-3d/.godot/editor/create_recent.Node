@@ -1,0 +1,15 @@
+Sprite2D
+Node3D
+AudioStreamPlayer
+AudioStreamPlayer3D
+CollisionShape3D
+MarginContainer
+VBoxContainer
+PanelContainer
+ColorRect
+Panel
+CenterContainer
+Control
+Button
+HBoxContainer
+CheckButton

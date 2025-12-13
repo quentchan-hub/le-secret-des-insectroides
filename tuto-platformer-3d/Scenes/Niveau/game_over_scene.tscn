@@ -1,0 +1,92 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmldghpq01ayy"]
+
+[ext_resource type="Script" uid="uid://b226nkyjv5yc5" path="res://Scripts/GameOverScene.cs" id="1_kts6d"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_l8dev"]
+
+[sub_resource type="Theme" id="Theme_rbmsi"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7safw"]
+font_size = 80
+
+[node name="GameOverScene" type="Control"]
+process_mode = 2
+material = SubResource("CanvasItemMaterial_l8dev")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_rbmsi")
+script = ExtResource("1_kts6d")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.22352941, 0.22352941, 0.22352941, 0.8)
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 383.0
+offset_top = 197.0
+offset_right = 817.0
+offset_bottom = 307.0
+text = "Game Over"
+label_settings = SubResource("LabelSettings_7safw")
+
+[node name="ButtonContinue" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -441.0
+offset_top = -200.0
+offset_right = -41.0
+offset_bottom = -137.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "CONTINUER"
+
+[node name="ButtonQuit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -111.0
+offset_right = 200.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "QUITTER"
+
+[node name="ButtonRestart" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 79.0
+offset_top = -204.0
+offset_right = 479.0
+offset_bottom = -141.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "RECOMMENCER"
+
+[connection signal="button_down" from="ButtonContinue" to="." method="_on_button_continue_button_down"]
+[connection signal="button_down" from="ButtonQuit" to="." method="_on_button_quit_button_down"]
+[connection signal="button_down" from="ButtonRestart" to="." method="_on_button_restart_button_down"]

@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://xwgo8ww1cba"]
+
+[ext_resource type="Texture2D" uid="uid://68lmaf7lldqd" path="res://Assets/Previews/coin-gold.png" id="1_s0a64"]
+
+[sub_resource type="SystemFont" id="SystemFont_ve4kx"]
+font_names = PackedStringArray("OCR A")
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_vqnff"]
+font = SubResource("SystemFont_ve4kx")
+font_size = 60
+font_color = Color(0, 0, 0, 1)
+outline_size = 8
+outline_color = Color(0, 0.73333335, 0, 1)
+
+[node name="ControlCoins" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+grow_horizontal = 0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -308.0
+offset_bottom = 93.0
+grow_horizontal = 0
+color = Color(0.796243, 0.796243, 0.796243, 0.49019608)
+
+[node name="coinScore" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -138.0
+offset_bottom = 88.0
+grow_horizontal = 0
+text = "12/33"
+label_settings = SubResource("LabelSettings_vqnff")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CoinGold" type="Sprite2D" parent="coinScore"]
+position = Vector2(-67, 48)
+scale = Vector2(2.03125, 2.046875)
+texture = ExtResource("1_s0a64")

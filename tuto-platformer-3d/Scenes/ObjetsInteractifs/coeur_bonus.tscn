@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dc4giriqklvay"]
+
+[ext_resource type="PackedScene" uid="uid://bwig3wea1k2s7" path="res://Assets/Kenney assets/heart.glb" id="1_mlpgo"]
+[ext_resource type="Script" uid="uid://c5ipy4lat78eq" path="res://Scripts/CoeurBonus.cs" id="2_yvjp2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mlpgo"]
+size = Vector3(0.4375, 0.41723633, 0.17578125)
+
+[node name="CoeurBonus" instance=ExtResource("1_mlpgo")]
+script = ExtResource("2_yvjp2")
+
+[node name="Area3D" type="Area3D" parent="heart" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="heart/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19299316, 0)
+shape = SubResource("BoxShape3D_mlpgo")
+
+[connection signal="body_entered" from="heart/Area3D" to="." method="_on_area_3d_body_entered"]

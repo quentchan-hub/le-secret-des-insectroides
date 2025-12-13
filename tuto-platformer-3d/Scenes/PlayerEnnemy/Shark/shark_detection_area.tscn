@@ -1,0 +1,131 @@
+[gd_scene load_steps=8 format=3 uid="uid://ygi5umw06wu1"]
+
+[ext_resource type="PackedScene" uid="uid://b7ytym2267qpy" path="res://Scenes/PlayerEnnemy/Shark/mob_sharky.tscn" id="1_i7yfv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_i7yfv"]
+size = Vector3(17.513672, 4.269104, 8.8479)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_i7yfv"]
+radius = 0.2446289
+height = 1.0244141
+
+[sub_resource type="Animation" id="Animation_7yews"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MobSharky:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 8.9, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_i7yfv"]
+resource_name = "Saut"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.5707964, 0, 0), Vector3(-1.5707964, 0, 0), Vector3(0, 0, 0), Vector3(1.5707964, 0, 0), Vector3(1.5707964, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MobSharky:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 8.9, -3), Vector3(0, 8.9, 0), Vector3(0, 8.9, 0), Vector3(0, 8.9, 0), Vector3(0, 8.9, 4)]
+}
+
+[sub_resource type="Animation" id="Animation_cgitu"]
+resource_name = "StartPose"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5707964, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MobSharky:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 8.9, -3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jr04b"]
+_data = {
+&"RESET": SubResource("Animation_7yews"),
+&"Saut": SubResource("Animation_i7yfv"),
+&"StartPose": SubResource("Animation_cgitu")
+}
+
+[node name="SharkDetectionArea" type="Area3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.232567, 0)
+shape = SubResource("BoxShape3D_i7yfv")
+debug_color = Color(3.040853, 0, 2.841153, 1)
+
+[node name="MobSharkPivot" type="Node3D" parent="."]
+
+[node name="MobSharky" parent="MobSharkPivot" instance=ExtResource("1_i7yfv")]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 8.9, 0)
+
+[node name="CollisionShape3D" parent="MobSharkPivot/MobSharky/Skeleton3D/10046_Shark_v1_iterations-1/StaticBody3D" index="0"]
+debug_color = Color(0, 0.5254902, 0.6117647, 0.2)
+
+[node name="AreaDamage" type="Area3D" parent="MobSharkPivot/MobSharky"]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, -178, 0)
+
+[node name="CollisionDamage" type="CollisionShape3D" parent="MobSharkPivot/MobSharky/AreaDamage"]
+transform = Transform3D(5, 0, 0, 0, -2.1855695e-07, -5, 0, 5, -2.1855695e-07, -0.0048828125, 8.887182, 0.62927246)
+shape = SubResource("CapsuleShape3D_i7yfv")
+debug_color = Color(0, 1.6847078, 1.956484, 0.8784314)
+
+[node name="AnimationShark" type="AnimationPlayer" parent="MobSharkPivot"]
+libraries = {
+&"": SubResource("AnimationLibrary_jr04b")
+}
+
+[editable path="MobSharkPivot/MobSharky"]
