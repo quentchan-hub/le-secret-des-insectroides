@@ -13,6 +13,7 @@ public partial class MobbeePatrol : Node3D
 	private Vector3 startingPoint;
 	public bool isCharInZone = false;
 	public SoundManager soundManager;
+	private bool _damaging = false;
 
 	public override void _Ready()
 	{
@@ -73,7 +74,7 @@ public partial class MobbeePatrol : Node3D
 		GD.Print("Mobbee est mort");
 		aniPlayer.Pause();
 		aniPlayerBee.Play("power_off");
-		await ToSignal(GetTree().CreateTimer(1.0f), "timeout");
+		await ToSignal(GetTree().CreateTimer(0.5f), "timeout");
 		QueueFree();
 	}
 
@@ -88,15 +89,19 @@ public partial class MobbeePatrol : Node3D
 	}
 
 
-	private void _on_area_3d_bott_area_entered(Area3D area)
+	private async void _on_area_3d_bott_area_entered(Area3D area)
 	{
 		if (area.Name == "Area3DDommage")
 		{
+			if (_damaging == true) return;
 			if (noeudPersonnage != null)
 			{
 				noeudPersonnage.TakeDamages();
 				GD.Print("Joueur touché par Mobbee");
 				GD.Print($"Personnage a encore {noeudPersonnage.life} vies restantes");
+				_damaging = true;
+				await ToSignal(GetTree().CreateTimer(1.0f), "timeout");
+				_damaging = false;
 			}
 		}
 	}

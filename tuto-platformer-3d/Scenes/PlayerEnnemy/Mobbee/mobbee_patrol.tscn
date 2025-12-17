@@ -62,7 +62,7 @@ _data = {
 }
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xvs3m"]
-size = Vector3(0.3209839, 0.06311798, 0.32792664)
+size = Vector3(0.3209839, 0.06311798, 0.22290039)
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_ui4nm"]
 height = 0.23625183
@@ -184,7 +184,12 @@ active = false
 collision_layer = 4
 
 [node name="BeeWeakPointBox" type="CollisionShape3D" parent="Mobbee/Area3DTop"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0033874502, 0.21229361, -0.007360339)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.005736947, 0.21229362, 0.020662576)
+shape = SubResource("BoxShape3D_xvs3m")
+debug_color = Color(0.47843137, 0.078431375, 0.2, 0.96862745)
+
+[node name="BeeWeakPointBox2" type="CollisionShape3D" parent="Mobbee/Area3DTop"]
+transform = Transform3D(0.99788964, 0, 0.06493283, 0, 1, 0, -0.0649328, 0, 0.9978889, -0.009039819, 0.47042617, -0.1555775)
 shape = SubResource("BoxShape3D_xvs3m")
 debug_color = Color(0.47843137, 0.078431375, 0.2, 0.96862745)
 
@@ -192,7 +197,7 @@ debug_color = Color(0.47843137, 0.078431375, 0.2, 0.96862745)
 collision_layer = 4
 
 [node name="BeeHitBox1" type="CollisionShape3D" parent="Mobbee/Area3DBott"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.06259088, -0.01480525)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0014171004, -0.06259088, 0.002095949)
 shape = SubResource("CylinderShape3D_ui4nm")
 debug_color = Color(0.29803923, 0.39215687, 0.9137255, 0.9372549)
 

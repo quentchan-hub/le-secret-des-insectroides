@@ -7,13 +7,13 @@ public partial class DoorSystem : Node3D
 	[Export] Label avertissementPorte;
 	[Export] Label avertissementPorte2;
 	private AnimationPlayer animationPlayer;
-	GameState GameStateScript;
+	GameState gameState;
 	private string etatPorte = "fermey";
 
 	public override void _Ready()
 	{
 		animationPlayer = GetNode<AnimationPlayer>("LargeDoor/AnimationPlayer");
-		GameStateScript = GetNode<GameState>("/root/GameState");
+		gameState = GetNode<GameState>("/root/GameState");
 		animationPlayer.Play("close");
 		avertissementPorte.Visible = false;
 		avertissementPorte2.Visible = false;
@@ -24,14 +24,14 @@ public partial class DoorSystem : Node3D
 	{
 		GD.Print("devant la porte");
 		
-		GameStateScript.facingDoor = true;
-		if (!GameStateScript.aLaCle)
+		gameState.facingDoor = true;
+		if (!gameState.aLaCle)
 		{
 			avertissementPorte.Visible = true;
 			await ToSignal(GetTree().CreateTimer(1.5f),"timeout");
 			avertissementPorte.Visible = false;
 		}
-		else if (GameStateScript.aLaCle && etatPorte == "fermey")
+		else if (gameState.aLaCle && etatPorte == "fermey")
 		{
 			avertissementPorte2.Visible = true;
 			await ToSignal(GetTree().CreateTimer(1.5f),"timeout");
@@ -46,7 +46,7 @@ public partial class DoorSystem : Node3D
 	
 	public override void _Process(double delta)
 	{
-		if (GameStateScript.facingDoor && etatPorte == "fermey" && GameStateScript.aLaCle == true && Input.IsActionJustPressed("action"))
+		if (gameState.facingDoor && etatPorte == "fermey" && gameState.aLaCle == true && Input.IsActionJustPressed("action"))
 		{
 			animationPlayer.Play("open");
 			GD.Print("la porte s'ouvre");

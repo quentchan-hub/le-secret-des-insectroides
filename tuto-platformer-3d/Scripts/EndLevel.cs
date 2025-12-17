@@ -3,7 +3,7 @@ using System;
 
 public partial class EndLevel : Area3D
 {
-	GameState GameStateScript;
+	GameState gameState;
 	[Export] public Control endLevelScreen;
 	[Export] public Button playAgain;
 	[Export] public Label scoreLabel;
@@ -11,7 +11,7 @@ public partial class EndLevel : Area3D
 	public override void _Ready()
 	{
 		endLevelScreen.Hide();
-		GameStateScript = GetNode<GameState>("/root/GameState");
+		gameState = GetNode<GameState>("/root/GameState");
 		
 	}
 	
@@ -20,9 +20,9 @@ public partial class EndLevel : Area3D
 		
 		GD.Print("bravo ! niveau terminé !");
 
-		GameStateScript.PrintScore();
+		gameState.PrintScore();
 		
-		int finalScoreLvl1 = GameStateScript.scoreLvl1;
+		int finalScoreLvl1 = gameState.scoreLvl1;
 		scoreLabel.Text = $"Score Final : {finalScoreLvl1}";
 		
 		endLevelScreen.Show();

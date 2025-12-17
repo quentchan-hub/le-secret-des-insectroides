@@ -3,7 +3,7 @@ using System;
 
 public partial class PlayerBotCtrl : CharacterBody3D
 {
-	GameState GameStateScript;
+	GameState gameState;
 	[Export] public int life = 3; //vie du personnage
 	[Export] float speed = 20f; //vitesse de marche
 	float extraSpeed = 1f;
@@ -19,6 +19,9 @@ public partial class PlayerBotCtrl : CharacterBody3D
 	[Export] MeshInstance3D playerMesh;
 	public StandardMaterial3D hitFlashMat;
 	public SoundManager soundManager;
+	
+
+	
 	
 	//
 	// les variables ci-dessous determinent la sensibilité de la souris
@@ -53,15 +56,22 @@ public partial class PlayerBotCtrl : CharacterBody3D
 	
 	public override void _Ready()
 	{
+
+
 		//Input.MouseMode = Input.MouseModeEnum.Captured;
 		animationPlayer.Play("Idle");
-		GameStateScript = GetNode<GameState>("/root/GameState");
-		GameStateScript.playerStartPosition = GlobalPosition;
+		gameState = GetNode<GameState>("/root/GameState");
+		//gameState.playerStartPosition = GlobalPosition;
 		sceneGameOver.Visible = false;
 		managingLifeHeart();
 		hitFlashMat = new StandardMaterial3D();
 		hitFlashMat.AlbedoColor = new Color(0, 0, 1, (float)0.6f);
 		soundManager = GetNode<SoundManager>("/root/World1/SoundManager");
+		
+		if (RespawnManager.LastRespawnPoint != Vector3.Zero)
+			GlobalPosition = RespawnManager.LastRespawnPoint;
+		else
+			RespawnManager.LastRespawnPoint = GlobalPosition; 
 	}
 	
 	public override void _Process(double delta)
@@ -79,7 +89,7 @@ public partial class PlayerBotCtrl : CharacterBody3D
 	
 		if (Input.IsActionJustPressed("touche_check"))  //touche check => x
 		{
-			GD.Print(GameStateScript.aLaCle);
+			GD.Print(gameState.aLaCle);
 		}
 	}
 	public override void _Input(InputEvent @event)
@@ -183,7 +193,13 @@ public partial class PlayerBotCtrl : CharacterBody3D
 		
 		
 		if (Input.IsActionJustPressed("jump") && IsOnFloor())
+		{
 			yVelocity = jumpForce;
+			if (gameState.aLeRessort)
+			{
+				soundManager.PlayHighJump();
+			}
+		}		
 		
 		velocity.Y = yVelocity;
 		
@@ -205,9 +221,9 @@ public partial class PlayerBotCtrl : CharacterBody3D
 		Velocity = velocity;
 		MoveAndSlide();
 		
-		if (GameStateScript.aLeRessort)
+		if (gameState.aLeRessort)
 		{
-			jumpForce = 18f;
+			jumpForce = 30f;
 		}
 		
 		for (int i = 0; i < GetSlideCollisionCount(); i++)
@@ -241,6 +257,9 @@ public partial class PlayerBotCtrl : CharacterBody3D
 	
 	private void _on_area_3d_noyade_body_entered(Node3D body)
 	{
+		life = 0;
+		GD.Print("noyade");
+		GD.Print("ENTER WATER AT ", GlobalPosition);
 		die();
 	}
 	
@@ -269,6 +288,7 @@ public partial class PlayerBotCtrl : CharacterBody3D
 		
 		if (life <= 0)
 		{
+			life = 0;
 			die();
 		}
 		
@@ -311,6 +331,7 @@ public partial class PlayerBotCtrl : CharacterBody3D
 		soundManager.StopMainTheme();
 		sceneGameOver.Visible = true;
 		
+		
 		await ToSignal(GetTree().CreateTimer(1.5f), "timeout");
 		soundManager.EcouterExclusivement(soundManager.gameOverThemeMusic);
 		GetTree().Paused = true;
@@ -326,8 +347,10 @@ public partial class PlayerBotCtrl : CharacterBody3D
 	{
 		if (area.Name == ("Area3DPlayer"))
 		{
+			soundManager.PlayTeleport();
 			Vector3 destination = teleportMarkerSG1.GlobalPosition;
 			Teleportation(destination);
+			soundManager.EcouterExclusivement(soundManager.newIslandThemeMusic);
 		}
 	}
 	
@@ -335,6 +358,7 @@ public partial class PlayerBotCtrl : CharacterBody3D
 	{
 		if (area.Name == ("Area3DPlayer"))
 		{
+			soundManager.PlayTeleport();
 			Vector3 destination = teleportMarkerSG2.GlobalPosition;
 			Teleportation(destination);
 		}
@@ -363,5 +387,6 @@ public partial class PlayerBotCtrl : CharacterBody3D
 			.SetEase(Tween.EaseType.Out);
 		
 	}
-		
+	
+
 }

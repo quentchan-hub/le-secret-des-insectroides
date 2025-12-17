@@ -86,7 +86,7 @@ public partial class Coffre : Node3D
 	//private void _on_area_3d_area_exited(Area3D area)
 	//{
 		//GD.Print("Pas devant le coffre");
-		//GameStateScript.facingChest = false;
+		//gameState.facingChest = false;
 		//if (etatDuCoffre == "ouvert")
 		//{
 			//animationPlayer.Play("close");

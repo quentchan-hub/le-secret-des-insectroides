@@ -6,12 +6,12 @@ public partial class GameOverScene : Control
 	[Export] Control prelude;
 	[Export] Node3D introJeu;
 	[Export] PlayerBotCtrl playerBotCtrl;
-	GameState gameStateScript;
+	GameState gameState;
 	public SoundManager soundManager;
 	
 	public override void _Ready()
 	{
-		gameStateScript = GetNode<GameState>("/root/GameState");
+		gameState = GetNode<GameState>("/root/GameState");
 		soundManager = GetNode<SoundManager>("/root/World1/SoundManager");
 		
 	}
@@ -19,10 +19,11 @@ public partial class GameOverScene : Control
 	
 	private void _on_button_continue_button_down()
 	{
-		gameStateScript.PlayerSpawn();
+		//gameState.PlayerSpawn();
+		playerBotCtrl.GlobalPosition = RespawnManager.LastRespawnPoint;
 		playerBotCtrl.AddLife(3);
 		//GD.Print("RESTART / COINS = 0");
-		//gameStateScript.nbCoins = 0;
+		//gameState.nbCoins = 0;
 		Visible = false;
 		soundManager.EcouterExclusivement(soundManager.mainThemeMusic);
 		Input.MouseMode = Input.MouseModeEnum.Captured;

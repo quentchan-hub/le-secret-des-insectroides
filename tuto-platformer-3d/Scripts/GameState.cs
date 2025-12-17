@@ -17,7 +17,7 @@ public partial class GameState : Node
 	public Control preludeStudio; 
 	public Node3D introJeu;
 	public bool zoneFeu = false; 
-	public Vector3 playerStartPosition;
+	//public Vector3 playerStartPosition;
 
 	
 	public void PrintScore()
@@ -30,10 +30,10 @@ public partial class GameState : Node
 		
 	}
 	
-	public void PlayerSpawn()
-	{
-		var player = GetNode<PlayerBotCtrl>("/root/World1/PlayerBotCtrl");
-		player.GlobalPosition = playerStartPosition;
-	}
+	//public void PlayerSpawn()
+	//{
+		//var player = GetNode<PlayerBotCtrl>("/root/World1/PlayerBotCtrl");
+		//player.GlobalPosition = playerStartPosition;
+	//}
 	
 }

@@ -1,6 +1,6 @@
 [gd_scene load_steps=64 format=4 uid="uid://dka3wnf33t4f7"]
 
-[ext_resource type="Script" uid="uid://cyd51nb58hngn" path="res://Scenes/Niveau/BossCombat.cs" id="1_xsbq7"]
+[ext_resource type="Script" uid="uid://cyd51nb58hngn" path="res://Scripts/BossCombat.cs" id="1_xsbq7"]
 [ext_resource type="Texture2D" uid="uid://ck1gvbkhi6yw5" path="res://Assets Persos/boss_coxane/boss_coxane_19/Boss Coxane Anim 1_texture_diffuse.png" id="2_1ug45"]
 [ext_resource type="PackedScene" uid="uid://h6u8fqasjixr" path="res://Scenes/ObjetsInteractifs/stun_star.tscn" id="2_vn8le"]
 [ext_resource type="Texture2D" uid="uid://dagkra4ju5hhc" path="res://Assets Persos/boss_coxane/boss_coxane_19/Boss Coxane Anim 1_texture_metallic.png" id="3_vn8le"]
@@ -8,10 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://cch4vknrqxtcx" path="res://Assets Persos/boss_coxane/boss_coxane_19/Boss Coxane Anim 1_texture_metallic-texture_roughness.png" id="5_4gyj5"]
 [ext_resource type="Texture2D" uid="uid://ctoapkv7gpnro" path="res://Assets Persos/boss_coxane/propulseur paint nobg.png" id="6_3timg"]
 [ext_resource type="Texture2D" uid="uid://cnolrqtdf1y8o" path="res://Assets Persos/boss_coxane/sourcil.png" id="7_xrnuh"]
-[ext_resource type="Script" uid="uid://bg7rl0kyxbaa0" path="res://Scenes/Niveau/WeakPointArea.cs" id="9_vn8le"]
+[ext_resource type="Script" uid="uid://bg7rl0kyxbaa0" path="res://Scripts/WeakPointArea.cs" id="9_vn8le"]
 [ext_resource type="Texture2D" uid="uid://co15k18gypd48" path="res://Assets Persos/PointFaible/boss_weak_point.png" id="10_s8do7"]
 [ext_resource type="PackedScene" uid="uid://dthaqqbsjx7b8" path="res://Scenes/PlayerEnnemy/Player/player_bot_ctrl.tscn" id="10_xrnuh"]
-[ext_resource type="Script" uid="uid://but3i8qcmogtm" path="res://Scenes/Niveau/BossHealthBar.cs" id="13_xrnuh"]
+[ext_resource type="Script" uid="uid://but3i8qcmogtm" path="res://Scripts/BossHealthBar.cs" id="13_xrnuh"]
+
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6wyhq"]
 resource_name = "Matériau"

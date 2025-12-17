@@ -3,7 +3,7 @@ using System;
 
 public partial class PieceOr : Node3D
 {
-	GameState GameStateScript;
+	GameState gameState;
 	public SoundManager soundManager;
 	CoffresBonus coffresBonus; 
 	
@@ -11,7 +11,7 @@ public partial class PieceOr : Node3D
 		
 	public override void _Ready()
 	{
-		GameStateScript = GetNode<GameState>("/root/GameState");
+		gameState = GetNode<GameState>("/root/GameState");
 		coffresBonus = GetNode<CoffresBonus>("../../InteractItems/CoffresBonus");
 		soundManager = GetNode<SoundManager>("/root/World1/SoundManager");
 		
@@ -28,7 +28,7 @@ public partial class PieceOr : Node3D
 		if (area.Name == "Area3DPlayer")
 		{
 			soundManager.PlayCoinPick();
-			GameStateScript.nbCoins++;
+			gameState.nbCoins++;
 			coffresBonus.piecesRecoltees++;
 			QueueFree();
 		}

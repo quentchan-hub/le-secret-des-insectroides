@@ -81,7 +81,7 @@ public partial class Mob1 : CharacterBody3D
 		//joue l'animation poweroff
 		animPlayer.Play("poweroff");
 		//attendre un moment 1s
-		await ToSignal(GetTree().CreateTimer(2.0f), "timeout");
+		await ToSignal(GetTree().CreateTimer(0.5f), "timeout");
 		QueueFree();
 		
 	}
@@ -105,7 +105,7 @@ public partial class Mob1 : CharacterBody3D
 		{
 			area.GetParent().Call("TakeDamages");
 			_damaging = true;
-			await ToSignal(GetTree().CreateTimer(3f), "timeout");
+			await ToSignal(GetTree().CreateTimer(1.0f), "timeout");
 			_damaging = false;
 		}
 	}

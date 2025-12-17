@@ -1,5 +1,6 @@
-res://Scenes
 res://Scenes/Niveau
+res://Scenes/Paysage
+res://Scenes
 res://Assets/kenny_ui_assets
 res://AAPrelude/scenes
 res://
@@ -15,7 +16,6 @@ res://Assets/Previews
 res://Scenes/PlayerEnnemy/Mobbee
 res://Scenes/UI
 res://Assets/Kenney assets/Textures
-res://Scenes/Paysage
 res://Scenes/PlayerEnnemy/MobBeettle
 res://Assets/outdoor_environment/trees
 res://Scenes/PlayerEnnemy/Player

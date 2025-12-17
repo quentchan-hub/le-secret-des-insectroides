@@ -20,7 +20,7 @@ size = Vector3(0.1626358, 0.64697266, 0.24742126)
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_4vp53"]
 margin = 0.4
 height = 0.68836975
-radius = 0.328125
+radius = 0.34326172
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sam4g"]
 size = Vector3(0.6675415, 0.5620117, 2.9868164)
@@ -30,7 +30,7 @@ height = 1.2281494
 radius = 0.7529297
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_51lq6"]
-size = Vector3(0.14013672, 1.923706, 0.36691284)
+size = Vector3(0.14013672, 1.923706, 0.35759735)
 
 [node name="Niveau1Extension" instance=ExtResource("1_4vp53")]
 
@@ -59,6 +59,7 @@ shape = SubResource("BoxShape3D_1axw1")
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="Bloc1/StaticBody3D" index="4"]
 transform = Transform3D(-4.8428774e-08, 0, 1.0000088, 0, 1.0000088, 0, -1.0000087, 0, -2.2351742e-08, 3.0930452, -1.8114814, -0.73009884)
 shape = SubResource("CylinderShape3D_4vp53")
+debug_color = Color(0.16169257, 1.0782418e-05, 0.9385221, 0.956)
 
 [node name="CollisionShape3D6" type="CollisionShape3D" parent="Bloc1/StaticBody3D" index="5"]
 transform = Transform3D(1.0000088, 0, 1.1175871e-08, 0, 1, 0, 3.2782555e-07, 0, 0.9999999, -1.7299848, -1.4965891, 2.2342677)
@@ -70,5 +71,6 @@ shape = SubResource("CylinderShape3D_51lq6")
 debug_color = Color(0.35893977, 0.3691233, 0.86841345, 1)
 
 [node name="CollisionShape3D8" type="CollisionShape3D" parent="Bloc1/StaticBody3D" index="7"]
-transform = Transform3D(1.0000088, 0, 1.1175871e-08, 0, 1, 0, 3.2782555e-07, 0, 0.9999999, 2.9247355, -0.9693731, -0.78844154)
+transform = Transform3D(1.0000088, 0, 1.1175871e-08, 0, 1, 0, 3.2782555e-07, 0, 0.9999999, 2.9247367, -0.9693731, -0.7837832)
 shape = SubResource("BoxShape3D_51lq6")
+debug_color = Color(0.63538337, 0.14502618, 0.7126493, 0.41960785)
