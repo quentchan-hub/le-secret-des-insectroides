@@ -26,21 +26,12 @@ public partial class MobbeePatrol : Node3D
 		flashHitMat.AlbedoColor = new Color(1, 0, 0, 1);
 		
 		soundManager = GetNode<SoundManager>("/root/World1/SoundManager");
-		
 	}
-
+ 
 	private void _on_area_3d_top_area_entered(Area3D area)
 	{
 		if (noeudPersonnage.Velocity.Y >= 0)
 			return;
-		
-		// Récupérer le parent qui est un Body ou CharacterBody3D
-		Node parentNode = GetParent().GetParent();
-
-		if (parentNode != null)
-			GD.Print("Area parent: " + parentNode.Name);
-		else
-			GD.Print("Aucun parent trouvé pour l'Area détectrice.");
 		
 		if (area.Name == "Area3DPlayer")
 	{
@@ -98,7 +89,6 @@ public partial class MobbeePatrol : Node3D
 			{
 				noeudPersonnage.TakeDamages();
 				GD.Print("Joueur touché par Mobbee");
-				GD.Print($"Personnage a encore {noeudPersonnage.life} vies restantes");
 				_damaging = true;
 				await ToSignal(GetTree().CreateTimer(1.0f), "timeout");
 				_damaging = false;

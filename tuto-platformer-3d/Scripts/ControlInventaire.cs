@@ -81,7 +81,7 @@ public partial class ControlInventaire : Control
 		if (gameState.aLaBomba & !item4.Visible)
 		{
 			toucheItem4.Visible = true;
-			fondItem4.SelfModulate = new Color(1, 1, 1, 0.8f);
+			fondItem4.SelfModulate = new Color(144, 144, 144, 0.8f);
 			GD.Print("item4 soit la Bomba visible dans l'inventaire");
 			item4.Visible = true;
 		}
@@ -89,14 +89,14 @@ public partial class ControlInventaire : Control
 		if(gameState.aLeRessort & !item5.Visible)
 		{
 			toucheItem5.Visible = true;
-			fondItem5.SelfModulate = new Color(1, 1, 1, 0.8f);
+			fondItem5.SelfModulate = new Color(144, 144, 144, 0.8f);
 			item5.Visible = true;
 		}
 		
 		if (gameState.aLeFouet & !item1.Visible)
 		{
 			toucheItem1.Visible = true;
-			fondItem1.SelfModulate = new Color(1, 1, 1, 0.8f);
+			fondItem1.SelfModulate = new Color(144, 144, 144, 0.8f);
 			item1.Visible = true;
 		}
 	}

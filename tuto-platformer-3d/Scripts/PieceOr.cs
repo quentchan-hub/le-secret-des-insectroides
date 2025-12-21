@@ -5,17 +5,11 @@ public partial class PieceOr : Node3D
 {
 	GameState gameState;
 	public SoundManager soundManager;
-	CoffresBonus coffresBonus; 
-	
-	
-		
+
 	public override void _Ready()
 	{
 		gameState = GetNode<GameState>("/root/GameState");
-		coffresBonus = GetNode<CoffresBonus>("../../InteractItems/CoffresBonus");
 		soundManager = GetNode<SoundManager>("/root/World1/SoundManager");
-		
-	
 	}
 	
 	public override void _Process(double delta)
@@ -23,16 +17,15 @@ public partial class PieceOr : Node3D
 		RotateY((float)delta * 5);
 	}
 	
-	private void _on_area_3d_area_entered(Area3D area)
+	private void _on_area_3d_body_entered(Node3D body)
 	{
-		if (area.Name == "Area3DPlayer")
+		if (!body.IsInGroup("Player"))
+			return;
+		else
 		{
 			soundManager.PlayCoinPick();
 			gameState.nbCoins++;
-			coffresBonus.piecesRecoltees++;
 			QueueFree();
 		}
 	}
-	
-	
 }

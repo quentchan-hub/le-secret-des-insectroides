@@ -35,7 +35,7 @@ public partial class MobSharkFinal : Marker3D
 		if (area.Name == "Area3DDommage")
 		{
 			player.TakeDamages();
-			GD.Print("1 coup infligé par Sharky ! Vie restante : " + player.life);
+			GD.Print("1 coup infligé par Sharky !");
 		}
 	}
 	

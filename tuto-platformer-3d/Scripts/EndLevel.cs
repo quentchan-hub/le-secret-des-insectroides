@@ -15,9 +15,12 @@ public partial class EndLevel : Area3D
 		
 	}
 	
-	private void _on_area_entered(Area3D area)
+	private void _on_body_entered(Node3D body)
 	{
+		if (!body.IsInGroup("Player"))
+			return;
 		
+		GD.Print(body.Name);
 		GD.Print("bravo ! niveau terminé !");
 
 		gameState.PrintScore();

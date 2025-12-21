@@ -53,6 +53,7 @@ public partial class SoundManager : Node
 	// Bruitages et sons
 	[Export] public AudioStreamPlayer mobDamagedAudio;  
 	[Export] public AudioStreamPlayer mobDamaged2Audio;
+	[Export] public AudioStreamPlayer bossDamagedAudio;
 	[Export] public AudioStreamPlayer playerDamagedAudio;
 	[Export] public AudioStreamPlayer deathMobAudio;
 	[Export] public AudioStreamPlayer chestOpenAudio;
@@ -69,6 +70,7 @@ public partial class SoundManager : Node
 
 	public void PlayMobDamaged() => mobDamagedAudio.Play();
 	public void PlayMobDamaged2() => mobDamaged2Audio.Play();
+	public void PlayBossDamaged() => bossDamagedAudio.Play();
 	public void PlayPlayerDamaged() => playerDamagedAudio.Play();
 	public void PlayDeathMob() => deathMobAudio.Play();
 	public void PlayChestOpen() => chestOpenAudio.Play();

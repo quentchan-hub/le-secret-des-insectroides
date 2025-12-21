@@ -3,142 +3,172 @@ using System;
 
 public partial class PlayerBotCtrl : CharacterBody3D
 {
-	GameState gameState;
-	[Export] public int life = 3; //vie du personnage
-	[Export] float speed = 20f; //vitesse de marche
-	float extraSpeed = 1f;
-	[Export] float acceleration = 15; //acceleration du personnage de 0 à speed
-	[Export] float airAcceleration = 5f; // modification légère d'une 
-										 // trajectoire aerienne
-	[Export] float gravity = 1f; //gravité
-	[Export] float maxTerminalVelocity = 55f; // vitesse maximale 
-											  //atteignable en général
-	[Export] float jumpForce = 15f; // hauteur de saut
-	[Export] PackedScene lifeHeart; 
-	[Export] HBoxContainer heartContainer;
-	[Export] MeshInstance3D playerMesh;
-	public StandardMaterial3D hitFlashMat;
-	public SoundManager soundManager;
+	
+	// < Paramètres Personnage >
+	
+	[Export] int life = 3; 						// points de vie du personnage
+	[Export] float speed = 20f; 				// vitesse déplacement
+	[Export] float acceleration = 15; 			// acceleration du personnage de 0 à speed
+	[Export] float airAcceleration = 5f; 		// modification trajectoire saut
+	[Export] float maxVelocity = 55f; 			// vitesse maximale atteignable
+	[Export] float jumpForce = 15f; 			// impulsion saut (plafonnée par maxVelocity)
+	[Export] AnimationPlayer animationPlayer;	// Animations du personnages
+	
+	private float extraSpeed = 1f;				// boost vitesse (voir -> input "run") 
+	private Vector3 velocity; 					// velocity = vitesse(= distance) + direction
+	private float yVelocity; 					// velocity vers le haut (axe Y)
+	public bool bounce = false;					// Rebondir sur un ennemi
+	
+	// < Paramètres Environnement >
+	
+	[Export] float gravity = 1f; 				// gravité
 	
 
-	
-	
-	//
-	// les variables ci-dessous determinent la sensibilité de la souris
-	// = petit ou grand mouvement pour faire bouger la souris
-	// et enregistre cette sensibilté dans une var. "mouseSensivity" 
-	// on utilisera cette avr plus tard associée à la position angulaire du 
-	// personnage ("RotationDegrees") pour faire bouger la caméra 
-	// ("cameraPivot.RotationDegrees = rotDeg;")
-	[Export(PropertyHint.Range, "0.1,1.0")] // export de la var mouseSensivity
-	float mouseSensivity = 0.3f; // qui est la ligne suivante grâce au ; final
-	[Export(PropertyHint.Range, "-90,0,1")]
-	float minPitch = 90f;
-	[Export(PropertyHint.Range, "0,90,1")]
-	float maxPitch = 90f;
-	public bool bounce = false; // Rebondir sur un ennemi
-	
-	Vector3 velocity; // velocity = vitesse + direction
-	float yVelocity; 
-	
-	//  AJOUT GEMINI : La variable qui recevra la force du vent du Boss
-	//  { get; set; } est OBLIGATOIRE pour que le Tween puisse la modifier.
 	public Vector3 ExternalPushVelocity { get; set; } = Vector3.Zero;
+	// force du vent du Boss (coup spécial)
+	// { get; set; } est OBLIGATOIRE pour que le Tween puisse la modifier
 	
-	[Export] Node3D cameraPivot;
-	[Export] Camera3D camera;
-	[Export] AnimationPlayer animationPlayer;
+	[Export] Area3D noyade;						// zone mort personnage dans l'eau
+	[Export] Marker3D teleportMarkerSG1; 		// point de sortie tp SG1
+	[Export] Marker3D teleportMarkerSG2; 		// point de sortie tp SG2
+	
+	
+	// < Souris et Caméra >
+	
+	[Export(PropertyHint.Range, "0.1,1.0")] float mouseSensivity = 0.3f; 
+	// Sensibilité mouvement souris "mouseSensivity" 
+	// Associée à position angulaire du personnage ("RotationDegrees") 
+	// => fait tourner la caméra ("cameraPivot.RotationDegrees = rotDeg;")
+	
+	[Export(PropertyHint.Range, "-90,0,1")]	float minPitch = 90f;
+	// Rotation maximale caméra vers le bas
+	
+	[Export(PropertyHint.Range, "0,90,1")]	float maxPitch = 90f;
+	// Rotation maximale caméra vers le haut
+	
+	[Export] Node3D cameraPivot;				// Support caméra
+	[Export] Camera3D camera;					// Caméra
+	
+	
+	// < Paramètres Feedback combat >
+	
+	[Export] MeshInstance3D playerMesh;			// modelisation graphique personnage
+	public StandardMaterial3D hitFlashMat;    	// feedback visuel de dommage
+		
+	
+	// < Paramètres UI >
+	
+	[Export] PackedScene lifeHeart; 			// gestion UI Heart couplé à vie perso
+	[Export] HBoxContainer heartContainer;
+	
 	[Export] public QuitMenu quitMenu;
 	[Export] public GameOverScene sceneGameOver;
-	[Export] Area3D noyade;
-	[Export] Marker3D teleportMarkerSG1; // point de sortie tp SG1
-	[Export] Marker3D teleportMarkerSG2; // point de sortie tp SG2
+	
+	
+	//  < Sons et Musiques >
+	public SoundManager soundManager;			// gestion musiques/sons
+	
+	
+	//  < Game Manager >
+	public GameState gameState;					// autoload game manager
+
 	
 	public override void _Ready()
 	{
-
-
 		//Input.MouseMode = Input.MouseModeEnum.Captured;
+		
 		animationPlayer.Play("Idle");
-		gameState = GetNode<GameState>("/root/GameState");
-		//gameState.playerStartPosition = GlobalPosition;
-		sceneGameOver.Visible = false;
+		
 		managingLifeHeart();
+		
 		hitFlashMat = new StandardMaterial3D();
 		hitFlashMat.AlbedoColor = new Color(0, 0, 1, (float)0.6f);
-		soundManager = GetNode<SoundManager>("/root/World1/SoundManager");
 		
 		if (RespawnManager.LastRespawnPoint != Vector3.Zero)
 			GlobalPosition = RespawnManager.LastRespawnPoint;
 		else
-			RespawnManager.LastRespawnPoint = GlobalPosition; 
+			RespawnManager.LastRespawnPoint = GlobalPosition;
+		
+		soundManager = GetNode<SoundManager>("/root/World1/SoundManager");
+		
+		gameState = GetNode<GameState>("/root/GameState");
+		//gameState.playerStartPosition = GlobalPosition;
+			
+		sceneGameOver.Visible = false;
 	}
 	
 	public override void _Process(double delta)
 	{
-		if (Input.IsActionJustPressed("ui_cancel"))
+		if (Input.IsActionJustPressed("ui_cancel"))	// ui_cancel = touche Esc.
 		{
 			if (quitMenu.Visible == false)
 			{
-				quitMenu.MontrePopup();
+				quitMenu.MontrePopup();				// Affiche QuitMenu
 			}
-			
-			//Input.MouseMode = Input.MouseModeEnum.Visible; 
-			//// Définir le mode de la souris sur Visible
 		}
 	
-		if (Input.IsActionJustPressed("touche_check"))  //touche check => x
+		if (Input.IsActionJustPressed("touche_check"))  //touche_check = touche X
 		{
-			GD.Print(gameState.aLaCle);
+			GD.Print("test = aucun test en cours");
 		}
 	}
+	
 	public override void _Input(InputEvent @event)
-	//
-	// * _Input => Méthode virtuelle de Godot : Elle est appelée automatiquement 
+
+	// * _Input => Méthode intégrée de Godot : appelée automatiquement 
 	//             à chaque événement d'entrée (clavier, souris, manette, etc.).
-	// * InputEvent => Type de base pour tous les événements d'entrée
+	
+	// * InputEvent => trad. litt. événement d'entrée
 	//                 (touches, clics, mouvements de souris, etc.).
+	
 	// * @event => Paramètre qui représente l'événement actuel (clic...)
 	//             Le @ devant event est utilisé car "event" est un mot-clé 
 	//             réservé* en C#. Le @ permet de l'utiliser comme nom de var.
-	// * mot-clé réservé => ne pas utiliser comme nom de variable standard
-	//                      ou mettre un @ devant donc "event" interdit 
-	//                      "@event" autorisé
-	//
+	
+	// * mot-clé réservé => nom de variable pré-intégrée à un langage, 
+	//                      ne pas utiliser ou mettre un @ devant  
+	//                      donc : "event" interdit / "@event" autorisé
+
 	// 	Les grands types d'évènement classiques @event :
 	// 			InputEventMouseMotion : Mouvement de la souris.
 	// 			InputEventKey : Appui sur une touche du clavier.
 	// 			InputEventMouseButton : Clic de souris.
+	
 	{
 		if (@event is InputEventMouseMotion motionEvent)
+		// input event observé = mouvement souris => motionEvent
+		
 		{
 			Vector3 rotDeg = RotationDegrees;
-			rotDeg.Y -= motionEvent.Relative.X * mouseSensivity;
+			// RotationDegrees = position angulaire du personnage
+			
+			rotDeg.Y -= motionEvent.Relative.X * mouseSensivity; 
+			// rotDeg.Y = rotation autour de l'axe Y
+			// Application du mouvement souris sur l'axe X (gauche/droite)
+			// et mouvement proportionnalisé à la sensibilité souris
+			
 			RotationDegrees = rotDeg; 
-		// RotationDegrees est la position angulaire du personnage
-		// par rapport au "nord" ici l'axe Z car le personnage est face à 
-		// l'axe Z en position initiale dans sa scène
+			// Application de la nouvelle position à rotDeg
 			
 			rotDeg = cameraPivot.RotationDegrees;
-		// attention "cameraPivot.RotationDegrees" c'est la position angulaire 
-		// de la caméra !
+			// "cameraPivot.RotationDegrees" = position angulaire caméra
+			
 			rotDeg.X -= motionEvent.Relative.Y * -mouseSensivity;
 			rotDeg.X = Mathf.Clamp(rotDeg.X, minPitch, maxPitch);
 			cameraPivot.RotationDegrees = rotDeg;
-		//
-		// avec rotDeg qui enregistre la position angulaire initiale 
-		// et finale du personnage. La boucle est bouclée.
+			
+			// pourquoi même var rotDeg pour les 2 variables?? 
 		}
 	}
 	
 	public override void _PhysicsProcess(double delta)
 	{
-		HandleMovement(delta);
+		HandleMovement(delta);					// aucune idée de ce que c'est
 	}
 	
 	private void HandleMovement(double delta)
 	{
-		Vector3 direction = new Vector3(0,0,0);
+		Vector3 direction = new Vector3(0,0,0);	// direction personnage
 		
 		if (Input.IsActionPressed("move_up"))
 			direction += Transform.Basis.Z;
@@ -149,17 +179,17 @@ public partial class PlayerBotCtrl : CharacterBody3D
 		if (Input.IsActionPressed("move_right"))
 			direction -= Transform.Basis.X;
 			
-		if (Input.IsActionPressed("run"))
+		if (Input.IsActionPressed("run"))		// pour test jeu
 		{
-			extraSpeed = 2f;
+			extraSpeed = 2f;					// ici pour modifier boost
 		} else {
 			extraSpeed = 1f;
 		}
 		
-		direction = direction.Normalized();
+		direction = direction.Normalized();		// même vitesse qq soit la direction	
 
 		float accel = IsOnFloor() ? acceleration : airAcceleration;
-		//velocity = velocity.lerp(direction * speed, accel * delta);
+
 		velocity = direction * speed * accel * extraSpeed; 
 		
 		if (bounce)
@@ -185,7 +215,7 @@ public partial class PlayerBotCtrl : CharacterBody3D
 			}
 			else
 			{
-				yVelocity = Mathf.Clamp(yVelocity-gravity, -maxTerminalVelocity, maxTerminalVelocity);
+				yVelocity = Mathf.Clamp(yVelocity-gravity, -maxVelocity, maxVelocity);
 				if (animationPlayer.CurrentAnimation != "fall")
 					animationPlayer.Play("fall");
 			}
@@ -195,8 +225,10 @@ public partial class PlayerBotCtrl : CharacterBody3D
 		if (Input.IsActionJustPressed("jump") && IsOnFloor())
 		{
 			yVelocity = jumpForce;
+			
 			if (gameState.aLeRessort)
 			{
+				jumpForce = 30f;
 				soundManager.PlayHighJump();
 			}
 		}		
@@ -219,12 +251,8 @@ public partial class PlayerBotCtrl : CharacterBody3D
 
 		// Envoi final au CharacterBody3D
 		Velocity = velocity;
-		MoveAndSlide();
 		
-		if (gameState.aLeRessort)
-		{
-			jumpForce = 30f;
-		}
+		MoveAndSlide();
 		
 		for (int i = 0; i < GetSlideCollisionCount(); i++)
 		{
@@ -247,19 +275,16 @@ public partial class PlayerBotCtrl : CharacterBody3D
 	{
 		//GD.Print("Area détectée : ", area.Name);
 		
-		// Si c'est le dessus d'un ennemi
-		if (area.Name == "Area3DTop")
+		if (area.Name == "Area3DTop")				// Si c'est le dessus d'un ennemi
 		{
-			GD.Print("Rebond sur ennemi !");
 			bounce = true;
 		}
+		
 	}
 	
 	private void _on_area_3d_noyade_body_entered(Node3D body)
 	{
 		life = 0;
-		GD.Print("noyade");
-		GD.Print("ENTER WATER AT ", GlobalPosition);
 		die();
 	}
 	

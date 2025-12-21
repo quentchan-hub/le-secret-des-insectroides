@@ -3,35 +3,79 @@ using System;
 
 public partial class BossCombat : Node3D
 {
+	/*
+		 NOTE DE CHOIX DE DESIGN — Mitraillage & Zone de feu
+
+		 La Logique de Dégâts (application des dommages au joueur)
+		 est gérée par le code.
+
+		 La Partie Cosmétique (animation du boss, tirs, FX, activation
+		 de la zone de feu) est pilotée par l'AnimationPlayer.
+
+		 Le Monitoring de la FireZoneArea qui relie la Logique de Dégat à 
+		 la Partie Cosmétique est animé directement dans l'AnimationPlayer
+		 afin de garantir une synchronisation parfaite avec l'animation visuelle.
+		 
+		 Le code peut néanmoins forcer l'activation ou la désactivation
+		 de la FireZoneArea si nécessaire (override possible).
+	*/
+	
+	
+	
+	
+	// ============================================
+	// SIGNAUX
+	// ============================================
+	
+	[Signal] public delegate void CombatFiniEventHandler();
+	
+	
 	// ============================================
 	// VARIABLES EXPORTÉES (modifiables dans l'éditeur)
 	// ============================================
 	
-	[Export] public int maxHealth = 16; // PV maximum du boss
-	[Export] public AnimationPlayer animationPlayer; // Lecteur d'animations
-	[Export] public Node3D weakPointVisual; // Cercle blanc + croix sur le dos
-	[Export] public MeshInstance3D bossMesh; // Mesh principal du boss (pour le flash blanc)
-	[Export] public AudioStreamPlayer3D impactSound; // Son d'impact quand touché
-	[Export] public PackedScene stunStarScene; // Scène de l'étoile à instancier
-	[Export] public Marker3D stunStarsSpawnPoint; // Point d'apparition des étoiles (au-dessus tête)
-	[Export] public AnimationPlayer animBossCombat;
+	// < Paramètres Boss >
+	[Export] public int maxHealth = 16; 				// PV maximum du boss
+	[Export] public float hauteurVolBoss = 5f;			// Hauteur de vol au-dessus du sol
+	
+	// < Coup Special Bourrasque >
+	[Export] float windForce = 15.0f; 					// Force Bourrasque
+	[Export] private Timer timerStartBourrasque; 		// Temps préparation Bourrasque
+	[Export] private Timer timerEndBourrasque;			// Fin de Bourrasque
+	
+	// < Feedback Dommage sur Boss >
+	[Export] public Node3D weakPointVisual;				// Cercle blanc + croix sur le dos
+	[Export] public MeshInstance3D bossMesh; 			// Mesh principal du boss (pour le flash blanc)
+	
+	[Export] public PackedScene stunStarScene; 			// Scène de l'étoile à instancier
+	[Export] public Marker3D stunStarsSpawnPoint; 		// Point d'apparition des étoiles (au-dessus tête)
+	
+	// < Attaque Mitraillage >
+	[Export] public GpuParticles3D propulseurGauche; 	// Particules du propulseur gauche
+	[Export] public GpuParticles3D propulseurDroit; 	// Particules du propulseur droit
+	
+	[Export] public Area3D fireZoneArea;				// AOE Feu : Monitoring géré via AnimationPlayer
+														// pour synchro avec l'animation et les FX.
+	[Export] private Timer fireDotTimer;				// DOT infligé sur l'AOE feu
+		
+	// < Animations Boss >
+	[Export] public AnimationPlayer bossAnimPlayer; 	// Animations BOSS + Mitraillage
+	
+	// < UI >
 	[Export] public BossHealthBar bossHealthBar;
+	[Export] public Control uICombat;
+	[Export] public Control controlInventaire;
+	[Export] public TextureRect bombaIcone;
+	[Export] public Label warningUnderFire;				// Feedback impact FireZone sur player
+	
+	// < Autres >
+	
 	[Export] public PackedScene player;
-	[Export] public MarginContainer bossHPContainer;
-	public GameState gameState;
 	public PlayerBotCtrl playerScript;
 	
-
-	// Paramètre du Coup Special  "Bourrasque"
-	[Export] float windForce = 15.0f; 
+	public GameState gameState;
+	public SoundManager soundManager;
 	
-	// Effets visuels du mitraillage
-	[Export] public GpuParticles3D propulseurGauche; // Particules du propulseur gauche
-	[Export] public GpuParticles3D propulseurDroit; // Particules du propulseur droit
-	
-	
-	// Paramètre de vol
-	[Export] public float hauteurVolBoss = 5f; // Hauteur de vol au-dessus du sol
 	
 
 	// ============================================
@@ -42,32 +86,33 @@ public partial class BossCombat : Node3D
 	private Vector3 initialPosition; // Position de départ (pour le retour après stun)
 	private float initialRotationY; // Rotation Y de départ (pour la bourrasque)
 	
-	// État du boss (State Machine)
+	// < État du boss (State Machine) >
 	private enum BossState
 	{
 		Idle,
 		Attacking,
-		Flying,
+		TakingOff,
+		Mitraillaging,
+		Landing,
 		Stunned,
 		Dead
 	}
 	private BossState currentState = BossState.Idle;
 	
-	// Phase du combat (1 ou 2)
+	// < Phase du combat (1 ou 2) >
 	private int currentPhase = 1;
 	
+	// Possibilité de dommage sur Boss
+	public bool CanTakeDamage { get; private set; }
+	
 	// Vulnérabilité au stun (true quand en l'air)
-	public bool isVulnerableToStun = false; // Public pour BossWeakPoint
+	public bool isVulnerableToStun = false; 		// Public pour BossWeakPoint
 	
 	// Position du joueur au début de la charge
 	private Vector3 chargeTargetPosition;
 	
 	// Timer pour gérer les cycles d'attaques
 	private float stateTimer = 0f;
-	
-	// Timer pour le mitraillage (dégâts continus)
-	private float mitraillageTimer = 0f;
-	private bool isMitraillaging = false;
 	
 	// Compteur d'étapes dans le cycle
 	private int cycleStep = 0;
@@ -76,8 +121,8 @@ public partial class BossCombat : Node3D
 	private Node3D[] stunStars = new Node3D[5];
 	
 	// État de vol du boss
-	private bool isFlying = false; // Le boss est-il en train de voler ?
-	private float groundY; // Position Y au sol (pour revenir après vol)
+	private bool isFlying = false; 					// Boss en vol ?
+	private float groundY; 							// Position Y au sol (point retour après vol)
 	
 	// Matériau pour le flash blanc (override temporaire)
 	private StandardMaterial3D flashMaterial;
@@ -85,22 +130,15 @@ public partial class BossCombat : Node3D
 	// Etat du personnage, s'il vient de se prendre un dommage -> playerIsHurt = true
 	private bool _playerIsHurt = false;
 
-	//// Rayons laser visuels actifs
-	//private Godot.Collections.Array<Node3D> activeRays = new Godot.Collections.Array<Node3D>();
-	
 	// ============================================
 	// INITIALISATION
 	// ============================================
 	
 	public override void _Ready()
 	{
-		
 		playerScript = GetNode<PlayerBotCtrl>("/root/World1/PlayerBotCtrl");
-		
 		gameState = GetNode<GameState>("/root/GameState");
-		
-		// on rend visible la barre de vie
-		bossHPContainer.Visible = true;
+		soundManager = GetNode<SoundManager>("/root/World1/SoundManager");
 		
 		//on check si player vient de se faire taper dessus ? Oui = true
 		_playerIsHurt = false;
@@ -121,7 +159,30 @@ public partial class BossCombat : Node3D
 		// Cacher le point faible au début
 		if (weakPointVisual != null)
 			weakPointVisual.Visible = false;
+			
+		//Par sécurité on va couper les canons au démarrage
+		propulseurGauche.Emitting = false;
+		propulseurDroit.Emitting = false;
 		
+		warningUnderFire.Visible = false;
+		
+	}
+	
+	public void Activate()
+	{
+		Visible = true;
+		controlInventaire.Visible = false;
+		ProcessMode = ProcessModeEnum.Inherit;
+		uICombat.Visible = true;
+		GD.Print("UI activée");
+	}
+	
+	public void Deactivate()
+	{
+		uICombat.Visible = false;
+		controlInventaire.Visible = false;
+		ProcessMode = ProcessModeEnum.Disabled;
+		Visible = false;
 	}
 	
 	// ============================================
@@ -130,26 +191,48 @@ public partial class BossCombat : Node3D
 	
 	public override void _Process(double delta)
 	{
-		// Si le boss est mort, ne rien faire
-		if (currentState == BossState.Dead)
+		if (currentState == BossState.Dead || currentState == BossState.Stunned)
+		{
+			if (weakPointVisual != null)
+				weakPointVisual.Visible = false;
 			return;
+		}
 		
-		// Gérer la visibilité du point faible (visible seulement quand on peut faire des dégâts)
+		  /////////////////////////////////////////////////
+		// GESTION DE LA FENETRE DE VULNERABILITE DU BOSS //
+		//////////////////////////////////////////////////
+		
+				// > Dommages via WeakPoint
+		
+		if (currentState == BossState.Attacking)
+		{
+			CanTakeDamage = stateTimer <= 2f;
+		}
+		else if (currentState == BossState.Mitraillaging)
+		{
+			CanTakeDamage = true;
+		}
+		else
+		{
+			CanTakeDamage = false;
+		}
+		
 		if (weakPointVisual != null)
-		{
-			// Visible si :
-			// - Boss vulnérable au stun (en vol)
-			// - OU pendant la première moitié de la charge (2 premières secondes sur 4s)
-			bool visibleDuringCharge = (currentState == BossState.Attacking && stateTimer <= 2f);
-			weakPointVisual.Visible = isVulnerableToStun || visibleDuringCharge;
-		}
+			weakPointVisual.Visible = CanTakeDamage;
+
+				// Dommages via Bomba
 		
-		// Gérer le mitraillage (raycasts continus)
-		if (isMitraillaging)
+		if (gameState.aLaBomba && Input.IsActionJustPressed("use_special_item"))
 		{
-			//animBossCombat.Play("ZoneMitraillee");
-			gameState.zoneFeu = true;
+			currentHealth -= 6;
+			bossHealthBar.UpdateBossLife(currentHealth);
+			bombaIcone.Visible = false;
+			GD.Print("Bomba Explosa !");
 		}
+			
+		
+		 ///////////////////////////////////////////////////////////
+		///////////////////////////////////////////////////////////
 		
 		// Décompter le timer d'état
 		stateTimer -= (float)delta;
@@ -163,6 +246,7 @@ public partial class BossCombat : Node3D
 				ExecutePhase2Step();
 		}
 	}
+	
 	
 	public override void _PhysicsProcess(double delta)
 	{
@@ -234,13 +318,68 @@ public partial class BossCombat : Node3D
 	
 	public void _on_area_dmg_mandib_r_body_entered(Node3D body)
 	{
-		if (body is PlayerBotCtrl)
+		if (currentState == BossState.Attacking)
 		{
-			playerScript.TakeDamages();
+			if (body is PlayerBotCtrl && !_playerIsHurt)
+			{
+				playerScript.TakeDamages();
+				_playerIsHurt = true;
+			
+				// pour éviter de faire double impact avec les 2 mandibules
+				GetTree().CreateTimer(1.0f).Timeout += () => _playerIsHurt = false;
+			}
+		}
+		
+	}
+	
+	public void _on_area_dmg_mandib_l_body_entered(Node3D body)
+	{
+		if (currentState == BossState.Attacking)
+		{
+			if (body is PlayerBotCtrl && !_playerIsHurt)
+			{
+				playerScript.TakeDamages();
+				_playerIsHurt = true;
+				GetTree().CreateTimer(1.0f).Timeout += () => _playerIsHurt = false;
+			}
 		}
 	}
 	
+	// Applique les dégâts au joueur lorsqu'il entre dans la zone de feu.
+	// La validité de la zone est contrôlée par l'AnimationPlayer (Monitoring).
+	public void _on_fire_zone_area_body_entered(Node3D body)
+	{
+		if (currentState == BossState.Mitraillaging)
+		{
+			if (body is PlayerBotCtrl)
+			{
+				////A décommenter dommage puis DOT, sinon c'est DOT à partir d' 1s
+				//_on_fire_dot_timer_timeout()					 
+				fireDotTimer.Start();
+			}
+		}
+	}
 	
+	public void _on_fire_zone_area_body_exited(Node3D body)
+	{
+		if (body is PlayerBotCtrl)
+		{
+			fireDotTimer.Stop();
+		}
+	}
+	
+	private void _on_fire_dot_timer_timeout()
+	{
+		if (currentState != BossState.Mitraillaging)
+		{
+			fireDotTimer.Stop();
+			return;
+		}
+
+		playerScript.TakeDamages();
+		warningUnderFire.Visible = true;
+		GetTree().CreateTimer(1.0f).Timeout += () => warningUnderFire.Visible = false;
+	}
 	
 
 
@@ -263,8 +402,7 @@ public partial class BossCombat : Node3D
 		FlashWhite();
 		
 		// Jouer le son d'impact
-		if (impactSound != null)
-			impactSound.Play();
+		soundManager.PlayBossDamaged();
 		
 		// Si le boss doit être stun (touché en l'air)
 		if (shouldStun && isVulnerableToStun)
@@ -328,20 +466,27 @@ public partial class BossCombat : Node3D
 	{
 		GD.Print("Boss stunned!");
 		
+		// pour éviter doublon de stun
+		if (currentState == BossState.Stunned)
+			return;
+		
+		// Reset le timer du cycle (+ blocage au process = cycle repart de 0 APRES Stun)
+		stateTimer = 2f;
+		cycleStep = 0;
+		
 		// Passer en état Stunned
-		currentState = BossState.Stunned;
 		isVulnerableToStun = false;
 		
 		// Arrêter l'animation en cours
-		animationPlayer.Stop();
-		animBossCombat.Stop();
-		
-		// Arrêter le mitraillage si actif
-		isMitraillaging = false;
+		bossAnimPlayer.Stop();
 		
 		// Désactiver les effets visuels
 		if (propulseurGauche != null) propulseurGauche.Emitting = false;
 		if (propulseurDroit != null) propulseurDroit.Emitting = false;
+		
+		//Désactiver la Firezone
+		fireZoneArea.Visible = false; 
+		fireZoneArea.Monitoring = false;
 		
 		// Désactiver le vol
 		isFlying = false;
@@ -356,9 +501,10 @@ public partial class BossCombat : Node3D
 		await ToSignal(tween, "finished");
 		
 		// Le boss touche le sol : lancer l'animation Stun
-		animationPlayer.Play("Stun");
+		bossAnimPlayer.Play("Stun");
 		
 		// Faire apparaître les 5 étoiles
+		DespawnStunStars();								// pour protéger en cas de persistance
 		SpawnStunStars();
 		
 		// Attendre 3 secondes (durée du stun)
@@ -368,7 +514,7 @@ public partial class BossCombat : Node3D
 		DespawnStunStars();
 		
 		// IMPORTANT : Forcer le retour complet à la position initiale au sol
-		isFlying = false;
+				   
 		Vector3 resetPos = initialPosition;
 		resetPos.Y = groundY; // Force la hauteur au sol
 		GlobalPosition = resetPos;
@@ -505,22 +651,22 @@ public partial class BossCombat : Node3D
 		switch (cycleStep)
 		{
 			case 0: // Idle (2s)
-				animationPlayer.Play("Idle");
+				bossAnimPlayer.Play("Idle");
 				stateTimer = 2f;
 				isVulnerableToStun = false;
 				cycleStep++;
 				break;
 			
-			case 1: // AvanceCroque&Recule (4s)  (2 fois plus vite que l'animation originale)
+			case 1: // Charge (4s)  
 				currentState = BossState.Attacking;
 				
 				// Préparer la charge (orienter vers joueur)
 				PrepareCharge();
 				
 				// Lancer l'animation
-				animationPlayer.Play("AvanceCroque&Recule");
+				bossAnimPlayer.Play("AvanceCroque&Recule");
 				stateTimer = 4f; 
-				
+
 				// Boss NE PEUT PAS ETRE STUN pendant la charge (AvanceCroque&Recule)
 				isVulnerableToStun = false;
 				
@@ -530,14 +676,15 @@ public partial class BossCombat : Node3D
 			
 			case 2: // Idle (1s)
 				currentState = BossState.Idle;
-				animationPlayer.Play("Idle");
+				bossAnimPlayer.Play("Idle");
 				stateTimer = 1f;
+						  
 				isVulnerableToStun = false;
 				cycleStep++;
 				break;
 			
 			case 3: // Décollage&Vol (3s)
-				currentState = BossState.Flying;
+				currentState = BossState.TakingOff;
 				
 				// IMPORTANT : Forcer l'orientation initiale avant le vol
 				// pour éviter que le boss décolle dans une mauvaise direction
@@ -545,9 +692,10 @@ public partial class BossCombat : Node3D
 				resetRotation.Y = initialRotationY;
 				RotationDegrees = resetRotation;
 				
-				animationPlayer.Play("Décollage&Vol");
+				bossAnimPlayer.Play("Décollage&Vol");
 				stateTimer = 3f;
-				isVulnerableToStun = true; // VULNERABLE!
+						  
+				isVulnerableToStun = false;
 				
 				// Activer le vol (le boss va monter)
 				isFlying = true;
@@ -556,37 +704,26 @@ public partial class BossCombat : Node3D
 				break;
 			
 			case 4: // Vol&Mitraillage (7s)
-				animationPlayer.Play("Vol&Mitraillage");
+				currentState = BossState.Mitraillaging;
+				
+				bossAnimPlayer.Play("Vol&Mitraillage");
 				stateTimer = 7f;
-				isVulnerableToStun = true; // VULNERABLE!
-				
-				// Le boss reste en vol
-				isFlying = true;
-				
-				// Activer les effets visuels des propulseurs
-				if (propulseurGauche != null) propulseurGauche.Emitting = true;
-				if (propulseurDroit != null) propulseurDroit.Emitting = true;
-				
-				// Activer le système de mitraillage (raycasts)
-				isMitraillaging = true;
-				mitraillageTimer = 0f; // Dégât immédiat
+						
+				isVulnerableToStun = true; 						
+				isFlying = true;							// Boss en vol
 				
 				cycleStep++;
 				break;
 			
 			case 5: // Vol&Atterrissage (3s)
-				animationPlayer.Play("Vol&Atterrissage");
+				currentState = BossState.Landing;
+				bossAnimPlayer.Play("Vol&Atterrissage");
 				stateTimer = 3f;
+						  
 				isVulnerableToStun = false; // Plus de stun en descente!
 				
 				// Désactiver le vol (le boss va redescendre)
 				isFlying = false;
-				
-				// Désactiver le mitraillage et les effets visuels
-				isMitraillaging = false;
-				if (propulseurGauche != null) propulseurGauche.Emitting = false;
-				if (propulseurDroit != null) propulseurDroit.Emitting = false;
-				////ClearAllRays();
 				
 				cycleStep++;
 				break;
@@ -620,9 +757,9 @@ public partial class BossCombat : Node3D
 	{
 		switch (cycleStep)
 		{
-			case 0: // Idle (1s)
-				animationPlayer.Play("Idle");
-				stateTimer = 1f;
+			case 0: // Idle
+				bossAnimPlayer.Play("Idle");
+				stateTimer = 0.5f;
 				isVulnerableToStun = false;
 				cycleStep++;
 				break;
@@ -634,7 +771,7 @@ public partial class BossCombat : Node3D
 				PrepareCharge();
 				
 				// Lancer l'animation
-				animationPlayer.Play("AvanceCroque&ReculeSD");
+				bossAnimPlayer.Play("AvanceCroque&ReculeSD");
 				stateTimer = 4f; // Encore plus rapide
 				
 				// Boss N'EST PAS vulnérable pendant la charge
@@ -645,21 +782,21 @@ public partial class BossCombat : Node3D
 			
 			case 2: // Idle (0.5s)
 				currentState = BossState.Idle;
-				animationPlayer.Play("Idle");
+				bossAnimPlayer.Play("Idle");
 				stateTimer = 0.5f;
 				isVulnerableToStun = false;
 				cycleStep++;
 				break;
 			
 			case 3: // Décollage&Vol (3s)
-				currentState = BossState.Flying;
+				currentState = BossState.TakingOff;
 				
 				// IMPORTANT : Forcer l'orientation initiale avant le vol
 				Vector3 resetRotation2 = RotationDegrees;
 				resetRotation2.Y = initialRotationY;
 				RotationDegrees = resetRotation2;
 				
-				animationPlayer.Play("Décollage&Vol");
+				bossAnimPlayer.Play("Décollage&Vol");
 				stateTimer = 3f;
 				isVulnerableToStun = true; // VULNERABLE!
 				
@@ -670,26 +807,18 @@ public partial class BossCombat : Node3D
 				break;
 			
 			case 4: // Vol&Mitraillage (7s)
-				animationPlayer.Play("Vol&Mitraillage");
+				bossAnimPlayer.Play("Vol&Mitraillage");
 				stateTimer = 7f;
 				isVulnerableToStun = true; // VULNERABLE!
 				
 				// Le boss reste en vol
 				isFlying = true;
 				
-				// Activer les effets visuels
-				if (propulseurGauche != null) propulseurGauche.Emitting = true;
-				if (propulseurDroit != null) propulseurDroit.Emitting = true;
-				
-				// Activer le système de mitraillage
-				isMitraillaging = true;
-				mitraillageTimer = 0f;
-				
 				cycleStep++;
 				break;
 			
 			case 5: // Coup Special (7s) - BOURRASQUE!
-				animationPlayer.Play("Coup Special");
+				bossAnimPlayer.Play("Coup Special");
 				stateTimer = 7f;
 				isVulnerableToStun = true; // VULNERABLE!
 				
@@ -702,18 +831,13 @@ public partial class BossCombat : Node3D
 				break;
 			
 			case 6: // Vol&Atterrissage (3s)
-				animationPlayer.Play("Vol&Atterrissage");
+				bossAnimPlayer.Play("Vol&Atterrissage");
 				stateTimer = 3f;
 				isVulnerableToStun = false; // Plus de stun!
 				
 				// Désactiver le vol (descente)
 				isFlying = false;
 				
-				// Désactiver le mitraillage et effets visuels
-				isMitraillaging = false;
-				if (propulseurGauche != null) propulseurGauche.Emitting = false;
-				if (propulseurDroit != null) propulseurDroit.Emitting = false;
-				////ClearAllRays();
 				
 				cycleStep++;
 				break;
@@ -731,46 +855,30 @@ public partial class BossCombat : Node3D
 	
 	private void ApplyBourrasque()
 	{
-		if (player == null)
-		{
-			GD.PrintErr("ERREUR : As-tu penser à assigner le PlayerBotCtrl dans l'inspecteur du Boss ?");
-			return;
-		}
-		
-		// --- CALCUL DE LA DIRECTION ---
-		// Méthode Pro : Utiliser le Basis du Boss.
-		// Dans Godot, Basis.Z est le vecteur "arrière". -Basis.Z est "devant".
-		// Si le vent sort du ventre du boss, c'est souvent -GlobalTransform.Basis.Z
-		Vector3 windDirection = -this.GlobalTransform.Basis.Z;
-		
-		// On aplatit Y à 0 pour ne pas enfoncer le joueur dans le sol ou le faire voler
-		windDirection.Y = 0; 
-		windDirection = windDirection.Normalized();
-		
-		Vector3 finalWindVector = windDirection * windForce;
-		
-		// --- TWEEN (Animation des valeurs) ---
-		Tween tween = CreateTween();
-		
-		// 1. Monter la puissance du vent (0 -> Max) en 0.5 sec
-		// Note la syntaxe correcte : Tween.EaseType.Out
-		
-		tween.TweenProperty(playerScript, nameof(PlayerBotCtrl.ExternalPushVelocity), finalWindVector, 0.5f)
-				.SetTrans(Tween.TransitionType.Sine)
-				.SetEase(Tween.EaseType.Out);
-				
-		// 2. Maintenir le vent pendant 3 secondes
-		tween.TweenInterval(3.0f);
-		
-		// 3. Arrêter le vent (Max -> 0) en 1.0 sec
-		tween.TweenProperty(playerScript, nameof(PlayerBotCtrl.ExternalPushVelocity), Vector3.Zero, 1.0f)
-				.SetTrans(Tween.TransitionType.Sine)
-				.SetEase(Tween.EaseType.In); // "In" est souvent mieux pour la fin (ralentissement progressif)
-			 
-		GD.Print("Bourrasque lancée !");
+		timerStartBourrasque.Start();
 	}
+	
+	public void _on_timer_start_bourrasque_timeout()
+	{
+		Vector3 windDirection = this.GlobalTransform.Basis.Z;	// dans le sens du Boss
+		windDirection.Y = 0; 									// vent reste horizontal
+		windDirection = windDirection.Normalized();				
 		
+		Vector3 finalWindVector = windDirection * windForce;	// vent = direction + force
 		
+		playerScript.ExternalPushVelocity = finalWindVector;	// application au joueur
+		
+		GD.Print("Bourrasque lancée !");
+		
+		timerEndBourrasque.Start();
+	}
+	
+	public void _on_timer_end_bourrasque_timeout()
+	{
+		playerScript.ExternalPushVelocity = Vector3.Zero;
+	}
+	
+	
 	// ============================================
 	// MORT DU BOSS
 	// ============================================
@@ -781,16 +889,13 @@ public partial class BossCombat : Node3D
 		currentState = BossState.Dead;
 		
 		// Arrêter toutes les animations
-		animationPlayer.Stop();
-		
-		// Désactiver le mitraillage
-		isMitraillaging = false;
-		
-		bossHPContainer.Visible = false;
+		bossAnimPlayer.Stop();
 		
 		
 		// TODO: Animation de mort, loot, débloquer la zone de fin, etc.
 		// Pour l'instant, on supprime juste le boss
-		QueueFree();
+		//QueueFree();
+		
+		EmitSignal(SignalName.CombatFini);
 	}
 }

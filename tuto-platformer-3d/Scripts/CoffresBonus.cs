@@ -3,116 +3,96 @@ using System;
 
 public partial class CoffresBonus : Node
 {
-	[Export] Coffre coffreRessort;
-	[Export] Coffre coffreBomba;
-	[Export] public Node coinsNode;
-	
-	[Export] Control controlCoins;
-	[Export] Label coinScore;
-	[Export] Label coffresBonusDebloques;
-	
-	[Export] Timer timerMessage;
-	
-	GameState gameState;
-	
-	private int totalPieces;
-	public int piecesRecoltees = 0;
-	
-	private bool coffreRessortDisparu = false;
-	private bool coffreBombaDisparu = false;
-	
+	[Export] private Coffre coffreRessort;
+	[Export] private Coffre coffreBomba;
+
+	[Export] private Label bonusDebloque;
+
+	private GameState gameState;
+
 	public override void _Ready()
 	{
 		gameState = GetNode<GameState>("/root/GameState");
+
+		InitialiserCoffres();
 		
-		coffresBonusDebloques.Visible = false;
-		piecesRecoltees = gameState.nbCoins;
-		CompterPieces(); //combien pièces total instanciées in game
+		// ------- Réception Signal Objectif Toutes Pièces Rammassées Atteint -------
+		
+		gameState.Connect(
+			GameState.SignalName.ObjectifPiecesAtteint,
+			new Callable(this, nameof(_on_objectif_pieces_atteint))
+		);
+
+		// ------- Réception Signal Coffre choisi (voir méthode _on_coffre_ouvert) -------
+
+		coffreRessort.Connect(
+			Coffre.SignalName.CoffreOuvert,
+			new Callable(this, nameof(_on_coffre_ouvert))
+		);
+
+		coffreBomba.Connect(
+			Coffre.SignalName.CoffreOuvert,
+			new Callable(this, nameof(_on_coffre_ouvert))
+		);
 	}
-	
+
+	// ---------------- INIT ----------------
+
 	private void InitialiserCoffres()
 	{
 		coffreRessort.Visible = false;
 		coffreBomba.Visible = false;
-		coffreRessort.ProcessMode = Node3D.ProcessModeEnum.Disabled;
-		coffreBomba.ProcessMode = Node3D.ProcessModeEnum.Disabled;
 
-
-
+		coffreRessort.ProcessMode = Node.ProcessModeEnum.Disabled;
+		coffreBomba.ProcessMode = Node.ProcessModeEnum.Disabled;
 	}
-	
-	public void CompterPieces()
-	{
-		totalPieces = 0;
 
-		foreach (Node child in coinsNode.GetChildren())
+	// ---------------- Apparition des Coffres Bonus ----------------
+
+	private void _on_objectif_pieces_atteint()
+	{
+		GD.Print("CoffresBonus dit ok j'affiche les coffres");
+		coffreRessort.ProcessMode = Node.ProcessModeEnum.Inherit;
+		coffreBomba.ProcessMode = Node.ProcessModeEnum.Inherit;
+
+		coffreRessort.Visible = true;
+		coffreBomba.Visible = true;
+
+		bonusDebloque.Visible = true;
+		GetTree().CreateTimer(2.0f).Timeout += () =>
 		{
-			if (child.Name.ToString().Contains("PieceOr"))
-			{
-					totalPieces++;
-			}
-		}
-		GD.Print("Nb pieces instanciées Niveau 1 = " + totalPieces);
+			bonusDebloque.Visible = false;
+		};
+		
 	}
 
-	
-	public async void ApparaitreCoffres()
-	{
-		if (!coffreBomba.Visible & !coffreRessort.Visible & piecesRecoltees >= totalPieces)
-		{
-			coffreRessort.ProcessMode = Node3D.ProcessModeEnum.Inherit;
-			coffreBomba.ProcessMode = Node3D.ProcessModeEnum.Inherit;
-			coffreRessort.Visible = true;
-			
-			coffreBomba.Visible = true;
-			GD.Print("Bravo tu as récupéré toutes les pièces d'or ! ");
-			GD.Print("2 coffres Bonus sont apparus, choisis-en 1 !");
-			
-			coffresBonusDebloques.Visible = true;
-			await ToSignal(GetTree().CreateTimer(2.5f),"timeout");
-			coffresBonusDebloques.Visible = false;
+	// ---------------- Choix du Coffre ----------------
 
-		}
-	}
-	
-	public void DisparaitreAutreCoffre()
+	private void _on_coffre_ouvert(Coffre coffreOuvert)
 	{
-		if (coffreRessort.etatDuCoffre == "ouvert" && !coffreBombaDisparu)
+		if (!IsInstanceValid(coffreOuvert))
+			return;
+
+		if (coffreOuvert == coffreRessort)
 		{
 			gameState.aLeRessort = true;
-			coffreBomba.Visible = false;
-			coffreBombaDisparu = true;
-			coffreBomba.QueueFree();
-			GD.Print("coffre Bomb disparu");
+			SupprimerCoffre(coffreBomba);
 		}
-		else
+		else if (coffreOuvert == coffreBomba)
 		{
-			if (coffreBomba.etatDuCoffre == "ouvert" && !coffreRessortDisparu)
-			{
-				gameState.aLaBomba = true;
-				coffreRessort.Visible = false;
-				coffreRessortDisparu = true;
-				coffreRessort.QueueFree();
-				GD.Print("coffre Ressort disparu");
-			}
+			gameState.aLaBomba = true;
+			SupprimerCoffre(coffreRessort);
 		}
 	}
-	
-	
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+
+
+	// ---------------- Suppression Autre Coffre ----------------
+
+	private void SupprimerCoffre(Coffre coffre)
 	{
-		ApparaitreCoffres();
-		
-		if (!IsInstanceValid(coffreRessort) && !IsInstanceValid(coffreBomba))
-		{
-			DisparaitreAutreCoffre();
-		}
-		
-		if (!controlCoins.Visible & piecesRecoltees > 0)
-		{
-			controlCoins.Visible = true;
-		}
-		coinScore.Text = piecesRecoltees + "/" + totalPieces;
+		if (!IsInstanceValid(coffre))
+			return;
+
+		coffre.QueueFree();
 	}
 }

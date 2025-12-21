@@ -10,6 +10,8 @@ public partial class WeakPointArea : Area3D
 	[Export] private BossCombat bossCombat; // Référence au script principal du boss
 	[Export] public PackedScene player;
 	
+	private Vector3 ejectBounce; 			// joueur dégagé après chaque impact
+	
 	// ============================================
 	// INITIALISATION
 	// ============================================
@@ -33,25 +35,24 @@ public partial class WeakPointArea : Area3D
 	
 	private void OnBodyEntered(Node3D body)
 	{
-		// Vérifier que le boss existe
-		if (bossCombat == null)
+		if (bossCombat == null)						// Vérifier que le boss existe
 			return;
 		
-		// Vérifier que c'est bien le joueur
-		if (body is not PlayerBotCtrl player)
+		if (body is not PlayerBotCtrl player)		// Vérifier que c'est bien le joueur
 			return;
 		
-		// Vérifier que le joueur tombe (vélocité Y négative)
-		// Cela signifie qu'il saute SUR le boss, pas qu'il le touche par le côté
-		if (player.Velocity.Y >= 0)
+		if (!bossCombat.CanTakeDamage)				// Prise de dommage géré dans BossCombat
+			return;
+		
+		if (player.Velocity.Y >= 0)					// Actif si joueur tombe sur Boss, pas sur le côté
 			return;
 		
 		// Déterminer les dégâts et le stun selon l'état du boss
 		int damage;
 		bool shouldStun;
 		
-		// Vérifier si le boss est vulnérable au stun
-		bool isVulnerable = bossCombat.isVulnerableToStun;
+		
+		bool isVulnerable = bossCombat.isVulnerableToStun;	// Vulnérabilité au stun
 		
 		if (isVulnerable)
 		{
@@ -74,14 +75,5 @@ public partial class WeakPointArea : Area3D
 		//on réutilise tout simplement la variable bounce du player
 		player.bounce = true;
 		
-		
-		//// Faire rebondir le joueur (comme sur les ennemis normaux)
-		//// On utilise la même mécanique que dans le script du joueur
-		//var bounceField = player.GetType().GetField("bounce", 
-			//System.Reflection.BindingFlags.NonPublic | 
-			//System.Reflection.BindingFlags.Instance);
-		//
-		//if (bounceField != null)
-			//bounceField.SetValue(player, true);
 	}
 }
