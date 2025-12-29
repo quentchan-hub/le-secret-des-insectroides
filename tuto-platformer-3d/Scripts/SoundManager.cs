@@ -66,6 +66,10 @@ public partial class SoundManager : Node
 	[Export] public AudioStreamPlayer jumpAudio;
 	[Export] public AudioStreamPlayer secretItemFoundAudio;
 	[Export] public AudioStreamPlayer gameOverAudio;
+	[Export] public AudioStreamPlayer fountainAudio;
+	[Export] public AudioStreamPlayer buttonRoundAudio;
+	[Export] public AudioStreamPlayer MachineGunAudio;
+
 
 
 	public void PlayMobDamaged() => mobDamagedAudio.Play();
@@ -83,7 +87,11 @@ public partial class SoundManager : Node
 	public void PlayJumpAudio() => jumpAudio.Play();
 	public void PlaySecretItemFound() => secretItemFoundAudio.Play();
 	public void PlayGameOver() => gameOverAudio.Play();
-
+	public void PlayFountain() => fountainAudio.Play();
+	public void PlayButtonRound() => buttonRoundAudio.Play();
+	public void PlayMachineGun() => MachineGunAudio.Play();
+	
+	
 
 	public void SetMusicVolume(float volumeLineaire)
 	{

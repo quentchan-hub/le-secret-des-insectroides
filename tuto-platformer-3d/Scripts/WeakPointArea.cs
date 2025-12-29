@@ -56,14 +56,14 @@ public partial class WeakPointArea : Area3D
 		
 		if (isVulnerable)
 		{
-			// Boss en l'air ET vulnérable (Décollage&Vol, MitraillageEnVol, Coup Special)
+			// Boss en l'air ET vulnérable (MitraillageEnVol phase 1, Coup Special phase 2)
 			damage = 2;
 			shouldStun = true;
 			GD.Print("Point faible touché EN L'AIR ! 2 dégâts + STUN");
 		}
 		else
 		{
-			// Boss au sol OU en descente (Vol&Atterrissage)
+			// Boss au sol OU en descente (Au recul après Charge)
 			damage = 1;
 			shouldStun = false;
 			GD.Print("Point faible touché au sol. 1 dégât, pas de stun.");

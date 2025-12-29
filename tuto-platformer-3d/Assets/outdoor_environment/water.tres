@@ -16,17 +16,17 @@ frequency = 0.0001
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_uv5os"]
 generate_mipmaps = false
-normalize = false
 noise = SubResource("FastNoiseLite_s2shw")
+normalize = false
 
 [resource]
 render_priority = 0
 shader = ExtResource("1_1xjjr")
+shader_parameter/main_noise_sampler = SubResource("NoiseTexture2D_uv5os")
+shader_parameter/caustic_sampler = ExtResource("2_ymplv")
+shader_parameter/caustic_fade_sampler = SubResource("GradientTexture1D_mdphv")
 shader_parameter/water_color = Color(0.133333, 0.490196, 0.823529, 1)
 shader_parameter/water_depth_color = Color(0.0352941, 0.298039, 0.533333, 1)
 shader_parameter/water_edge_distance = 0.0
 shader_parameter/water_depth_distance = 3.0
 shader_parameter/water_texture_scale = 100.0
-shader_parameter/main_noise_sampler = SubResource("NoiseTexture2D_uv5os")
-shader_parameter/caustic_sampler = ExtResource("2_ymplv")
-shader_parameter/caustic_fade_sampler = SubResource("GradientTexture1D_mdphv")

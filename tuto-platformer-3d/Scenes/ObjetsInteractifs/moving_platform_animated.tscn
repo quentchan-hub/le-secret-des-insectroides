@@ -5,7 +5,7 @@
 
 [sub_resource type="Curve3D" id="Curve3D_1t13p"]
 _data = {
-"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0.0044846847, 0, 0, 0, 0, 0, 0, 0, 0.020224094, 9.071104, 0),
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0.0044846847, 0, 0, 0, 0, 0, 0, 0, 0.0065078735, 5.999054, -0.004386902),
 "tilts": PackedFloat32Array(0, 0)
 }
 point_count = 2
@@ -59,7 +59,7 @@ transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.9999999, 0, 0.00448468
 curve = SubResource("Curve3D_1t13p")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D"]
-transform = Transform3D(1.3113396e-07, 0.99999744, -0.0022108098, -1.9327516e-10, -0.0022108098, -0.99999744, -1, 1.3113404e-07, -9.6637566e-11, 0, 0.0044846847, 0)
+transform = Transform3D(2.9802322e-08, 0.99999917, -0.0010711871, -0.0007220635, -0.0010711866, -0.99999905, -0.99999976, 8.344648e-07, 0.00072206295, 0, 0.0044846847, 0)
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="Path3D/PathFollow3D"]
 remote_path = NodePath("../../../movingblock")

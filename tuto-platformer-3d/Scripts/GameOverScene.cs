@@ -3,36 +3,57 @@ using System;
 
 public partial class GameOverScene : Control
 {
+	[Signal] public delegate void BackFromDeathEventHandler();
+	
 	[Export] Control prelude;
 	[Export] Node3D introJeu;
 	[Export] PlayerBotCtrl playerBotCtrl;
+	
 	GameState gameState;
 	public SoundManager soundManager;
+	
+	private bool isInFight = false;
+	private Vector3 startPlayerPosition; 
 	
 	public override void _Ready()
 	{
 		gameState = GetNode<GameState>("/root/GameState");
 		soundManager = GetNode<SoundManager>("/root/World1/SoundManager");
 		
+		startPlayerPosition = playerBotCtrl.GlobalPosition;
 	}
-
+	
+	private void _on_boss_combat_boss_fight_started()
+	{
+		isInFight = true;
+	}
 	
 	private void _on_button_continue_button_down()
 	{
-		//gameState.PlayerSpawn();
+		
 		playerBotCtrl.GlobalPosition = RespawnManager.LastRespawnPoint;
 		playerBotCtrl.AddLife(3);
-		//GD.Print("RESTART / COINS = 0");
-		//gameState.nbCoins = 0;
+
 		Visible = false;
 		soundManager.EcouterExclusivement(soundManager.mainThemeMusic);
 		Input.MouseMode = Input.MouseModeEnum.Captured;
+		
+		if (isInFight == true)
+		{
+			EmitSignal(SignalName.BackFromDeath);
+		}
 		GetTree().Paused = false;
+		
+
 	}
 	
 	private void _on_button_restart_button_down()
 	{
 		Visible = false;
+		gameState.aLaCle = false;
+		gameState.aLaCleRose = false;
+		gameState.aLaBomba = false;
+
 		GetTree().Paused = false;
 		CallDeferred("ReloadScene"); 
 		
@@ -40,6 +61,8 @@ public partial class GameOverScene : Control
 	
 	public void ReloadScene()
 	{
+		playerBotCtrl.GlobalPosition = startPlayerPosition;
+		gameState.HardReset();
 		GetTree().ReloadCurrentScene();
 	}
 	

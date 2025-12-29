@@ -4,8 +4,8 @@ using System;
 public partial class BossCoxaneIntro : Node3D
 {
 	[Signal] public delegate void IntroFinieEventHandler(); 
+	[Signal] public delegate void IntroBossOnEventHandler(bool _on);
 	
-	[Export] CharacterBody3D playerBotCtrl;
 	[Export] AnimationPlayer AnimPlayerIntroCombat;
 	[Export] AnimationPlayer animBoss;
 	[Export] Control uIIntroCombat;
@@ -25,7 +25,7 @@ public partial class BossCoxaneIntro : Node3D
 	{
 		Visible = true;
 		ProcessMode = ProcessModeEnum.Inherit;
-		
+		EmitSignal(SignalName.IntroBossOn, true);
 		LancerIntro();
 	}
 	
@@ -33,30 +33,18 @@ public partial class BossCoxaneIntro : Node3D
 	{
 		ProcessMode = ProcessModeEnum.Disabled;
 		Visible = false;
+		EmitSignal(SignalName.IntroBossOn, false);
 	}
 	
 	public void LancerIntro()
 	{
-		
 		// Apparition Ui cinématique (dialogue, fade out)
 		uIIntroCombat.Visible = true;
-		
-		GD.Print("Intro combat Lancée");
 		
 		animBoss.Play("Idle");
 		AnimPlayerIntroCombat.Play("DescenteBoss");
 		
 		Input.MouseMode = Input.MouseModeEnum.Captured;
-		
-		if (Input.IsActionJustPressed("ui_accept"))
-		{
-			animBoss.Stop();
-			AnimPlayerIntroCombat.Stop();
-			cameraIntroCombat.Visible = false;
-			uIIntroCombat.Visible = false;
-			GetTree().CreateTimer(0.5f).Timeout += () => Deactivate();
-			GD.Print("Intro zappée");
-		}
 	}
 	
 	// Permet à AnimPlayerIntroCombat de jouer les animation du Boss 
@@ -66,14 +54,29 @@ public partial class BossCoxaneIntro : Node3D
 	public void VolAtter() => animBoss.Play("Vol&Atterrissage");
 	public void Atter() => animBoss.Play("Atterrissage");
 	
-	
-	// Signal envoyé à CombatFinal => Animation "DescenteBoss" terminé
+	// Signal envoyé à SceneBossLvl1 => Animation "DescenteBoss" terminé
 	public void _on_anim_player_intro_combat_animation_finished(StringName AnimName)
 	{
 		if (AnimName == "DescenteBoss")
 		{
 			EmitSignal(SignalName.IntroFinie);
-			GD.Print("Signal animation d'intro finie envoyé");
 		}
 	}
+	
+	//================ SKIP INTRO ==================//
+	
+	public override void _PhysicsProcess(double delta)
+	{
+		if (Input.IsActionJustPressed("ui_accept"))
+		{
+			animBoss.Stop();
+			AnimPlayerIntroCombat.Stop();
+			cameraIntroCombat.Current = false;
+			cameraIntroCombat.Visible = false;
+			uIIntroCombat.Visible = false;
+			GetTree().CreateTimer(0.3f).Timeout += () => EmitSignal(SignalName.IntroFinie);
+			GD.Print("Intro zappée");
+		}
+	}
+	
 }

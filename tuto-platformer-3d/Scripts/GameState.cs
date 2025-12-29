@@ -59,13 +59,14 @@ public partial class GameState : Node
 	// ===============================
 
 	public bool facingDoor = false;
+	public bool facingDoor2 = false;
 
-	public bool aLaCle = false;
+	public bool aLaCle = true;
 	public bool aLaCleRose = false;
 
 	public bool aLaBomba = false;
 	public bool aLeRessort = false;
-	public bool aLeFouet = false;
+	public bool aLeFouet = true;
 
 	public int destroyedMobs = 0;
 	public int nbCoins = 0;
@@ -79,6 +80,7 @@ public partial class GameState : Node
 	// ===============================
 
 	[Signal] public delegate void ObjectifPiecesAtteintEventHandler();
+
 
 	// ===============================
 	// SCORE
@@ -100,16 +102,52 @@ public partial class GameState : Node
 	public void _on_nb_pieces(int total)  // <- méthode mentionnée dans la connection
 	{
 		totalPiecesOr = total;
+		//nbCoins = Mathf.Clamp(nbCoins, 0, totalPiecesOr);
 	}
 	
 	public override void _Process(double delta)
-	{
+	{	
+		// D'abord petite sécurité pour le Signal qui était émit 
+		// au Hard Reset (Bouton "Redémarrer" de GameOver) car 
+		//	dans HardReset() -> objectifPiecesOrAtteint = false;
+		// et nbCoins = 0; totalPiecesOr = 0; donc toutes conditions
+		// réunies pour émission du Signal or CoffresBonus est détruit
+		// dans le même temps. Bref on sécurise.
+		
+		if (totalPiecesOr <= 0)
+			return;
+			
+		// Puis émission du Signal vers CoffresBonus
 		if (!objectifPiecesOrAtteint && nbCoins >= totalPiecesOr)
 		{
 			objectifPiecesOrAtteint = true;
 			GD.Print("objectif atteint");
 			EmitSignal(SignalName.ObjectifPiecesAtteint);
 		}
+	}
+	
+	// ===============================
+	//  HARD RESET
+	// ===============================
+	
+	public void HardReset()
+	{
+		facingDoor = false;
+		facingDoor2 = false;
+
+		aLaCle = false;
+		aLaCleRose = false;
+
+		aLaBomba = false;
+		aLeRessort = false;
+		aLeFouet = false;
+
+		destroyedMobs = 0;
+		nbCoins = 0;
+		scoreLvl1 = 0;
+
+		totalPiecesOr = 0;
+		objectifPiecesOrAtteint = false;
 	}
 
 }

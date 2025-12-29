@@ -217,7 +217,7 @@ public partial class PlayerBotCtrl : CharacterBody3D
 			{
 				yVelocity = Mathf.Clamp(yVelocity-gravity, -maxVelocity, maxVelocity);
 				if (animationPlayer.CurrentAnimation != "fall")
-					animationPlayer.Play("fall");
+					animationPlayer.Play("fall"); //jump ou fall / tomber
 			}
 		}
 		

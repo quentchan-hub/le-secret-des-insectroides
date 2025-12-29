@@ -3,6 +3,7 @@ using System;
 
 public partial class PieceOr : Node3D
 {
+	[Signal] public delegate void ShowCoinScoreEventHandler();
 	GameState gameState;
 	public SoundManager soundManager;
 
@@ -25,6 +26,7 @@ public partial class PieceOr : Node3D
 		{
 			soundManager.PlayCoinPick();
 			gameState.nbCoins++;
+			EmitSignal(SignalName.ShowCoinScore);
 			QueueFree();
 		}
 	}

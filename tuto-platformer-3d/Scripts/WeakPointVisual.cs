@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class WeakPointVisual : Node3D
+public partial class WeakPointVisual : MeshInstance3D
 {
 	// Vitesse de pulsation
 	[Export] public float pulseSpeed = 3f;

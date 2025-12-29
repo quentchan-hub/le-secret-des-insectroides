@@ -14,15 +14,15 @@ public partial class UiControlHeartCoin : Control
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (!Visible & gameState.nbCoins > 0)
-			{
-				Visible = true;
-			}
+
 	}
 	
-	//public void _on_trigger_area_ui_heart_coin_area_entered(Area3D area)
-	//{
-		//if (area.Name == "Area3DPlayer")
-		//this.Visible = true;
-	//}
+	public void _on_piece_or_show_coin_score()	 	// Signal emit par PieceOr
+	{
+		if (!Visible & gameState.nbCoins > 0)
+		{
+			Visible = true;
+		}
+	}
+	
 }

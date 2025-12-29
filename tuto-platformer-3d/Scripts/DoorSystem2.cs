@@ -22,9 +22,7 @@ public partial class DoorSystem2 : Node3D
 
 	private async void _on_area_3d_area_entered(Area3D area)
 	{
-		GD.Print("devant la porte");
-		
-		gameState.facingDoor = true;
+		gameState.facingDoor2 = true;
 		if (!gameState.aLaCleRose)
 		{
 			avertissementPorte.Visible = true;
@@ -46,12 +44,10 @@ public partial class DoorSystem2 : Node3D
 	
 	public override void _Process(double delta)
 	{
-		if (gameState.facingDoor && etatPorte == "fermey" && gameState.aLaCleRose == true && Input.IsActionJustPressed("action"))
+		if (gameState.facingDoor2 && etatPorte == "fermey" && gameState.aLaCleRose == true && Input.IsActionJustPressed("action"))
 		{
 			animationPlayer.Play("open");
-			GD.Print("la porte s'ouvre");
 			etatPorte = "Ouverte";
-			GD.Print("La porte est " + etatPorte);
 		} 
 	}
 }

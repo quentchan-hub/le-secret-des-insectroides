@@ -3,6 +3,8 @@ using System;
 
 public partial class BossHealthBar : ProgressBar
 {
+	[Export] public Color fullLifeColor = Colors.Green;
+	[Export] public Color lowLifeColor = Colors.Red;
 	
 	private int minHealth = 0;
 	private int maxHealth = 16;
@@ -14,12 +16,25 @@ public partial class BossHealthBar : ProgressBar
 		MinValue = minHealth;
 		MaxValue = maxHealth;
 		Value = currentHealth;
+		RageModeColor();
 	}
 	
 	public void UpdateBossLife(int current)
 	{
 		currentHealth = Mathf.Clamp(current, minHealth, maxHealth);
 		Value = currentHealth;
+		RageModeColor();
 	}
-	
+	public void RageModeColor()
+	{
+		if (Value <= 8f)
+		{
+			Modulate = lowLifeColor;
+			
+		}
+		else
+		{
+			Modulate = fullLifeColor;
+		}
+	}
 }

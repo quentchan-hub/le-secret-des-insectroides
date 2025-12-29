@@ -17,7 +17,7 @@ public partial class SceneBossLvl1 : Node3D
 	{
 		bossCoxaneIntro.Deactivate();
 		bossCoxaneIntro.Connect(BossCoxaneIntro.SignalName.IntroFinie,
-		new Callable(this, nameof(TransitionVersCombat)));
+			new Callable(this, nameof(TransitionVersCombat)));
 		
 		bossCombat.Deactivate();
 	}
@@ -39,7 +39,7 @@ public partial class SceneBossLvl1 : Node3D
 			playerBotCtrl.Visible = false;				// disparition personnage
 			controlInventaire.Visible = false;			// et ui game
 			uIControlHeartCoin.Visible = false;			// pendant la cinématique
-			
+
 			CallDeferred("QuitAreaPorteBoss");
 		}
 	}

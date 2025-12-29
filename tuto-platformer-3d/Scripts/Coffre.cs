@@ -35,12 +35,14 @@ public partial class Coffre : Node3D
 	{
 		GD.Print($"Devant le coffre {Name}");
 		playerNearChest = true;
-		avertissementCoffre.Visible = true;
+		
+		if (!estOuvert)
+			avertissementCoffre.Visible = true;
 
-		GetTree().CreateTimer(1.5f).Timeout += () =>
-		{
-			avertissementCoffre.Visible = false;
-		};
+			GetTree().CreateTimer(1.5f).Timeout += () =>
+			{
+				avertissementCoffre.Visible = false;
+			};
 	}
 	
 	public override void _Process(double delta)

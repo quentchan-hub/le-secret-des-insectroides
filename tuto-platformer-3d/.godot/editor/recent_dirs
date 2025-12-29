@@ -1,9 +1,11 @@
+res://
 res://Scenes/Niveau
+res://Assets/outdoor_environment
 res://Scenes/Paysage
+res://Scripts
 res://Scenes
 res://Assets/kenny_ui_assets
 res://AAPrelude/scenes
-res://
 res://Scenes/ObjetsInteractifs
 res://Assets Persos/PointFaible
 res://Assets Persos/boss_coxane
@@ -11,7 +13,6 @@ res://Assets Persos/boss_coxane/boss_coxane_19
 res://Scenes/PlayerEnnemy/Shark
 res://Assets/Kenney assets
 res://Mesh/Sprite2D
-res://Scripts
 res://Assets/Previews
 res://Scenes/PlayerEnnemy/Mobbee
 res://Scenes/UI
@@ -19,4 +20,3 @@ res://Assets/Kenney assets/Textures
 res://Scenes/PlayerEnnemy/MobBeettle
 res://Assets/outdoor_environment/trees
 res://Scenes/PlayerEnnemy/Player
-res://Prefabs

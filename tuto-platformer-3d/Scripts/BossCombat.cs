@@ -21,14 +21,12 @@ public partial class BossCombat : Node3D
 	*/
 	
 	
-	
-	
 	// ============================================
 	// SIGNAUX
 	// ============================================
 	
+	[Signal] public delegate void BossFightStartedEventHandler();
 	[Signal] public delegate void CombatFiniEventHandler();
-	
 	
 	// ============================================
 	// VARIABLES EXPORTÉES (modifiables dans l'éditeur)
@@ -38,15 +36,23 @@ public partial class BossCombat : Node3D
 	[Export] public int maxHealth = 16; 				// PV maximum du boss
 	[Export] public float hauteurVolBoss = 5f;			// Hauteur de vol au-dessus du sol
 	
+	// < Charge >
+	[Export] private float chargeSpeed = 5f;			// Vitesse de Charge VERS Joueur
+	[Export] private float retreatSpeed = 4f;			// Vitesse de Charge au RECUL
+	
 	// < Coup Special Bourrasque >
 	[Export] float windForce = 15.0f; 					// Force Bourrasque
 	[Export] private Timer timerStartBourrasque; 		// Temps préparation Bourrasque
 	[Export] private Timer timerEndBourrasque;			// Fin de Bourrasque
 	
+	// < Barrel Roll anti-campement >
+	[Export] Node3D bossCoxane; 							// Centre de gravité du tonneau 
+	
 	// < Feedback Dommage sur Boss >
 	[Export] public Node3D weakPointVisual;				// Cercle blanc + croix sur le dos
 	[Export] public MeshInstance3D bossMesh; 			// Mesh principal du boss (pour le flash blanc)
 	
+	// < FeedBack Stun -> Etoiles >
 	[Export] public PackedScene stunStarScene; 			// Scène de l'étoile à instancier
 	[Export] public Marker3D stunStarsSpawnPoint; 		// Point d'apparition des étoiles (au-dessus tête)
 	
@@ -58,21 +64,24 @@ public partial class BossCombat : Node3D
 														// pour synchro avec l'animation et les FX.
 	[Export] private Timer fireDotTimer;				// DOT infligé sur l'AOE feu
 		
-	// < Animations Boss >
+	// < Animations >
 	[Export] public AnimationPlayer bossAnimPlayer; 	// Animations BOSS + Mitraillage
+	[Export] public AnimationPlayer CombatAnimPlayer; 	// Animation Explosion bombe
+	[Export] public AnimationPlayer weakPointPlayer; 	// Affichage et animation point faible
+	[Export] public AnimationPlayer uIAnimPlayer; 		// Animations Touches claviers
 	
 	// < UI >
 	[Export] public BossHealthBar bossHealthBar;
 	[Export] public Control uICombat;
 	[Export] public Control controlInventaire;
-	[Export] public TextureRect bombaIcone;
 	[Export] public Label warningUnderFire;				// Feedback impact FireZone sur player
+	[Export] public TextureRect popUpBossWeak;
 	
-	// < Autres >
-	
+	// < Références au joueur >
 	[Export] public PackedScene player;
 	public PlayerBotCtrl playerScript;
 	
+	// < Autres >
 	public GameState gameState;
 	public SoundManager soundManager;
 	
@@ -93,10 +102,12 @@ public partial class BossCombat : Node3D
 		Attacking,
 		TakingOff,
 		Mitraillaging,
+		Bourrasquing,
 		Landing,
 		Stunned,
 		Dead
 	}
+	
 	private BossState currentState = BossState.Idle;
 	
 	// < Phase du combat (1 ou 2) >
@@ -108,7 +119,7 @@ public partial class BossCombat : Node3D
 	// Vulnérabilité au stun (true quand en l'air)
 	public bool isVulnerableToStun = false; 		// Public pour BossWeakPoint
 	
-	// Position du joueur au début de la charge
+	// Position joueur au début de la charge
 	private Vector3 chargeTargetPosition;
 	
 	// Timer pour gérer les cycles d'attaques
@@ -129,6 +140,14 @@ public partial class BossCombat : Node3D
 	
 	// Etat du personnage, s'il vient de se prendre un dommage -> playerIsHurt = true
 	private bool _playerIsHurt = false;
+	
+	private bool bombUsed = false;
+	
+	// Sécurisation anti-boucle point faible
+	private bool weakPointGlowing;
+	
+	// Utilisation ciblé du fouet
+	private bool fouetClignote = false;
 
 	// ============================================
 	// INITIALISATION
@@ -157,23 +176,24 @@ public partial class BossCombat : Node3D
 		flashMaterial.AlbedoColor = new Color(10f, 10f, 10f, 1f); // Blanc super brillant
 		
 		// Cacher le point faible au début
-		if (weakPointVisual != null)
-			weakPointVisual.Visible = false;
-			
+		//if (weakPointVisual != null)
+			//weakPointVisual.Visible = false;
+		weakPointGlowing = false;
+		
 		//Par sécurité on va couper les canons au démarrage
 		propulseurGauche.Emitting = false;
 		propulseurDroit.Emitting = false;
 		
 		warningUnderFire.Visible = false;
-		
 	}
 	
 	public void Activate()
 	{
 		Visible = true;
-		controlInventaire.Visible = false;
+		controlInventaire.Visible = true;
 		ProcessMode = ProcessModeEnum.Inherit;
 		uICombat.Visible = true;
+		EmitSignal(SignalName.BossFightStarted);
 		GD.Print("UI activée");
 	}
 	
@@ -208,7 +228,7 @@ public partial class BossCombat : Node3D
 		{
 			CanTakeDamage = stateTimer <= 2f;
 		}
-		else if (currentState == BossState.Mitraillaging)
+		else if (currentState == BossState.Mitraillaging || currentState == BossState.Bourrasquing)
 		{
 			CanTakeDamage = true;
 		}
@@ -217,20 +237,33 @@ public partial class BossCombat : Node3D
 			CanTakeDamage = false;
 		}
 		
-		if (weakPointVisual != null)
-			weakPointVisual.Visible = CanTakeDamage;
-
-				// Dommages via Bomba
+		if (CanTakeDamage && !weakPointGlowing)
+		{
+			weakPointGlowing = true;
+			weakPointPlayer.Play("WeakPointGlowing");
+		}
+		else if (!CanTakeDamage && weakPointGlowing)
+		{
+			weakPointPlayer.Stop();
+			weakPointGlowing = false;
+		}
 		
 		if (gameState.aLaBomba && Input.IsActionJustPressed("use_special_item"))
 		{
-			currentHealth -= 6;
-			bossHealthBar.UpdateBossLife(currentHealth);
-			bombaIcone.Visible = false;
-			GD.Print("Bomba Explosa !");
+			if (bombUsed)
+				return;
+			else
+			{
+				bombUsed = true;
+				currentHealth -= 6;
+				bossHealthBar.UpdateBossLife(currentHealth);
+				gameState.aLaBomba = false;
+				CombatAnimPlayer.Play("Explosion");
+				GD.Print("Bomba Explosa !");
+			}
+
 		}
-			
-		
+
 		 ///////////////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////
 		
@@ -245,8 +278,10 @@ public partial class BossCombat : Node3D
 			else
 				ExecutePhase2Step();
 		}
+		
 	}
 	
+
 	
 	public override void _PhysicsProcess(double delta)
 	{
@@ -274,7 +309,7 @@ public partial class BossCombat : Node3D
 			{
 				// Descendre à 3 m/s
 				Vector3 pos = GlobalPosition;
-				pos.Y -= 3f * (float)delta;
+				pos.Y -= 5f * (float)delta;
 				
 				// Ne pas descendre en dessous du sol
 				if (pos.Y < groundY)
@@ -288,11 +323,11 @@ public partial class BossCombat : Node3D
 		if (currentState == BossState.Attacking)
 		{
 			// Vérifier qu'on est dans la première moitié de l'animation (2s sur 4s)
-			if (stateTimer > 2f)
+			if (stateTimer > 2.5f)
 			{
 				UpdateChargeMovement(delta);
 			}
-			// Si on est dans la seconde moitié (stateTimer <= 2s), le boss recule
+			// Si on est dans la seconde moitié (stateTimer <= 2.5s), le boss recule
 			// vers sa position initiale
 			else
 			{
@@ -307,8 +342,13 @@ public partial class BossCombat : Node3D
 				directionHome = directionHome.Normalized();
 				
 				// Reculer vers la position initiale (plus rapide : 5 m/s)
-				float retreatSpeed = 5f;
+				//float retreatSpeed = 4f; // A l'export
 				GlobalPosition += directionHome * retreatSpeed * (float)delta;
+			}
+			
+			if (fouetClignote && Input.IsActionJustPressed("use_special_item"))
+			{
+				uIAnimPlayer.Stop();
 			}
 		}
 	}
@@ -353,7 +393,8 @@ public partial class BossCombat : Node3D
 		{
 			if (body is PlayerBotCtrl)
 			{
-				////A décommenter dommage puis DOT, sinon c'est DOT à partir d' 1s
+				////A décommenter pour infliger 1 dommage puis DOT 1s après, 
+				//// sinon c'est DOT au bout d'1s (grace period)
 				//_on_fire_dot_timer_timeout()					 
 				fireDotTimer.Start();
 			}
@@ -387,38 +428,40 @@ public partial class BossCombat : Node3D
 	// GESTION DES DÉGÂTS SUR LE BOSS
 	// ============================================
 	
-	// Appelé par BossWeakPoint quand le joueur touche le point faible
+	// Appelé par <BossWeakPoint> quand joueur touche le point faible
 	public void BossTakeDamage(int damage, bool shouldStun)
 	{
-		// Réduire les PV
-		currentHealth -= damage;
-		GD.Print($"Boss a pris {damage} dégâts ! PV restants : {currentHealth}");
+		currentHealth -= damage;						// Réduire les PV
+		GD.Print($"{damage} dégâts sur Boss !");
+		GD.Print($"PV Boss : {currentHealth}");
 		
-		// Mettre à jour la barre de vie
-		if (bossHealthBar != null)
+		if (bossHealthBar != null)						// Mettre à jour la barre de vie
 			bossHealthBar.UpdateBossLife(currentHealth);
 		
-		// Feedback visuel : flash blanc
-		FlashWhite();
+		FlashWhite();									// Feedback visuel : flash blanc
+		soundManager.PlayBossDamaged();					// Jouer le son d'impact
 		
-		// Jouer le son d'impact
-		soundManager.PlayBossDamaged();
-		
-		// Si le boss doit être stun (touché en l'air)
-		if (shouldStun && isVulnerableToStun)
+		if (shouldStun && isVulnerableToStun)			// Si le boss doit être stun (touché en l'air)
 		{
 			ApplyStun();
 		}
 		
-		// Vérifier si le boss doit mourir
-		if (currentHealth <= 0)
+		GD.Print($"HP = {currentHealth} | aLeFouet = {gameState.aLeFouet}");
+		
+		if (currentHealth <= 3 && gameState.aLeFouet && !fouetClignote)	// Momento Fouet
+		{
+			fouetClignote = true;
+			uIAnimPlayer.Play("ToucheFouetClignote");
+			GD.Print("ToucheFouetClignote");
+		}
+		
+		if (currentHealth <= 0)							// Décès du Boss
 		{
 			Die();
 			return;
 		}
 		
-		// Vérifier si on passe en Phase 2 (25% PV = 4 PV)
-		if (currentHealth <= 4 && currentPhase == 1)
+		if (currentHealth <= 8 && currentPhase == 1)	// Passage en Phase 2
 		{
 			TransitionToPhase2();
 		}
@@ -454,9 +497,8 @@ public partial class BossCombat : Node3D
 				bossMesh.SetSurfaceOverrideMaterial(i, null);
 			}
 		}
-		
-		GD.Print("Flash blanc terminé !");
 	}
+	
 	
 	// ============================================
 	// SYSTÈME DE STUN
@@ -471,7 +513,7 @@ public partial class BossCombat : Node3D
 			return;
 		
 		// Reset le timer du cycle (+ blocage au process = cycle repart de 0 APRES Stun)
-		stateTimer = 2f;
+		stateTimer = 3f;
 		cycleStep = 0;
 		
 		// Passer en état Stunned
@@ -508,7 +550,7 @@ public partial class BossCombat : Node3D
 		SpawnStunStars();
 		
 		// Attendre 3 secondes (durée du stun)
-		await ToSignal(GetTree().CreateTimer(3f), "timeout");
+		await ToSignal(GetTree().CreateTimer(3.0f), "timeout");
 		
 		// Faire disparaître les étoiles
 		DespawnStunStars();
@@ -525,7 +567,7 @@ public partial class BossCombat : Node3D
 		RotationDegrees = resetRot;
 		
 		GD.Print("Stun terminé, boss revient à position initiale au sol");
-		
+
 		// Reprendre le cycle normal depuis le début
 		if (currentPhase == 1)
 			StartPhase1Cycle();
@@ -540,7 +582,7 @@ public partial class BossCombat : Node3D
 			return;
 		
 		// Rayon du cercle d'étoiles
-		float radius = 3.0f;
+		float radius = 5.0f;
 		
 		// Instancier 5 étoiles espacées de 72° (360° / 5)
 		for (int i = 0; i < 5; i++)
@@ -618,8 +660,9 @@ public partial class BossCombat : Node3D
 	// À appeler dans _PhysicsProcess pendant les 2 premières secondes
 	private void UpdateChargeMovement(double delta)
 	{
-		// Vitesse de déplacement (encore plus rapide : 5 m/s)
-		float chargeSpeed = 5f;
+		// A l'export
+		//// Vitesse de déplacement (encore plus rapide : 5 m/s)
+		//chargeSpeed = 6f;  
 		
 		// Direction vers la cible
 		Vector3 direction = (chargeTargetPosition - GlobalPosition);
@@ -635,8 +678,9 @@ public partial class BossCombat : Node3D
 		GlobalPosition += direction * chargeSpeed * (float)delta;
 	}
 	
+	
 	// ============================================
-	// PHASE 1 : CYCLE D'ATTAQUES (16 PV → 4 PV)
+	// PHASE 1 : CYCLE D'ATTAQUES (16 PV → 8 PV)
 	// ============================================
 	
 	private void StartPhase1Cycle()
@@ -650,9 +694,9 @@ public partial class BossCombat : Node3D
 	{
 		switch (cycleStep)
 		{
-			case 0: // Idle (2s)
+			case 0: // Idle (1s)
 				bossAnimPlayer.Play("Idle");
-				stateTimer = 2f;
+				stateTimer = 1f;
 				isVulnerableToStun = false;
 				cycleStep++;
 				break;
@@ -677,13 +721,13 @@ public partial class BossCombat : Node3D
 			case 2: // Idle (1s)
 				currentState = BossState.Idle;
 				bossAnimPlayer.Play("Idle");
-				stateTimer = 1f;
+				stateTimer = 0.5f;
 						  
 				isVulnerableToStun = false;
 				cycleStep++;
 				break;
 			
-			case 3: // Décollage&Vol (3s)
+			case 3: // Décollage&Vol (2s)
 				currentState = BossState.TakingOff;
 				
 				// IMPORTANT : Forcer l'orientation initiale avant le vol
@@ -692,8 +736,19 @@ public partial class BossCombat : Node3D
 				resetRotation.Y = initialRotationY;
 				RotationDegrees = resetRotation;
 				
+				GetTree().CreateTimer(0.3f).Timeout += () =>
+				{
+					Tween tweenRot = GetTree().CreateTween();
+					Vector3 targetRot = bossCoxane.RotationDegrees;
+					targetRot.Z += 360f;
+					tweenRot.TweenProperty(bossCoxane, "rotation_degrees", targetRot, 0.8f)
+						.SetTrans(Tween.TransitionType.Cubic)
+						.SetEase(Tween.EaseType.InOut);
+				};
+
+				
 				bossAnimPlayer.Play("Décollage&Vol");
-				stateTimer = 3f;
+				stateTimer = 2f;
 						  
 				isVulnerableToStun = false;
 				
@@ -715,10 +770,10 @@ public partial class BossCombat : Node3D
 				cycleStep++;
 				break;
 			
-			case 5: // Vol&Atterrissage (3s)
+			case 5: // Vol&Atterrissage (2s)
 				currentState = BossState.Landing;
 				bossAnimPlayer.Play("Vol&Atterrissage");
-				stateTimer = 3f;
+				stateTimer = 1.5f;
 						  
 				isVulnerableToStun = false; // Plus de stun en descente!
 				
@@ -736,7 +791,7 @@ public partial class BossCombat : Node3D
 	}
 	
 	// ============================================
-	// PHASE 2 : CYCLE D'ATTAQUES (4 PV → 0 PV)
+	// PHASE 2 : CYCLE D'ATTAQUES (8 PV → 0 PV)
 	// ============================================
 	
 	private void TransitionToPhase2()
@@ -788,7 +843,7 @@ public partial class BossCombat : Node3D
 				cycleStep++;
 				break;
 			
-			case 3: // Décollage&Vol (3s)
+			case 3: // Décollage&Vol (2s)
 				currentState = BossState.TakingOff;
 				
 				// IMPORTANT : Forcer l'orientation initiale avant le vol
@@ -796,9 +851,19 @@ public partial class BossCombat : Node3D
 				resetRotation2.Y = initialRotationY;
 				RotationDegrees = resetRotation2;
 				
+				GetTree().CreateTimer(0.3f).Timeout += () =>
+				{
+					Tween tweenRot = GetTree().CreateTween();
+					Vector3 targetRot = bossCoxane.RotationDegrees;
+					targetRot.Z += 360f;
+					tweenRot.TweenProperty(bossCoxane, "rotation_degrees", targetRot, 0.8f)
+						.SetTrans(Tween.TransitionType.Cubic)
+						.SetEase(Tween.EaseType.InOut);
+				};
+				
 				bossAnimPlayer.Play("Décollage&Vol");
-				stateTimer = 3f;
-				isVulnerableToStun = true; // VULNERABLE!
+				stateTimer = 2f;
+				isVulnerableToStun = false;
 				
 				// Activer le vol
 				isFlying = true;
@@ -806,21 +871,11 @@ public partial class BossCombat : Node3D
 				cycleStep++;
 				break;
 			
-			case 4: // Vol&Mitraillage (7s)
-				bossAnimPlayer.Play("Vol&Mitraillage");
-				stateTimer = 7f;
-				isVulnerableToStun = true; // VULNERABLE!
-				
-				// Le boss reste en vol
-				isFlying = true;
-				
-				cycleStep++;
-				break;
-			
-			case 5: // Coup Special (7s) - BOURRASQUE!
+			case 4: // Coup Special (7s) - BOURRASQUE!
+				currentState = BossState.Bourrasquing;
 				bossAnimPlayer.Play("Coup Special");
 				stateTimer = 7f;
-				isVulnerableToStun = true; // VULNERABLE!
+				isVulnerableToStun = true;				// FENETRE DE TIR POUR PLAYER
 				
 				// Le boss reste en vol pendant la bourrasque
 				isFlying = true;
@@ -830,9 +885,23 @@ public partial class BossCombat : Node3D
 				cycleStep++;
 				break;
 			
-			case 6: // Vol&Atterrissage (3s)
+			
+			case 5: // Vol&Mitraillage (7s)
+				currentState = BossState.Mitraillaging;
+				bossAnimPlayer.Play("Vol&Mitraillage");
+				stateTimer = 7f;
+				isVulnerableToStun = false; 			// INVULNERABLE EN PHASE 2
+				
+				// Le boss reste en vol
+				isFlying = true;
+				
+				cycleStep++;
+				break;
+			
+
+			case 6: // Vol&Atterrissage (2s)
 				bossAnimPlayer.Play("Vol&Atterrissage");
-				stateTimer = 3f;
+				stateTimer = 2f;
 				isVulnerableToStun = false; // Plus de stun!
 				
 				// Désactiver le vol (descente)
@@ -878,6 +947,74 @@ public partial class BossCombat : Node3D
 		playerScript.ExternalPushVelocity = Vector3.Zero;
 	}
 	
+	//======================================================
+	// MORT DU JOUEUR --> <Continue> --> FULL RESET COMBAT
+	//======================================================
+	
+public void _on_game_over_scene_back_from_death()
+{
+	GD.Print("Reset du boss après Game Over...");
+
+	// ==========================
+	// < Reset PV et UI >
+	// ==========================
+	currentHealth = maxHealth;
+	if (bossHealthBar != null)
+		bossHealthBar.UpdateBossLife(currentHealth);
+	if (fouetClignote)
+		fouetClignote = false;
+	
+	// =============================
+	// < Reset position et rotation >
+	// =============================
+	GlobalPosition = initialPosition;
+	RotationDegrees = new Vector3(0f, initialRotationY, 0f);
+	isFlying = false;
+
+	// ==========================
+	// < Reset état et cycle >
+	// ==========================
+	currentState = BossState.Idle;
+	currentPhase = 1;
+	cycleStep = 0;
+	stateTimer = 0f;
+	CanTakeDamage = false;
+	isVulnerableToStun = false;
+	bombUsed = false;
+
+	// ==========================
+	// Stop animations
+	// ==========================
+	bossAnimPlayer?.Stop();
+	CombatAnimPlayer?.Stop();
+	weakPointPlayer?.Stop();
+
+	// ==========================
+	// Reset effets visuels
+	// ==========================
+	if (propulseurGauche != null) propulseurGauche.Emitting = false;
+	if (propulseurDroit != null) propulseurDroit.Emitting = false;
+
+	if (fireZoneArea != null)
+	{
+		fireZoneArea.Visible = false;
+		fireZoneArea.Monitoring = false;
+	}
+
+	DespawnStunStars();
+	weakPointGlowing = false;
+	warningUnderFire.Visible = false;
+
+
+	// ==========================
+	// Relancer cycle Phase 1
+	// ==========================
+	CallDeferred(nameof(StartPhase1Cycle));
+
+	GD.Print("Boss et joueur réinitialisés, prêt pour Phase 1 !");
+}
+
+
 	
 	// ============================================
 	// MORT DU BOSS
@@ -891,10 +1028,6 @@ public partial class BossCombat : Node3D
 		// Arrêter toutes les animations
 		bossAnimPlayer.Stop();
 		
-		
-		// TODO: Animation de mort, loot, débloquer la zone de fin, etc.
-		// Pour l'instant, on supprime juste le boss
-		//QueueFree();
 		
 		EmitSignal(SignalName.CombatFini);
 	}

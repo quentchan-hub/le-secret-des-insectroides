@@ -51,7 +51,7 @@ shape = SubResource("ConvexPolygonShape3D_a3dv1")
 [node name="StaticBody3D" type="StaticBody3D" parent="button-round" index="1"]
 
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="button-round/StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.059233323, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.018783316, 0)
 depth = 0.15
 polygon = PackedVector2Array(-0.15098703, 0.2738239, -0.30294842, 0.015832545, -0.1535461, -0.25846928, 0.16122341, -0.25846928, 0.31221044, 0.0025590821, 0.15354621, 0.2738239)
 

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://7c0aru3malyv"]
+
+[ext_resource type="PackedScene" uid="uid://ceqwua0d3ju1q" path="res://KayKit_Medieval_Hexagon_Pack_1.0_FREE/Assets/gltf/decoration/props/barrel.gltf" id="1_cidq7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cidq7"]
+size = Vector3(0.21386719, 0.21850586, 0.20996094)
+
+[node name="Tonneau" instance=ExtResource("1_cidq7")]
+
+[node name="barrel" parent="." index="0"]
+layers = 2
+
+[node name="StaticBody3D" type="StaticBody3D" parent="barrel" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="barrel/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10502396, 0)
+shape = SubResource("BoxShape3D_cidq7")
