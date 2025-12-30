@@ -416,7 +416,7 @@ animBoss = NodePath("BossCoxaneChar/BossLvl1Coxane/AnimationPlayer")
 colorRect = NodePath("ColorRect")
 
 [node name="BossCoxaneChar" parent="." instance=ExtResource("2_ljepx")]
-transform = Transform3D(-0.37045193, 0, 0.92883384, 0, 0.9999965, 0, -0.92883795, 0, -0.3704503, -147.22382, 5.5815077, 41.063663)
+transform = Transform3D(0.9998421, 0, 8.740897e-08, 0, 0.9999257, 0, -8.740897e-08, 0, 0.9998421, 0, 0, 0)
 
 [node name="CollisionShape3D" parent="BossCoxaneChar" index="1"]
 transform = Transform3D(0.9999943, 0, 0, 0, 0.9999943, 0, 0, 0, 0.9999943, -4.2632564e-14, 2.861395, 1.1766148)

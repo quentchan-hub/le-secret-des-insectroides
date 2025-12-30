@@ -13,7 +13,7 @@ res://Assets/outdoor_environment/materials/waterfall/waterfall.gdshader
 res://Scenes/Niveau/Pass1Lasers.tres
 res://default.tres
 res://Scenes/PlayerEnnemy/Boss Coxane/boss_lvl_1_coxane.gdshader
-res://Scenes/Niveau/SceneBossLvl1.cs
+res://Scripts/BossCombat.cs
 res://Scripts/BoutonRejouer.cs
 res://Scripts/ControlInventaire.cs
 res://Assets/shared/models/gdbot/player_ctrl.cs
@@ -31,7 +31,6 @@ res://Scripts/ButtonRound.cs
 res://Scripts/DoorSystem.cs
 res://AAPrelude/scenes/OptionWindow.cs
 res://Scripts/CoeurBonus.cs
-res://Scripts/BossCombat.cs
 res://Scenes/Niveau/CoinScore.cs
 res://Scenes/Niveau/Debug.cs
 res://Scenes/ObjetsInteractifs/PlatfDisapear.cs
@@ -54,6 +53,7 @@ res://Scenes/ObjetsInteractifs/StunStar.cs
 res://Scripts/WeakPointArea.cs
 res://Scenes/ObjetsInteractifs/RayLaser.cs
 res://Scripts/PlatfBascule.cs
+res://Scenes/Niveau/SceneBossLvl1.cs
 res://Scripts/MobSharkFinal.cs
 res://Scripts/MovingPlatformAnimated.cs
 res://Scripts/MobbeePatrol.cs

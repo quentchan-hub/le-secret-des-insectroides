@@ -214,6 +214,8 @@ public partial class BossCombat : Node3D
 	{
 		if (currentState == BossState.Dead || currentState == BossState.Stunned)
 		{
+			CanTakeDamage = false;
+			
 			if (weakPointVisual != null)
 				weakPointVisual.Visible = false;
 			return;
@@ -519,6 +521,9 @@ public partial class BossCombat : Node3D
 		if (currentState == BossState.Stunned)
 			return;
 		
+		// Appliquer l'état de Sunned
+		currentState = BossState.Stunned;
+		
 		// Reset le timer du cycle (+ blocage au process = cycle repart de 0 APRES Stun)
 		stateTimer = 3f;
 		cycleStep = 0;
@@ -530,7 +535,10 @@ public partial class BossCombat : Node3D
 		bossAnimPlayer.Stop();
 		
 		// Arrêter le son du mitraillage en cours
+		soundManager.machineGunAudio.Stop();
 		
+		// Arrêter la Bourrasque en cours
+		_on_timer_end_bourrasque_timeout();
 		
 		// Désactiver les effets visuels
 		if (propulseurGauche != null) propulseurGauche.Emitting = false;
@@ -883,6 +891,7 @@ public partial class BossCombat : Node3D
 			
 			case 4: // Coup Special (7s) - BOURRASQUE!
 				currentState = BossState.Bourrasquing;
+				weakPointGlowing = false;
 				bossAnimPlayer.Play("Coup Special");
 				stateTimer = 7f;
 				isVulnerableToStun = true;				// FENETRE DE TIR POUR PLAYER
@@ -898,9 +907,10 @@ public partial class BossCombat : Node3D
 			
 			case 5: // Vol&Mitraillage (7s)
 				currentState = BossState.Mitraillaging;
+				weakPointGlowing = false;
 				bossAnimPlayer.Play("Vol&Mitraillage2");
 				stateTimer = 7f;
-				isVulnerableToStun = false; 			// INVULNERABLE EN PHASE 2
+				isVulnerableToStun = true;
 				
 				// Le boss reste en vol
 				isFlying = true;
@@ -1033,6 +1043,7 @@ public void _on_game_over_scene_back_from_death()
 	
 	private void Die()
 	{
+		gameState.bossDead = true;
 		GD.Print("=== BOSS VAINCU ===");
 		currentState = BossState.Dead;
 		

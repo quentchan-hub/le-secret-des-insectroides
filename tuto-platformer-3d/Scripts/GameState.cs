@@ -74,6 +74,8 @@ public partial class GameState : Node
 
 	public int totalPiecesOr = 0;
 	public bool objectifPiecesOrAtteint = false;
+	
+	public bool bossDead = false;
 
 	// ===============================
 	// SIGNAUX

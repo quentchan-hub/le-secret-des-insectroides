@@ -8,6 +8,8 @@ public partial class EndLevel : Area3D
 	[Export] public Button playAgain;
 	[Export] public Label scoreLabel;
 	
+	private string karma;
+	
 	public override void _Ready()
 	{
 		endLevelScreen.Hide();
@@ -26,7 +28,17 @@ public partial class EndLevel : Area3D
 		gameState.PrintScore();
 		
 		int finalScoreLvl1 = gameState.scoreLvl1;
-		scoreLabel.Text = $"Score Final : {finalScoreLvl1}";
+		
+		if (gameState.bossDead == true)
+		{
+			karma = "ennemi";
+		}
+		else
+		{
+			karma = "allié";
+		}
+		
+		scoreLabel.Text = $"Score Final : {finalScoreLvl1} \n Vous êtes considéré comme un {karma} des insectroïdes";
 		
 		endLevelScreen.Show();
 	

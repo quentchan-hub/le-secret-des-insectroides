@@ -68,7 +68,7 @@ public partial class SoundManager : Node
 	[Export] public AudioStreamPlayer gameOverAudio;
 	[Export] public AudioStreamPlayer fountainAudio;
 	[Export] public AudioStreamPlayer buttonRoundAudio;
-	[Export] public AudioStreamPlayer MachineGunAudio;
+	[Export] public AudioStreamPlayer machineGunAudio;
 
 
 
@@ -89,7 +89,7 @@ public partial class SoundManager : Node
 	public void PlayGameOver() => gameOverAudio.Play();
 	public void PlayFountain() => fountainAudio.Play();
 	public void PlayButtonRound() => buttonRoundAudio.Play();
-	public void PlayMachineGun() => MachineGunAudio.Play();
+	public void PlayMachineGun() => machineGunAudio.Play();
 	
 	
 
