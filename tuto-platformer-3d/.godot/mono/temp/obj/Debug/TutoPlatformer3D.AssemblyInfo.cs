@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TutoPlatformer3D")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f78da35ec2bddd18047f7b9f1ef15d2390190163")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+28e815ed1a7d48df60152d90e5feae243abb4f84")]
 [assembly: System.Reflection.AssemblyProductAttribute("TutoPlatformer3D")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TutoPlatformer3D")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

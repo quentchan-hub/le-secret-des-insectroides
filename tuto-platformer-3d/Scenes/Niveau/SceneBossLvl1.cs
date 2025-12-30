@@ -3,8 +3,10 @@ using System;
 
 public partial class SceneBossLvl1 : Node3D
 {
+	[Signal] public delegate void HodorEventHandler();
+	[Signal] public delegate void ClodorEventHandler();
+	
 	[Export] Area3D porteBoss1;
-	//[Export] BossIntroSceneFinal bossIntroSceneFinal;
 	[Export] BossCoxaneIntro bossCoxaneIntro;
 	[Export] BossCombat bossCombat;
 	[Export] PlayerBotCtrl playerBotCtrl;
@@ -34,12 +36,15 @@ public partial class SceneBossLvl1 : Node3D
 		{
 			MovePlayerToBossFight();					// teleporte le perso dans l'arène
 			
+			EmitSignal(SignalName.Hodor);
+			
 			bossCoxaneIntro.Activate();					// démarre la  séquence d'intro du combat
 			
 			playerBotCtrl.Visible = false;				// disparition personnage
 			controlInventaire.Visible = false;			// et ui game
 			uIControlHeartCoin.Visible = false;			// pendant la cinématique
-
+			
+			
 			CallDeferred("QuitAreaPorteBoss");
 		}
 	}
@@ -61,6 +66,7 @@ public partial class SceneBossLvl1 : Node3D
 	public void TransitionVersCombat()
 	{
 		bossCoxaneIntro.Deactivate();
+		EmitSignal(SignalName.Clodor);
 		bossCombat.Activate();
 		controlInventaire.Visible = true;
 		uIControlHeartCoin.Visible = true;

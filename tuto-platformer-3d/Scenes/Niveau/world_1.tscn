@@ -18642,7 +18642,7 @@ transform = Transform3D(2.6224976, 0, 1.2950252, 0, 1.144353, 0, -2.6224976, 0, 
 transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.99999994, 0, 0.0044841766, 0)
 
 [node name="PathFollow3D" parent="InteractItems/MovingPlatformAnimated/Path3D" index="0"]
-transform = Transform3D(2.980223e-08, 0.9999942, -0.0010711855, -0.00072206126, -0.0010711813, -0.9999975, -0.99999666, 8.344607e-07, 0.0007220618, 0, 0.0044846847, 0)
+transform = Transform3D(2.980223e-08, 0.999994, -0.0010711855, -0.00072206126, -0.001071181, -0.9999975, -0.99999666, 8.344605e-07, 0.0007220618, 0, 0.0044846847, 0)
 
 [node name="CoffresBonus" type="Node" parent="InteractItems" node_paths=PackedStringArray("coffreRessort", "coffreBomba", "bonusDebloque")]
 script = ExtResource("43_o5akm")
@@ -20682,13 +20682,13 @@ mesh = SubResource("PrismMesh_3lm21")
 
 [node name="FZCollisionPhaseinit" type="CollisionShape3D" parent="SceneBossLvl1/CombatFinal/FireZoneArea"]
 process_mode = 4
-transform = Transform3D(-3.4866815, 2.178891, -5.714541e-09, 0, -1.0927847e-06, -1.5, -0.30504474, -24.904867, 6.531758e-08, -1.9577675, 0, 0)
+transform = Transform3D(-3.4866815, 2.178891, -5.714541e-09, 0, -1.0927846e-06, -1.5, -0.30504474, -24.904865, 6.531758e-08, -1.9577675, 0, 0)
 visible = false
 shape = SubResource("ConvexPolygonShape3D_kn8ik")
 debug_color = Color(0, 0.6, 0.69803923, 0.85490197)
 
 [node name="VisualMesh" type="MeshInstance3D" parent="SceneBossLvl1/CombatFinal/FireZoneArea"]
-transform = Transform3D(-3.984779, 2.178891, -7.619388e-09, 0, -1.0927847e-06, -2, -0.34862256, -24.904867, 8.709011e-08, -1.958, 0, 0)
+transform = Transform3D(-3.984779, 2.178891, -7.619388e-09, 0, -1.0927846e-06, -2, -0.34862256, -24.904865, 8.709011e-08, -1.958, 0, 0)
 visible = false
 mesh = SubResource("PrismMesh_3lm21")
 surface_material_override/0 = SubResource("StandardMaterial3D_gkpb1")
@@ -21280,6 +21280,8 @@ visible = false
 [connection signal="ShowCoinScore" from="Coins/PieceOr10" to="UIControlHeartCoin" method="_on_piece_or_show_coin_score"]
 [connection signal="ShowCoinScore" from="Coins/PieceOr7" to="UIControlHeartCoin" method="_on_piece_or_show_coin_score"]
 [connection signal="ShowCoinScore" from="Coins/PieceOr8" to="UIControlHeartCoin" method="_on_piece_or_show_coin_score"]
+[connection signal="Clodor" from="SceneBossLvl1" to="InteractItems/DoorSystem3" method="_on_scene_boss_lvl_1_clodor"]
+[connection signal="Hodor" from="SceneBossLvl1" to="InteractItems/DoorSystem3" method="_on_scene_boss_lvl_1_hodor"]
 [connection signal="area_entered" from="SceneBossLvl1/PorteBoss1" to="SceneBossLvl1" method="_on_porte_boss_1_area_entered"]
 [connection signal="IntroBossOn" from="SceneBossLvl1/BossIntroSceneFinal/BossCoxaneIntro" to="ControlInventaire" method="_on_boss_coxane_intro_intro_boss_on"]
 [connection signal="animation_finished" from="SceneBossLvl1/BossIntroSceneFinal/BossCoxaneIntro/AnimPlayerIntroCombat" to="SceneBossLvl1/BossIntroSceneFinal/BossCoxaneIntro" method="_on_anim_player_intro_combat_animation_finished"]
