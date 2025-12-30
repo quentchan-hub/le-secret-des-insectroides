@@ -26,9 +26,9 @@ shader_parameter/screen_blue_offset = Vector2(0, 0)
 shader_parameter/pixel_size = 32.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mpquo"]
-size = Vector3(1, 1.5410156, 0.72821045)
+size = Vector3(1, 1.5410156, 0.62631226)
 
-[node name="PlayerBotCtrl" type="CharacterBody3D" node_paths=PackedStringArray("playerMesh", "cameraPivot", "camera", "animationPlayer")]
+[node name="PlayerBotCtrl" type="CharacterBody3D" node_paths=PackedStringArray("animationPlayer", "cameraPivot", "camera", "playerMesh")]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 collision_mask = 7
 floor_snap_length = 0.2
@@ -36,15 +36,14 @@ script = ExtResource("1_c4nwy")
 speed = 2.0
 acceleration = 1.75
 airAcceleration = 1.5
+animationPlayer = NodePath("PlayerBot/gdbot/AnimationPlayer")
 gravity = 0.4
-maxTerminalVelocity = 7.5
-playerMesh = NodePath("PlayerBot/gdbot/Armature/Skeleton3D/gdbot_mesh")
 mouseSensivity = 0.25
 minPitch = -48.0
 maxPitch = 75.0
 cameraPivot = NodePath("CamPivot")
 camera = NodePath("CamPivot/SpringArm3D/Camera3D")
-animationPlayer = NodePath("PlayerBot/gdbot/AnimationPlayer")
+playerMesh = NodePath("PlayerBot/gdbot/Armature/Skeleton3D/gdbot_mesh")
 
 [node name="CamPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.89894855, 0)
@@ -66,6 +65,7 @@ collision_mask = 7
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3DPlayer"]
 transform = Transform3D(1.0147651, 0, 0, 0, 1.0147651, 0, 0, 0, 1.0147651, 0.003, 0.0636757, 0.025)
 shape = SubResource("BoxShape3D_bfnft")
+debug_color = Color(0.51360685, 0.38222682, 0.17875236, 0.41960785)
 
 [node name="PlayerBot" parent="." instance=ExtResource("1_833sn")]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
@@ -81,7 +81,7 @@ surface_material_override/1 = SubResource("ShaderMaterial_0dbvs")
 [node name="Area3DDommage" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3DDommage"]
-transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0, 0.97886723, 0.051727276)
+transform = Transform3D(0.99999976, 0, 0, 0, 0.99999976, 0, 0, 0, 0.99999976, 0, 0.97886723, 0.0007781913)
 shape = SubResource("BoxShape3D_mpquo")
 
 [connection signal="area_entered" from="Area3DPlayer" to="." method="_on_area_3d_area_entered"]

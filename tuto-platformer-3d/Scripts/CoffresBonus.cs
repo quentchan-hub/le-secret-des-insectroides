@@ -59,7 +59,7 @@ public partial class CoffresBonus : Node
 		coffreBomba.Visible = true;
 
 		bonusDebloque.Visible = true;
-		GetTree().CreateTimer(3.0f).Timeout += () =>
+		GetTree().CreateTimer(6.0f).Timeout += () =>
 		{
 			bonusDebloque.Visible = false;
 		};

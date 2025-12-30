@@ -1,4 +1,4 @@
-[gd_scene load_steps=362 format=4 uid="uid://dbtwrsnn3kwts"]
+[gd_scene load_steps=371 format=4 uid="uid://dbtwrsnn3kwts"]
 
 [ext_resource type="Script" uid="uid://boo0sbhe6vd7i" path="res://Scenes/Niveau/Debug.cs" id="1_kwwme"]
 [ext_resource type="PackedScene" uid="uid://tdkoyyd6teoe" path="res://AAPrelude/scenes/prelude_studio.tscn" id="1_u08lv"]
@@ -59,7 +59,6 @@
 [ext_resource type="Texture2D" uid="uid://dkriutvj5ac6m" path="res://Assets Persos/Escalier/escalier.png" id="36_5kn8y"]
 [ext_resource type="PackedScene" uid="uid://cqqae0hcdk1q5" path="res://Scenes/UI/life_heart.tscn" id="37_58kno"]
 [ext_resource type="PackedScene" uid="uid://nyj3xpfj4c41" path="res://Scenes/ObjetsInteractifs/cle_rose.tscn" id="38_ve4kx"]
-[ext_resource type="PackedScene" uid="uid://cmldghpq01ayy" path="res://Scenes/Niveau/game_over_scene.tscn" id="40_42bk8"]
 [ext_resource type="PackedScene" uid="uid://cove2n4xesvhj" path="res://Scenes/ObjetsInteractifs/fouet_final.tscn" id="42_1s8rm"]
 [ext_resource type="Script" uid="uid://dqs26brs4oedl" path="res://Scripts/CoffresBonus.cs" id="43_o5akm"]
 [ext_resource type="PackedScene" uid="uid://d4lc6bu54r520" path="res://Scenes/ObjetsInteractifs/ressort.tscn" id="44_tj23t"]
@@ -122,7 +121,6 @@
 [ext_resource type="Texture2D" uid="uid://b54liq4ntmi13" path="res://Assets Persos/zoneenfeu/vecteezy_light-orange-shining-triangular-background-geometric_.jpg" id="96_3w4b0"]
 [ext_resource type="AudioStream" uid="uid://d1akm3jafvwfm" path="res://Sounds/MainThemeMusic-chiptune-symphony-8bit.mp3" id="96_rpul7"]
 [ext_resource type="AudioStream" uid="uid://dn4bscdgpqu6h" path="res://Sounds/NewIslandThemeMusic - TheMysteryOfOrient.mp3" id="97_3diqw"]
-[ext_resource type="Texture2D" uid="uid://c6mx6k5hnysxr" path="res://Assets Persos/zoneenfeu/vecteezy_vector-colorful-polygonal-background_260637.jpg" id="97_mnxqs"]
 [ext_resource type="SystemFont" uid="uid://ctdq1chr8q1jr" path="res://Font/OCRA_Sys_Font.tres" id="98_3friu"]
 [ext_resource type="Texture2D" uid="uid://cnolrqtdf1y8o" path="res://Assets Persos/boss_coxane/sourcil.png" id="98_tpj8v"]
 [ext_resource type="Script" uid="uid://bg7rl0kyxbaa0" path="res://Scripts/WeakPointArea.cs" id="99_3hpuu"]
@@ -134,10 +132,13 @@
 [ext_resource type="Script" uid="uid://djtc75ll38ex3" path="res://Scenes/Niveau/CoinScore.cs" id="108_kd4pq"]
 [ext_resource type="Script" uid="uid://cmn565akw8luc" path="res://Scripts/WeakPointVisual.cs" id="108_tpj8v"]
 [ext_resource type="Texture2D" uid="uid://bwekaswxyrqxb" path="res://Assets Persos/Explosion/Explosion.png" id="109_mnxqs"]
+[ext_resource type="CylinderMesh" uid="uid://djreekn1na7eu" path="res://Scenes/Niveau/Pass1Lasers.tres" id="113_1w7a5"]
+[ext_resource type="Texture2D" uid="uid://mgooe4pstmj" path="res://Assets Persos/zoneenfeu/flammes_bleues.png" id="114_rtb0i"]
 [ext_resource type="Theme" uid="uid://cpio1riih7y28" path="res://default.tres" id="116_kcrxu"]
 [ext_resource type="Texture2D" uid="uid://xfnlwg5fdkdl" path="res://Assets Persos/BGDialogue/dialogueboard.png" id="117_uu2b6"]
 [ext_resource type="Texture2D" uid="uid://biwiarpbbxtal" path="res://Assets Persos/TouchesClavier/ToucheclavierA-nobg.png" id="131_illye"]
 [ext_resource type="Texture2D" uid="uid://fyqip17vh7w3" path="res://Assets Persos/TouchesClavier/ToucheclavierE-nobg.png" id="132_5kn8y"]
+[ext_resource type="Script" uid="uid://b226nkyjv5yc5" path="res://Scripts/GameOverScene.cs" id="138_1w7a5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_42bk8"]
 size = Vector3(53.90796, 0.28059387, 59.588516)
@@ -158,7 +159,7 @@ albedo_texture = ExtResource("12_omxtg")
 points = PackedVector3Array(-0.07232857, -0.37638068, 1.8105048, -0.89461863, 2.6967008, -0.5002842, -1.666469, -0.4828961, 0.42889336, 0.96854454, 2.6015975, 0.31614757, -0.7795229, 2.6647172, 0.66860133, 1.3623089, -0.4828961, -1.0582036, 0.63252455, 2.6266046, -0.79536694, -0.42928368, -0.45492336, -0.89276755, 0.29944974, -0.53582096, 1.5979731, 0.39941812, 2.5922084, 0.93580276, -0.22654437, 2.545685, -0.973976, 0.7245934, -0.58907866, -1.2707351, -1.5600348, -0.37638068, 0.8539565, -1.347463, -0.64200354, 0.26972872, 0.9368013, -0.46127257, 0.31782022, 1.0433029, -0.4828961, -1.3771571, -0.07722844, 2.6533945, 1.0142761, 1.149737, -0.64200354, -0.7926171, 0.9789688, 2.6159573, -0.28591198, -0.9984608, 2.6054199, 0.1203621, -0.7250836, -0.43735602, -0.68019086, 0.19331208, -0.37638068, 1.7574499, 0.12511866, 2.5704134, -0.993766, -1.347463, -0.53582096, 0.9070114, -0.42203188, 2.5308716, -0.91278833, 1.3089435, -0.53582096, -0.7395623, -1.666469, -0.3234558, 0.6947919, 0.686542, 2.5912342, 0.7436439, 1.0286502, 2.6148868, -0.034446415, 1.2473145, -0.36689016, -1.207993, -0.9980771, 2.6047182, -0.12154231, 0.7776622, -0.64200354, -1.1646254)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7d2yp"]
-size = Vector3(3.1844482, 5.544922, 6.0427246)
+size = Vector3(2.475586, 5.544922, 3.3310547)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5utqk"]
 size = Vector3(1.3027344, 1.1853027, 0.6094513)
@@ -9097,14 +9098,27 @@ radial_accel_max = 20.179996
 damping_min = 13.303
 damping_max = 13.303
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xrnuh"]
-albedo_texture = ExtResource("96_3w4b0")
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1comf"]
+direction = Vector3(0, -1, 0)
+spread = 60.0
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -11.010002
+linear_accel_max = -11.010002
+radial_accel_min = 15.589997
+radial_accel_max = 20.179996
+damping_min = 13.303
+damping_max = 13.303
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v0vis"]
+albedo_texture = ExtResource("114_rtb0i")
 emission_enabled = true
-emission_texture = ExtResource("97_mnxqs")
+emission_texture = ExtResource("114_rtb0i")
 uv1_offset = Vector3(1, 0.6, 0)
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_xttgf"]
-material = SubResource("StandardMaterial3D_xrnuh")
+[sub_resource type="CylinderMesh" id="CylinderMesh_5b0n0"]
+material = SubResource("StandardMaterial3D_v0vis")
 top_radius = 0.1
 bottom_radius = 0.1
 height = 15.0
@@ -13976,117 +13990,6 @@ tracks/65/keys = {
 "values": [false, true, true, false]
 }
 
-[sub_resource type="Animation" id="Animation_0alwg"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Armature/Skeleton3D/BoneAttachElytreR/Sprite3DPropulseurDroit/GPUParticles3D2:emitting")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Armature/Skeleton3D/BoneAttachElytreL/Sprite3DPropulseurGauche/GPUParticles3D2:emitting")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../../FireZoneArea/FireZoneSprite/DecalFireZone:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../../FireZoneArea/FireZoneSprite/DecalFireZone:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("../../FireZoneArea/FireZoneSprite/DecalFireZone:emission_energy")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.5]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("../../FireZoneArea/FireZoneSprite/DecalFireZone:process_mode")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("../Decal:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("../Decal:emission_energy")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.1]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("../../../../SoundManager/MachineGunAudio:playing")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="Animation" id="Animation_aqr3o"]
 resource_name = "Stun"
 length = 3.0
@@ -15844,6 +15747,792 @@ tracks/70/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/71/type = "value"
+tracks/71/imported = false
+tracks/71/enabled = true
+tracks/71/path = NodePath("../../FireZoneArea/FZCollisionPhase1:visible")
+tracks/71/interp = 1
+tracks/71/loop_wrap = true
+tracks/71/keys = {
+"times": PackedFloat32Array(0, 1, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/72/type = "value"
+tracks/72/imported = false
+tracks/72/enabled = true
+tracks/72/path = NodePath("../../FireZoneArea/FZCollisionPhase1:process_mode")
+tracks/72/interp = 1
+tracks/72/loop_wrap = true
+tracks/72/keys = {
+"times": PackedFloat32Array(0, 1, 6.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [4, 0, 4]
+}
+tracks/73/type = "value"
+tracks/73/imported = false
+tracks/73/enabled = true
+tracks/73/path = NodePath("../../FireZoneArea/FireZoneSprite:visible")
+tracks/73/interp = 1
+tracks/73/loop_wrap = true
+tracks/73/keys = {
+"times": PackedFloat32Array(0, 1, 6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/74/type = "value"
+tracks/74/imported = false
+tracks/74/enabled = true
+tracks/74/path = NodePath("../../FireZoneArea/FZCollisionPhaseinit:visible")
+tracks/74/interp = 1
+tracks/74/loop_wrap = true
+tracks/74/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/75/type = "value"
+tracks/75/imported = false
+tracks/75/enabled = true
+tracks/75/path = NodePath("../../FireZoneArea/FZCollisionPhaseinit:process_mode")
+tracks/75/interp = 1
+tracks/75/loop_wrap = true
+tracks/75/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/76/type = "value"
+tracks/76/imported = false
+tracks/76/enabled = true
+tracks/76/path = NodePath("../../FireZoneArea/FZCollisionPhaseinit:disabled")
+tracks/76/interp = 1
+tracks/76/loop_wrap = true
+tracks/76/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/77/type = "value"
+tracks/77/imported = false
+tracks/77/enabled = true
+tracks/77/path = NodePath("../../FireZoneArea/FZCollisionPhase1:disabled")
+tracks/77/interp = 1
+tracks/77/loop_wrap = true
+tracks/77/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_1w7a5"]
+resource_name = "Vol&Mitraillage2"
+length = 7.0
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature/Skeleton3D:Os.ColonneMilieu")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 1.8625357e-09, 7.119525, 3.0847814)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Armature/Skeleton3D:Os.ColonneMilieu")
+tracks/1/interp = 0
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0.5504336, 0.0030384653, -0.004486839, 0.8348614)
+tracks/2/type = "rotation_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Armature/Skeleton3D:Os.HanchePosterieur.l")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, -0.282568, -0.49414268, -0.78721046, 0.23723008)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Armature/Skeleton3D:Os.FemurPosterieur.l")
+tracks/3/interp = 0
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, -0.16246183, 0.09322485, 0.6315395, 0.75237834)
+tracks/4/type = "rotation_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Armature/Skeleton3D:Os.TibiaPosterieur.l")
+tracks/4/interp = 0
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, -0.7949111, -0.56185937, -0.06289771, 0.22016875)
+tracks/5/type = "rotation_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Armature/Skeleton3D:Os.PattePosterieur.l")
+tracks/5/interp = 0
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, 0.44724378, 0.8170902, -0.2637023, 0.2505947)
+tracks/6/type = "rotation_3d"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Armature/Skeleton3D:Os.FemurPosterieur.r")
+tracks/6/interp = 0
+tracks/6/loop_wrap = true
+tracks/6/keys = PackedFloat32Array(0, 1, -0.16330332, -0.09208891, -0.6310169, 0.7527744)
+tracks/7/type = "rotation_3d"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Armature/Skeleton3D:Os.TibiaPosterieur.r")
+tracks/7/interp = 0
+tracks/7/loop_wrap = true
+tracks/7/keys = PackedFloat32Array(0, 1, 0.17248261, -0.2971351, 0.7777207, 0.5264134)
+tracks/8/type = "rotation_3d"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Armature/Skeleton3D:Os.PattePosterieur.r")
+tracks/8/interp = 0
+tracks/8/loop_wrap = true
+tracks/8/keys = PackedFloat32Array(0, 1, 0.19919243, 0.36114466, -0.4796306, 0.7745008)
+tracks/9/type = "rotation_3d"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Armature/Skeleton3D:Os.Cou")
+tracks/9/interp = 0
+tracks/9/loop_wrap = true
+tracks/9/keys = PackedFloat32Array(0, 1, -0.05598911, 0.00038072647, -0.007053064, 0.9984064)
+tracks/10/type = "scale_3d"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Armature/Skeleton3D:Os.Cou")
+tracks/10/interp = 0
+tracks/10/loop_wrap = true
+tracks/10/keys = PackedFloat32Array(0, 1, 0.9999999, 0.9999999, 1)
+tracks/11/type = "rotation_3d"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Armature/Skeleton3D:Os.Mandibule.r")
+tracks/11/interp = 0
+tracks/11/loop_wrap = true
+tracks/11/keys = PackedFloat32Array(0, 1, -0.14941919, 0.62862533, 0.29338354, 0.70457804)
+tracks/12/type = "rotation_3d"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Armature/Skeleton3D:Os.Mandibule.l")
+tracks/12/interp = 0
+tracks/12/loop_wrap = true
+tracks/12/keys = PackedFloat32Array(0, 1, -0.14941894, -0.6286259, -0.2933836, 0.70457757)
+tracks/13/type = "rotation_3d"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Armature/Skeleton3D:Os.FemurAnterieur.l")
+tracks/13/interp = 0
+tracks/13/loop_wrap = true
+tracks/13/keys = PackedFloat32Array(0, 1, -0.5008713, -0.03225426, 0.21838151, 0.8368973)
+tracks/14/type = "rotation_3d"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Armature/Skeleton3D:Os.TibiaAvant.l")
+tracks/14/interp = 0
+tracks/14/loop_wrap = true
+tracks/14/keys = PackedFloat32Array(0, 1, 0.5581757, 0.50843513, 0.5446003, 0.3651633)
+tracks/15/type = "rotation_3d"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Armature/Skeleton3D:Os.PatteAvant.l")
+tracks/15/interp = 0
+tracks/15/loop_wrap = true
+tracks/15/keys = PackedFloat32Array(0, 1, -0.5290913, -0.64458215, 0.14626019, 0.53215057)
+tracks/16/type = "scale_3d"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Armature/Skeleton3D:Os.PatteAvant.l")
+tracks/16/interp = 0
+tracks/16/loop_wrap = true
+tracks/16/keys = PackedFloat32Array(0, 1, 0.9999983, 1.0000001, 1.0000023)
+tracks/17/type = "rotation_3d"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Armature/Skeleton3D:Os.FemurMilieu.l")
+tracks/17/interp = 0
+tracks/17/loop_wrap = true
+tracks/17/keys = PackedFloat32Array(0, 1, -0.2629039, -0.04330431, -0.5935357, 0.75942194)
+tracks/18/type = "rotation_3d"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Armature/Skeleton3D:Os.TibiaMilieu.l")
+tracks/18/interp = 0
+tracks/18/loop_wrap = true
+tracks/18/keys = PackedFloat32Array(0, 1, 0.30229917, 0.15224306, 0.80262166, 0.4911576)
+tracks/19/type = "rotation_3d"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("Armature/Skeleton3D:Os.PatteMilieu.l")
+tracks/19/interp = 0
+tracks/19/loop_wrap = true
+tracks/19/keys = PackedFloat32Array(0, 1, -0.30169123, -0.1279087, -0.5081436, 0.7964998)
+tracks/20/type = "rotation_3d"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("Armature/Skeleton3D:Os.FemurAnterieur.r")
+tracks/20/interp = 0
+tracks/20/loop_wrap = true
+tracks/20/keys = PackedFloat32Array(0, 1, -0.49570858, 0.033412296, -0.2169787, 0.8402838)
+tracks/21/type = "rotation_3d"
+tracks/21/imported = false
+tracks/21/enabled = true
+tracks/21/path = NodePath("Armature/Skeleton3D:Os.TibiaAvant.r")
+tracks/21/interp = 0
+tracks/21/loop_wrap = true
+tracks/21/keys = PackedFloat32Array(0, 1, 0.5068033, 0.39791703, 0.5959078, 0.47927707)
+tracks/22/type = "rotation_3d"
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/path = NodePath("Armature/Skeleton3D:Os.PatteAvant.r")
+tracks/22/interp = 0
+tracks/22/loop_wrap = true
+tracks/22/keys = PackedFloat32Array(0, 1, 0.16649932, -0.56992334, -0.522385, 0.6120289)
+tracks/23/type = "rotation_3d"
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/path = NodePath("Armature/Skeleton3D:Os.FemurMilieu.r")
+tracks/23/interp = 0
+tracks/23/loop_wrap = true
+tracks/23/keys = PackedFloat32Array(0, 1, -0.26289418, 0.0433183, 0.5935284, 0.75943035)
+tracks/24/type = "rotation_3d"
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/path = NodePath("Armature/Skeleton3D:Os.TibiaMilieu.r")
+tracks/24/interp = 0
+tracks/24/loop_wrap = true
+tracks/24/keys = PackedFloat32Array(0, 1, 0.83182615, 0.4706277, 0.20891576, 0.20719339)
+tracks/25/type = "rotation_3d"
+tracks/25/imported = false
+tracks/25/enabled = true
+tracks/25/path = NodePath("Armature/Skeleton3D:Os.PatteMilieu.r")
+tracks/25/interp = 0
+tracks/25/loop_wrap = true
+tracks/25/keys = PackedFloat32Array(0, 1, -0.53922355, -0.7767332, -0.24184729, 0.21779266)
+tracks/26/type = "rotation_3d"
+tracks/26/imported = false
+tracks/26/enabled = true
+tracks/26/path = NodePath("Armature/Skeleton3D:Os.Aile.l")
+tracks/26/interp = 1
+tracks/26/loop_wrap = true
+tracks/26/keys = PackedFloat32Array(0, 1, -0.7337794, -0.020192586, -0.22667262, 0.6401404, 0.033333335, 1, -0.7299024, -0.025582459, -0.24346974, 0.63820887, 0.06666667, 1, -0.71787804, -0.040499788, -0.289675, 0.6317431, 0.1, 1, -0.6960022, -0.06306972, -0.35877803, 0.6187743, 0.13333334, 1, -0.6626525, -0.09090385, -0.44260412, 0.5972686, 0.2, 1, -0.5667732, -0.14937313, -0.6130409, 0.5297516, 0.23333333, 1, -0.5148039, -0.17356828, -0.68087906, 0.49117693, 0.26666668, 1, -0.47000465, -0.19165824, -0.7302988, 0.4571941, 0.3, 1, -0.4391426, -0.20289384, -0.76032925, 0.43345985, 0.36666667, 1, -0.43914253, -0.20289387, -0.76032925, 0.43345976, 0.4, 1, -0.47000453, -0.19165811, -0.73029894, 0.4571941, 0.43333334, 1, -0.5148038, -0.1735683, -0.6808791, 0.49117687, 0.46666667, 1, -0.5667733, -0.14937317, -0.6130408, 0.52975166, 0.53333336, 1, -0.66265255, -0.09090384, -0.44260418, 0.59726846, 0.56666666, 1, -0.6960022, -0.06306972, -0.35877803, 0.6187743, 0.6, 1, -0.71787804, -0.040499736, -0.28967494, 0.6317431, 0.6333333, 1, -0.72990245, -0.025582425, -0.24346963, 0.63820887, 0.7, 1, -0.7299024, -0.025582459, -0.24346974, 0.63820887, 0.73333335, 1, -0.71787804, -0.040499788, -0.289675, 0.6317431, 0.76666665, 1, -0.6960022, -0.06306972, -0.35877803, 0.6187743, 0.8, 1, -0.6626525, -0.09090385, -0.44260412, 0.5972686, 0.8666667, 1, -0.5667733, -0.14937317, -0.6130408, 0.52975166, 0.9, 1, -0.5148039, -0.17356828, -0.68087906, 0.49117693, 0.93333334, 1, -0.47000453, -0.19165823, -0.73029894, 0.4571941, 0.96666664, 1, -0.43914255, -0.20289385, -0.76032925, 0.43345976, 1.0333333, 1, -0.43914253, -0.20289387, -0.76032925, 0.43345976, 1.0666667, 1, -0.47000462, -0.19165815, -0.7302989, 0.45719412, 1.1, 1, -0.5148039, -0.17356828, -0.68087906, 0.49117696, 1.1333333, 1, -0.5667732, -0.14937314, -0.61304086, 0.5297516, 1.2, 1, -0.6626525, -0.090903826, -0.44260418, 0.5972686, 1.2333333, 1, -0.6960022, -0.06306972, -0.35877803, 0.6187743, 1.2666667, 1, -0.71787804, -0.040499724, -0.28967503, 0.63174313, 1.3, 1, -0.7299024, -0.025582459, -0.24346969, 0.63820887, 1.3666667, 1, -0.7299024, -0.025582459, -0.24346974, 0.63820887, 1.4, 1, -0.71787804, -0.04049981, -0.28967503, 0.6317431, 1.4333333, 1, -0.69600207, -0.06306974, -0.35877803, 0.6187743, 1.4666667, 1, -0.6626525, -0.09090385, -0.44260418, 0.5972686, 1.5333333, 1, -0.5667732, -0.14937313, -0.6130409, 0.5297516, 1.5666667, 1, -0.5148039, -0.17356828, -0.68087906, 0.49117693, 1.6, 1, -0.47000465, -0.19165824, -0.7302988, 0.4571941, 1.6333333, 1, -0.4391426, -0.20289384, -0.76032925, 0.43345985, 1.7, 1, -0.43914253, -0.20289387, -0.76032925, 0.43345976, 1.7333333, 1, -0.47000462, -0.19165815, -0.7302989, 0.45719412, 1.7666667, 1, -0.5148039, -0.17356828, -0.68087906, 0.49117696, 1.8, 1, -0.5667732, -0.14937314, -0.61304086, 0.5297516, 1.8666667, 1, -0.6626525, -0.090903826, -0.44260418, 0.5972686, 1.9, 1, -0.6960022, -0.06306972, -0.35877803, 0.6187743, 1.9333333, 1, -0.71787804, -0.040499724, -0.28967503, 0.63174313, 1.9666667, 1, -0.7299024, -0.025582459, -0.24346969, 0.63820887, 2.0333333, 1, -0.7299024, -0.02558248, -0.24346977, 0.63820887, 2.0666666, 1, -0.717878, -0.040499814, -0.28967506, 0.6317431, 2.1, 1, -0.6960021, -0.06306975, -0.3587781, 0.6187743, 2.1333334, 1, -0.6626525, -0.090903826, -0.44260418, 0.5972686, 2.2, 1, -0.5667732, -0.14937319, -0.61304086, 0.52975154, 2.2333333, 1, -0.51480377, -0.17356831, -0.6808792, 0.4911769, 2.2666667, 1, -0.4700044, -0.19165815, -0.73029906, 0.457194, 2.3, 1, -0.43914255, -0.20289385, -0.76032925, 0.43345976, 2.3666666, 1, -0.43914255, -0.20289385, -0.76032925, 0.43345976, 2.4, 1, -0.47000453, -0.19165821, -0.730299, 0.457194, 2.4333334, 1, -0.5148038, -0.1735683, -0.6808791, 0.49117687, 2.4666667, 1, -0.5667732, -0.14937314, -0.61304086, 0.52975154, 2.5333333, 1, -0.66265255, -0.09090384, -0.44260418, 0.59726846, 2.5666666, 1, -0.6960022, -0.06306972, -0.35877803, 0.6187743, 2.6, 1, -0.71787804, -0.04049977, -0.28967503, 0.6317431, 2.6333334, 1, -0.72990245, -0.025582425, -0.24346963, 0.63820887, 2.7, 1, -0.7299024, -0.02558245, -0.24346973, 0.63820887, 2.7333333, 1, -0.71787804, -0.040499788, -0.289675, 0.6317431, 2.7666667, 1, -0.6960022, -0.063069694, -0.35877794, 0.61877424, 2.8, 1, -0.6626525, -0.09090385, -0.44260412, 0.5972686, 2.8666666, 1, -0.5667733, -0.14937317, -0.6130408, 0.52975166, 2.9, 1, -0.5148039, -0.17356828, -0.68087906, 0.49117693, 2.9333334, 1, -0.4700045, -0.1916582, -0.73029894, 0.4571941, 2.9666667, 1, -0.43914255, -0.20289385, -0.76032925, 0.43345976, 3.0333333, 1, -0.43914255, -0.20289385, -0.76032925, 0.43345976, 3.0666666, 1, -0.47000453, -0.19165821, -0.730299, 0.457194, 3.1, 1, -0.5148038, -0.1735683, -0.6808791, 0.49117687, 3.1333334, 1, -0.5667732, -0.14937314, -0.61304086, 0.52975154, 3.2, 1, -0.66265255, -0.09090384, -0.44260418, 0.59726846, 3.2333333, 1, -0.6960022, -0.06306972, -0.35877803, 0.6187743, 3.2666667, 1, -0.71787804, -0.04049977, -0.28967503, 0.6317431, 3.3, 1, -0.72990245, -0.025582425, -0.24346963, 0.63820887, 3.3666666, 1, -0.7299024, -0.02558245, -0.24346973, 0.63820887, 3.4, 1, -0.71787804, -0.040499788, -0.289675, 0.6317431, 3.4333334, 1, -0.6960022, -0.063069694, -0.35877794, 0.61877424, 3.4666667, 1, -0.6626525, -0.09090385, -0.44260412, 0.5972686, 3.5333333, 1, -0.5667733, -0.14937317, -0.6130408, 0.52975166, 3.5666666, 1, -0.5148039, -0.17356828, -0.68087906, 0.49117693, 3.6, 1, -0.4700045, -0.1916582, -0.73029894, 0.4571941, 3.6333334, 1, -0.43914255, -0.20289385, -0.76032925, 0.43345976, 3.7, 1, -0.43914255, -0.20289385, -0.76032925, 0.43345976, 3.7333333, 1, -0.47000453, -0.19165821, -0.730299, 0.457194, 3.7666667, 1, -0.5148038, -0.1735683, -0.6808791, 0.49117687, 3.8, 1, -0.5667732, -0.14937314, -0.61304086, 0.52975154, 3.8666666, 1, -0.66265255, -0.09090384, -0.44260418, 0.59726846, 3.9, 1, -0.6960022, -0.06306972, -0.35877803, 0.6187743, 3.9333334, 1, -0.71787804, -0.04049977, -0.28967503, 0.6317431, 3.9666667, 1, -0.72990245, -0.025582425, -0.24346963, 0.63820887, 4.0333333, 1, -0.7299024, -0.02558245, -0.24346973, 0.63820887, 4.0666666, 1, -0.71787804, -0.040499788, -0.289675, 0.6317431, 4.1, 1, -0.6960022, -0.063069694, -0.35877794, 0.61877424, 4.133333, 1, -0.6626525, -0.09090385, -0.44260412, 0.5972686, 4.2, 1, -0.5667733, -0.14937317, -0.6130408, 0.52975166, 4.233333, 1, -0.5148039, -0.17356828, -0.68087906, 0.49117693, 4.266667, 1, -0.4700045, -0.1916582, -0.73029894, 0.4571941, 4.3, 1, -0.43914255, -0.20289385, -0.76032925, 0.43345976, 4.366667, 1, -0.43914253, -0.20289387, -0.76032925, 0.43345976, 4.4, 1, -0.47000465, -0.1916581, -0.7302988, 0.45719415, 4.4333334, 1, -0.51480395, -0.17356831, -0.680879, 0.49117696, 4.4666667, 1, -0.5667732, -0.14937313, -0.61304086, 0.52975154, 4.5333333, 1, -0.6626525, -0.09090388, -0.4426042, 0.59726846, 4.5666666, 1, -0.69600207, -0.06306974, -0.35877815, 0.6187743, 4.6, 1, -0.717878, -0.040499803, -0.28967506, 0.6317431, 4.633333, 1, -0.7299024, -0.025582377, -0.24346977, 0.63820887, 4.7, 1, -0.7299024, -0.02558247, -0.24346977, 0.63820887, 4.733333, 1, -0.717878, -0.040499825, -0.2896751, 0.6317431, 4.766667, 1, -0.69600207, -0.06306974, -0.35877815, 0.6187743, 4.8, 1, -0.66265255, -0.09090383, -0.44260418, 0.59726846, 4.866667, 1, -0.5667733, -0.1493731, -0.6130408, 0.52975166, 4.9, 1, -0.5148039, -0.1735683, -0.68087906, 0.49117693, 4.9333334, 1, -0.47000465, -0.19165811, -0.7302988, 0.45719415, 4.9666667, 1, -0.43914253, -0.20289394, -0.76032925, 0.43345976, 5.0333333, 1, -0.43914253, -0.20289387, -0.76032925, 0.43345976, 5.0666666, 1, -0.47000465, -0.1916581, -0.7302988, 0.45719415, 5.1, 1, -0.51480395, -0.17356831, -0.680879, 0.49117696, 5.133333, 1, -0.5667732, -0.14937313, -0.61304086, 0.52975154, 5.2, 1, -0.6626525, -0.09090388, -0.4426042, 0.59726846, 5.233333, 1, -0.69600207, -0.06306974, -0.35877815, 0.6187743, 5.266667, 1, -0.717878, -0.040499803, -0.28967506, 0.6317431, 5.3, 1, -0.7299024, -0.025582377, -0.24346977, 0.63820887, 5.366667, 1, -0.7299024, -0.02558247, -0.24346977, 0.63820887, 5.4, 1, -0.717878, -0.040499825, -0.2896751, 0.6317431, 5.4333334, 1, -0.69600207, -0.06306974, -0.35877815, 0.6187743, 5.4666667, 1, -0.66265255, -0.09090383, -0.44260418, 0.59726846, 5.5333333, 1, -0.5667733, -0.1493731, -0.6130408, 0.52975166, 5.5666666, 1, -0.5148039, -0.1735683, -0.68087906, 0.49117693, 5.6, 1, -0.47000465, -0.19165811, -0.7302988, 0.45719415, 5.633333, 1, -0.43914253, -0.20289394, -0.76032925, 0.43345976, 5.7, 1, -0.43914253, -0.20289387, -0.76032925, 0.43345976, 5.733333, 1, -0.47000465, -0.1916581, -0.7302988, 0.45719415, 5.766667, 1, -0.51480395, -0.17356831, -0.680879, 0.49117696, 5.8, 1, -0.5667732, -0.14937313, -0.61304086, 0.52975154, 5.866667, 1, -0.6626525, -0.09090388, -0.4426042, 0.59726846, 5.9, 1, -0.69600207, -0.06306974, -0.35877815, 0.6187743, 5.9333334, 1, -0.717878, -0.040499803, -0.28967506, 0.6317431, 5.9666667, 1, -0.7299024, -0.025582377, -0.24346977, 0.63820887, 6.0333333, 1, -0.7299024, -0.02558247, -0.24346977, 0.63820887, 6.0666666, 1, -0.717878, -0.040499825, -0.2896751, 0.6317431, 6.1, 1, -0.69600207, -0.06306974, -0.35877815, 0.6187743, 6.133333, 1, -0.66265255, -0.09090383, -0.44260418, 0.59726846, 6.2, 1, -0.5667733, -0.1493731, -0.6130408, 0.52975166, 6.233333, 1, -0.5148039, -0.1735683, -0.68087906, 0.49117693, 6.266667, 1, -0.47000465, -0.19165811, -0.7302988, 0.45719415, 6.3, 1, -0.43914253, -0.20289394, -0.76032925, 0.43345976, 6.366667, 1, -0.43914253, -0.20289387, -0.76032925, 0.43345976, 6.4, 1, -0.47000465, -0.1916581, -0.7302988, 0.45719415, 6.4333334, 1, -0.51480395, -0.17356831, -0.680879, 0.49117696, 6.4666667, 1, -0.5667732, -0.14937313, -0.61304086, 0.52975154, 6.5333333, 1, -0.6626525, -0.09090388, -0.4426042, 0.59726846, 6.5666666, 1, -0.69600207, -0.06306974, -0.35877815, 0.6187743, 6.6, 1, -0.717878, -0.040499803, -0.28967506, 0.6317431, 6.633333, 1, -0.7299024, -0.025582377, -0.24346977, 0.63820887, 6.7, 1, -0.7299024, -0.02558247, -0.24346977, 0.63820887, 6.733333, 1, -0.717878, -0.040499825, -0.2896751, 0.6317431, 6.766667, 1, -0.69600207, -0.06306974, -0.35877815, 0.6187743, 6.8, 1, -0.66265255, -0.09090383, -0.44260418, 0.59726846, 6.866667, 1, -0.5667733, -0.1493731, -0.6130408, 0.52975166, 6.9, 1, -0.5148039, -0.1735683, -0.68087906, 0.49117693, 6.9333334, 1, -0.47000465, -0.19165811, -0.7302988, 0.45719415, 6.9666667, 1, -0.43914253, -0.20289394, -0.76032925, 0.43345976, 7, 1, -0.42775083, -0.20681503, -0.7706739, 0.4246394)
+tracks/27/type = "scale_3d"
+tracks/27/imported = false
+tracks/27/enabled = true
+tracks/27/path = NodePath("Armature/Skeleton3D:Os.Aile.l")
+tracks/27/interp = 0
+tracks/27/loop_wrap = true
+tracks/27/keys = PackedFloat32Array(0, 1, 1.0000001, 0.9999999, 1)
+tracks/28/type = "rotation_3d"
+tracks/28/imported = false
+tracks/28/enabled = true
+tracks/28/path = NodePath("Armature/Skeleton3D:Os.Elytre.r")
+tracks/28/interp = 1
+tracks/28/loop_wrap = true
+tracks/28/keys = PackedFloat32Array(0, 1, -0.71468246, 0.031564124, 0.36075014, 0.5984079, 0.033333335, 1, -0.71382946, 0.027675232, 0.36195204, 0.59889257, 0.06666667, 1, -0.71124697, 0.016140368, 0.3654181, 0.6002807, 0.1, 1, -0.706712, -0.0032083108, 0.37098616, 0.60242605, 0.13333334, 1, -0.6997312, -0.030991489, 0.37852195, 0.60509247, 0.16666667, 1, -0.689474, -0.06826429, 0.38786152, 0.607889, 0.2, 1, -0.6746515, -0.116494246, 0.39872268, 0.6101595, 0.23333333, 1, -0.6533441, -0.17747149, 0.41056168, 0.6108064, 0.26666668, 1, -0.6228079, -0.2530294, 0.42234468, 0.6080391, 0.3, 1, -0.57938474, -0.34436357, 0.43223122, 0.59908533, 0.33333334, 1, -0.51882887, -0.45071048, 0.43726486, 0.5800656, 0.36666667, 1, -0.43758598, -0.567452, 0.43341848, 0.54650277, 0.4, 1, -0.33531788, -0.68477535, 0.41659307, 0.4950706, 0.43333334, 1, -0.21748786, -0.7892583, 0.3847613, 0.42629707, 0.46666667, 1, -0.09505489, -0.8693387, 0.33986375, 0.3459877, 0.5, 1, 0.019944107, -0.92078245, 0.28727162, 0.2631294, 0.53333336, 1, 0.11933161, -0.9470725, 0.23301795, 0.18578571, 0.56666666, 1, 0.20027845, -0.95546216, 0.18142049, 0.11860526, 0.6, 1, 0.26372185, -0.953093, 0.13452947, 0.06297905, 0.6333333, 1, 0.31220925, -0.945298, 0.092735685, 0.018362073, 0.6666667, 1, -0.3484912, 0.93551826, -0.05554749, 0.016551968, 0.7, 1, -0.37490994, 0.92579204, -0.022117669, 0.043156166, 0.73333335, 1, -0.39323375, 0.91726357, 0.008486391, 0.0626336, 0.76666665, 1, -0.40467235, 0.9105512, 0.037177302, 0.07585955, 0.8, 1, -0.40993553, 0.90597874, 0.06482829, 0.08338266, 0.8666667, 1, -0.40367806, 0.9030375, 0.11949601, 0.085370295, 0.9, 1, -0.3944932, 0.9031099, 0.14587085, 0.08654047, 0.93333334, 1, -0.38209265, 0.90371776, 0.17151186, 0.08878718, 0.96666664, 1, -0.366808, 0.90465236, 0.19645812, 0.09197926, 1, 1, -0.34895518, 0.90570784, 0.22070092, 0.09599343, 1.0333333, 1, -0.3288543, 0.9066886, 0.24418901, 0.10070999, 1.0666667, 1, -0.30684596, 0.9074173, 0.2668358, 0.106009774, 1.1666666, 1, -0.23330317, 0.9067729, 0.3284935, 0.124195285, 1.2, 1, -0.20779294, 0.90538144, 0.34647945, 0.13060854, 1.2333333, 1, -0.18263383, 0.9034086, 0.36294714, 0.13699347, 1.2666667, 1, -0.15837799, 0.90093756, 0.3777731, 0.14323215, 1.3, 1, -0.13559337, 0.89810044, 0.39085272, 0.14921229, 1.3333334, 1, -0.11485392, 0.8950704, 0.40210193, 0.15482782, 1.3666667, 1, -0.09673213, 0.8920503, 0.4114558, 0.15997915, 1.4, 1, -0.08179353, 0.8892587, 0.41886178, 0.16457123, 1.4333333, 1, -0.070594534, 0.88691175, 0.42427352, 0.16851123, 1.4666667, 1, -0.06368264, 0.885205, 0.42763805, 0.17170426, 1.5, 1, -0.06159739, 0.8842908, 0.42888537, 0.17404851, 1.5333333, 1, -0.0625392, 0.8838851, 0.4287483, 0.17609932, 1.5666667, 1, -0.06433407, 0.88362575, 0.42803255, 0.17847915, 1.6, 1, -0.066955745, 0.883501, 0.4267523, 0.18117781, 1.6333333, 1, -0.07037957, 0.88349634, 0.4249196, 0.18418549, 1.6666666, 1, -0.07458246, 0.8835953, 0.422544, 0.18749231, 1.7, 1, -0.07954222, 0.88377976, 0.4196329, 0.19108814, 1.7333333, 1, -0.085237764, 0.8840295, 0.4161923, 0.19496249, 1.7666667, 1, -0.091648065, 0.8843229, 0.41222677, 0.19910486, 1.8, 1, -0.098752365, 0.88463694, 0.4077398, 0.20350362, 1.8333334, 1, -0.106529534, 0.88494694, 0.40273452, 0.20814711, 1.8666667, 1, -0.11495777, 0.88522726, 0.39721382, 0.21302265, 1.9, 1, -0.1240144, 0.8854511, 0.39118025, 0.21811663, 1.9333333, 1, -0.13367535, 0.8855909, 0.38463703, 0.22341476, 1.9666667, 1, -0.14391498, 0.88561845, 0.37758797, 0.2289015, 2, 1, -0.15470588, 0.885505, 0.3700382, 0.2345605, 2.0333333, 1, -0.16601852, 0.8852223, 0.36199385, 0.24037425, 2.0666666, 1, -0.17782106, 0.8847417, 0.35346326, 0.24632403, 2.1, 1, -0.19007932, 0.8840355, 0.34445655, 0.25239012, 2.1333334, 1, -0.20275657, 0.8830769, 0.33498657, 0.2585519, 2.1666667, 1, -0.21581352, 0.88184065, 0.32506785, 0.26478773, 2.2, 1, -0.22920848, 0.88030314, 0.3147189, 0.27107534, 2.2333333, 1, -0.24289739, 0.8784434, 0.30396044, 0.2773915, 2.2666667, 1, -0.25683388, 0.8762432, 0.2928163, 0.2837127, 2.3, 1, -0.2709699, 0.87368697, 0.28131393, 0.2900154, 2.3333333, 1, -0.28525555, 0.8707633, 0.26948357, 0.29627576, 2.3666666, 1, -0.29964, 0.8674643, 0.25735828, 0.3024704, 2.5666666, 1, -0.38514093, 0.8399085, 0.18060853, 0.33704716, 2.6333334, 1, -0.41215643, 0.8280873, 0.15455061, 0.3471494, 2.6666667, 1, -0.42518774, 0.82179046, 0.14163913, 0.35187238, 2.7, 1, -0.4378526, 0.81528056, 0.12886687, 0.35636514, 2.7333333, 1, -0.4501188, 0.80859387, 0.116278246, 0.36062232, 2.7666667, 1, -0.46195793, 0.80176926, 0.103915796, 0.36464024, 2.8, 1, -0.4733453, 0.7948471, 0.09182063, 0.36841747, 2.8333333, 1, -0.48425993, 0.78786874, 0.080031335, 0.37195453, 2.8666666, 1, -0.4946845, 0.7808766, 0.06858497, 0.37525344, 2.9, 1, -0.5046048, 0.77391315, 0.05751554, 0.37831795, 2.9333334, 1, -0.5140103, 0.7670203, 0.046854958, 0.38115332, 2.9666667, 1, -0.52289283, 0.7602401, 0.036632866, 0.3837658, 3, 1, -0.53124684, 0.7536134, 0.026876474, 0.3861623, 3.0333333, 1, -0.539069, 0.74718004, 0.017610922, 0.38835108, 3.0666666, 1, -0.5463576, 0.7409787, 0.0088592665, 0.39034024, 3.1, 1, -0.55311245, 0.73504657, 0.0006429089, 0.39213875, 3.1333334, 1, -0.55933416, 0.7294194, -0.0070182313, 0.3937555, 3.1666667, 1, -0.56502426, 0.7241315, -0.014105843, 0.395199, 3.2, 1, -0.5701839, 0.7192157, -0.020602033, 0.39647797, 3.2333333, 1, -0.57481444, 0.71470314, -0.026489895, 0.39760047, 3.2666667, 1, -0.57891643, 0.710624, -0.031752847, 0.39857385, 3.3, 1, -0.5824896, 0.7070066, -0.03637442, 0.39940518, 3.3333333, 1, -0.5855324, 0.70387816, -0.040337715, 0.40010032, 3.3666666, 1, -0.58804107, 0.7012651, -0.04362526, 0.40066427, 3.4, 1, -0.59001046, 0.6991923, -0.046218794, 0.40110072, 3.4333334, 1, -0.59143245, 0.6976838, -0.04809853, 0.40141198, 3.4666667, 1, -0.59229636, 0.69676256, -0.049243532, 0.40159944, 3.5333333, 1, -0.59229636, 0.69676256, -0.049243487, 0.4015996, 3.5666666, 1, -0.5914325, 0.69768375, -0.048098586, 0.40141204, 3.6, 1, -0.59001046, 0.6991923, -0.046218786, 0.40110055, 3.6333334, 1, -0.588041, 0.70126516, -0.043625332, 0.4006642, 3.6666667, 1, -0.58553237, 0.70387816, -0.04033779, 0.4001004, 3.7, 1, -0.5824896, 0.7070066, -0.036374547, 0.39940524, 3.7333333, 1, -0.5789164, 0.710624, -0.031752903, 0.39857385, 3.7666667, 1, -0.5748143, 0.71470326, -0.026489887, 0.39760032, 3.8, 1, -0.5701839, 0.7192157, -0.020602, 0.39647785, 3.8333333, 1, -0.56502414, 0.7241315, -0.014105791, 0.39519915, 3.8666666, 1, -0.55933416, 0.7294194, -0.007018252, 0.3937555, 3.9, 1, -0.5531123, 0.7350466, 0.0006429595, 0.3921388, 3.9333334, 1, -0.5463576, 0.7409787, 0.0088592665, 0.39034036, 3.9666667, 1, -0.5390689, 0.7471801, 0.017610893, 0.38835105, 4, 1, -0.5312467, 0.75361353, 0.026876438, 0.3861622, 4.0333333, 1, -0.52289283, 0.7602401, 0.036632854, 0.3837658, 4.0666666, 1, -0.5140103, 0.76702046, 0.0468549, 0.38115332, 4.1, 1, -0.5046048, 0.7739131, 0.057515536, 0.37831804, 4.133333, 1, -0.49468437, 0.7808767, 0.068584904, 0.37525338, 4.1666665, 1, -0.48425984, 0.78786886, 0.08003146, 0.37195444, 4.2, 1, -0.47334525, 0.7948471, 0.09182054, 0.36841753, 4.233333, 1, -0.46195793, 0.80176926, 0.103915796, 0.36464024, 4.266667, 1, -0.4501188, 0.80859387, 0.116278246, 0.36062232, 4.3, 1, -0.4378526, 0.81528056, 0.12886691, 0.35636514, 4.3333335, 1, -0.42518777, 0.82179046, 0.14163919, 0.35187235, 4.366667, 1, -0.41215634, 0.8280873, 0.15455063, 0.34714943, 4.4333334, 1, -0.385141, 0.8399085, 0.18060869, 0.33704722, 4.6, 1, -0.31407148, 0.8637865, 0.24497467, 0.30857638, 4.633333, 1, -0.29963997, 0.86746436, 0.25735834, 0.3024704, 4.6666665, 1, -0.28525552, 0.87076324, 0.26948357, 0.29627576, 4.7, 1, -0.27096984, 0.8736869, 0.281314, 0.29001543, 4.733333, 1, -0.25683388, 0.87624323, 0.2928163, 0.28371271, 4.766667, 1, -0.24289735, 0.87844354, 0.3039603, 0.2773914, 4.8, 1, -0.22920851, 0.8803032, 0.3147189, 0.27107537, 4.8333335, 1, -0.21581343, 0.8818406, 0.32506797, 0.26478776, 4.866667, 1, -0.20275655, 0.88307685, 0.33498657, 0.2585519, 4.9, 1, -0.1900793, 0.8840355, 0.34445658, 0.25239006, 4.9333334, 1, -0.17782103, 0.8847417, 0.35346326, 0.24632399, 4.9666667, 1, -0.16601849, 0.8852223, 0.36199385, 0.24037425, 5, 1, -0.15470584, 0.88550514, 0.37003803, 0.23456056, 5.0333333, 1, -0.14391498, 0.8856185, 0.37758797, 0.22890152, 5.0666666, 1, -0.13367529, 0.88559085, 0.38463697, 0.22341475, 5.1, 1, -0.1240143, 0.88545114, 0.39118028, 0.21811663, 5.133333, 1, -0.114957795, 0.8852272, 0.39721388, 0.21302265, 5.1666665, 1, -0.10652948, 0.8849469, 0.4027347, 0.20814721, 5.2, 1, -0.09875239, 0.884637, 0.40773973, 0.2035036, 5.233333, 1, -0.09164795, 0.884323, 0.41222677, 0.19910476, 5.266667, 1, -0.08523773, 0.8840295, 0.41619226, 0.19496256, 5.3, 1, -0.07954222, 0.88377976, 0.41963282, 0.19108815, 5.3333335, 1, -0.074582316, 0.88359535, 0.42254397, 0.18749234, 5.366667, 1, -0.07037954, 0.8834964, 0.42491958, 0.1841855, 5.4, 1, -0.06695573, 0.883501, 0.4267523, 0.18117781, 5.4333334, 1, -0.06433394, 0.88362586, 0.42803234, 0.17847914, 5.4666667, 1, -0.06253917, 0.8838851, 0.4287483, 0.17609939, 5.5, 1, -0.06159739, 0.8842908, 0.42888537, 0.17404851, 5.5333333, 1, -0.06368266, 0.8852051, 0.42763805, 0.17170428, 5.5666666, 1, -0.07059453, 0.8869117, 0.4242735, 0.16851123, 5.6, 1, -0.08179351, 0.8892586, 0.41886178, 0.16457126, 5.633333, 1, -0.096732154, 0.8920504, 0.4114556, 0.15997913, 5.6666665, 1, -0.114853956, 0.8950703, 0.40210202, 0.15482785, 5.7, 1, -0.13559332, 0.89810044, 0.39085272, 0.1492123, 5.733333, 1, -0.15837799, 0.9009376, 0.37777305, 0.14323218, 5.766667, 1, -0.1826338, 0.9034086, 0.36294714, 0.1369935, 5.8, 1, -0.20779297, 0.9053814, 0.3464795, 0.13060862, 5.8333335, 1, -0.23330319, 0.906773, 0.32849362, 0.12419533, 5.9333334, 1, -0.30684593, 0.90741736, 0.2668358, 0.10600977, 5.9666667, 1, -0.32885432, 0.9066886, 0.24418901, 0.10071003, 6, 1, -0.3489552, 0.90570784, 0.22070079, 0.095993444, 6.0333333, 1, -0.36680797, 0.9046524, 0.19645803, 0.09197924, 6.0666666, 1, -0.38209257, 0.9037178, 0.17151177, 0.08878718, 6.1, 1, -0.3944933, 0.90310985, 0.1458709, 0.086540475, 6.2, 1, -0.40993562, 0.90597874, 0.06482833, 0.08338287, 6.233333, 1, -0.40467244, 0.91055113, 0.037177403, 0.075859755, 6.266667, 1, -0.39323375, 0.91726345, 0.008486404, 0.06263361, 6.3, 1, -0.37491003, 0.9257921, -0.022117585, 0.04315613, 6.3333335, 1, -0.34849113, 0.93551826, -0.05554749, 0.016552027, 6.366667, 1, 0.31220925, -0.9452981, 0.092735715, 0.01836203, 6.4, 1, 0.263722, -0.953093, 0.13452941, 0.06297905, 6.4333334, 1, 0.20027839, -0.95546216, 0.18142052, 0.11860525, 6.4666667, 1, 0.11933163, -0.9470725, 0.23301783, 0.18578564, 6.5, 1, 0.019944092, -0.92078245, 0.2872716, 0.2631294, 6.5333333, 1, -0.09505476, -0.86933875, 0.3398637, 0.3459876, 6.5666666, 1, -0.21748793, -0.7892583, 0.38476124, 0.42629707, 6.6, 1, -0.33531776, -0.6847756, 0.41659304, 0.49507037, 6.633333, 1, -0.43758595, -0.5674521, 0.4334185, 0.54650277, 6.6666665, 1, -0.51882875, -0.4507106, 0.4372648, 0.58006567, 6.7, 1, -0.5793848, -0.3443637, 0.4322313, 0.5990852, 6.733333, 1, -0.62280786, -0.25302958, 0.42234468, 0.6080391, 6.766667, 1, -0.6533441, -0.17747165, 0.41056162, 0.6108064, 6.8, 1, -0.6746516, -0.11649432, 0.3987227, 0.6101594, 6.8333335, 1, -0.6894741, -0.06826435, 0.3878614, 0.607889, 6.866667, 1, -0.69973123, -0.03099156, 0.37852183, 0.60509264, 6.9, 1, -0.70671207, -0.0032084351, 0.37098613, 0.60242605, 6.9333334, 1, -0.71124697, 0.016140064, 0.36541805, 0.6002807, 6.9666667, 1, -0.71382964, 0.027675284, 0.3619519, 0.5988925, 7, 1, -0.71468246, 0.031564124, 0.36075014, 0.5984079)
+tracks/29/type = "rotation_3d"
+tracks/29/imported = false
+tracks/29/enabled = true
+tracks/29/path = NodePath("Armature/Skeleton3D:Os.Elytre.l")
+tracks/29/interp = 1
+tracks/29/loop_wrap = true
+tracks/29/keys = PackedFloat32Array(0, 1, -0.71103776, -0.03236639, -0.3728334, 0.5952924, 0.033333335, 1, -0.70995563, -0.028093813, -0.3732316, 0.59655, 0.06666667, 1, -0.70669305, -0.015517045, -0.3743819, 0.60015196, 0.1, 1, -0.7010297, 0.0052957926, -0.37618098, 0.6058195, 0.13333334, 1, -0.69248486, 0.034608062, -0.37846684, 0.6132128, 0.16666667, 1, -0.68029577, 0.07294216, -0.3809929, 0.6218695, 0.2, 1, -0.6633767, 0.12098509, -0.38338584, 0.6311175, 0.23333333, 1, -0.64027977, 0.179433, -0.38509122, 0.63996124, 0.26666668, 1, -0.60919994, 0.2487263, -0.385314, 0.6469497, 0.3, 1, -0.5680935, 0.32863146, -0.38298148, 0.6500741, 0.33333334, 1, -0.5150135, 0.41768074, -0.37678325, 0.64679074, 0.36666667, 1, -0.44873843, 0.5126288, -0.3653638, 0.6343144, 0.4, 1, -0.36960673, 0.6082968, -0.34771264, 0.6102965, 0.46666667, 1, -0.18508096, 0.77638876, -0.29417858, 0.525761, 0.5, 1, -0.09000825, 0.838667, -0.26126307, 0.46933764, 0.53333336, 1, -7.688664e-05, 0.88400173, -0.22731423, 0.40849626, 0.56666666, 1, 0.08124247, 0.91385984, -0.19448943, 0.34703565, 0.6, 1, 0.15237537, 0.93111974, -0.16430783, 0.2877511, 0.6333333, 1, 0.21323927, 0.938967, -0.13760102, 0.23224157, 0.6666667, 1, 0.26463673, 0.9402218, -0.11466922, 0.18111174, 0.7, 1, 0.3077509, 0.9370897, -0.0954858, 0.13429375, 0.73333335, 1, 0.34382477, 0.9311634, -0.07986684, 0.09132691, 0.76666665, 1, 0.37399593, 0.9235268, -0.06758778, 0.051548142, 0.8, 1, 0.39922854, 0.914876, -0.058454987, 0.014196019, 0.8333333, 1, -0.4202981, -0.9056185, 0.05234941, 0.021546122, 0.8666667, 1, -0.43873385, -0.8955274, 0.049464267, 0.055646054, 0.9, 1, -0.45577535, -0.8843695, 0.049744405, 0.08766351, 0.93333334, 1, -0.4715809, -0.87232155, 0.052808918, 0.11780428, 0.96666664, 1, -0.48626244, -0.8595152, 0.058312934, 0.14622682, 1, 1, -0.49989435, -0.8460576, 0.065936595, 0.17304505, 1.0333333, 1, -0.51252294, -0.83204746, 0.07537524, 0.19833295, 1.0666667, 1, -0.5241729, -0.8175867, 0.086331815, 0.2221296, 1.1, 1, -0.53485465, -0.8027908, 0.09850994, 0.24444467, 1.1333333, 1, -0.54457086, -0.78779495, 0.11160991, 0.2652638, 1.1666666, 1, -0.55332136, -0.77275985, 0.12532505, 0.28455457, 1.2, 1, -0.56110865, -0.75787413, 0.13934073, 0.3022716, 1.2333333, 1, -0.567941, -0.7433556, 0.15333407, 0.3183617, 1.2666667, 1, -0.57383573, -0.72945005, 0.16697474, 0.33276814, 1.3, 1, -0.5788195, -0.71642876, 0.17992623, 0.34543365, 1.3333334, 1, -0.58292884, -0.7045829, 0.19184676, 0.35630292, 1.3666667, 1, -0.5862068, -0.6942181, 0.20239125, 0.36532265, 1.4, 1, -0.5886997, -0.68564624, 0.21121094, 0.3724405, 1.4333333, 1, -0.59045094, -0.6791758, 0.21795414, 0.37760285, 1.4666667, 1, -0.591494, -0.67510134, 0.22226469, 0.38075125, 1.5, 1, -0.59184283, -0.6736904, 0.22378226, 0.3818178, 1.5333333, 1, -0.59161985, -0.67407763, 0.22342177, 0.38169107, 1.5666667, 1, -0.59095913, -0.6752214, 0.22235492, 0.3813158, 1.6, 1, -0.5898706, -0.6770947, 0.22060177, 0.38069722, 1.6333333, 1, -0.58836055, -0.6796706, 0.21818002, 0.3798385, 1.6666666, 1, -0.5864333, -0.6829207, 0.21510519, 0.3787414, 1.7, 1, -0.5840904, -0.68681633, 0.211391, 0.37740636, 1.7333333, 1, -0.5813315, -0.6913279, 0.20704992, 0.3758321, 1.7666667, 1, -0.57815427, -0.69642484, 0.20209344, 0.37401646, 1.8, 1, -0.5745556, -0.70207494, 0.19653225, 0.37195668, 1.8333334, 1, -0.57053065, -0.70824504, 0.19037667, 0.36964917, 1.8666667, 1, -0.5660745, -0.71490026, 0.18363741, 0.36708945, 1.9, 1, -0.56118125, -0.7220043, 0.17632528, 0.36427316, 1.9333333, 1, -0.5558455, -0.7295184, 0.16845176, 0.3611962, 1.9666667, 1, -0.550062, -0.737403, 0.16002975, 0.35785368, 2, 1, -0.543826, -0.7456156, 0.1510733, 0.3542422, 2.0333333, 1, -0.53713435, -0.7541126, 0.14159831, 0.3503582, 2.0666666, 1, -0.52998465, -0.7628485, 0.1316227, 0.34619918, 2.1, 1, -0.5223773, -0.77177596, 0.12116682, 0.3417639, 2.1333334, 1, -0.514314, -0.7808463, 0.11025328, 0.33705255, 2.1666667, 1, -0.50579965, -0.79001015, 0.09890767, 0.33206627, 2.2, 1, -0.49684185, -0.7992169, 0.08715822, 0.32680878, 2.2333333, 1, -0.4874512, -0.80841625, 0.07503631, 0.32128498, 2.2666667, 1, -0.47764236, -0.8175574, 0.0625758, 0.31550282, 2.3, 1, -0.46743292, -0.82659096, 0.04981379, 0.30947134, 2.3333333, 1, -0.45684442, -0.83546865, 0.036789834, 0.30320278, 2.3666666, 1, -0.44590235, -0.8441439, 0.023545777, 0.2967116, 2.4333334, 1, -0.42307723, -0.8607157, -0.0034239672, 0.28312984, 2.6, 1, -0.36226264, -0.89598936, -0.07145457, 0.24670453, 2.6333334, 1, -0.34980032, -0.90179497, -0.08478231, 0.23920181, 2.6666667, 1, -0.33734706, -0.90715444, -0.09791, 0.23169282, 2.7, 1, -0.3249507, -0.9120652, -0.11079492, 0.22420673, 2.7333333, 1, -0.31265905, -0.9165299, -0.12339672, 0.216773, 2.7666667, 1, -0.30051893, -0.92055583, -0.13567764, 0.20942044, 2.8, 1, -0.28857595, -0.9241545, -0.14760314, 0.20217761, 2.8333333, 1, -0.27687436, -0.92734104, -0.15914148, 0.19507214, 2.8666666, 1, -0.26545665, -0.9301345, -0.17026363, 0.18813056, 2.9, 1, -0.25436324, -0.932556, -0.18094395, 0.1813782, 2.9333334, 1, -0.24363224, -0.9346297, -0.19115955, 0.17483927, 2.9666667, 1, -0.23329973, -0.9363812, -0.20089021, 0.16853657, 3, 1, -0.2233992, -0.93783784, -0.21011819, 0.1624914, 3.0333333, 1, -0.21396244, -0.9390271, -0.21882826, 0.15672402, 3.0666666, 1, -0.2050187, -0.93997747, -0.22700706, 0.15125327, 3.1, 1, -0.19659545, -0.94071716, -0.23464301, 0.14609663, 3.1333334, 1, -0.18871851, -0.9412739, -0.24172553, 0.14127095, 3.1666667, 1, -0.18141192, -0.94167507, -0.2482456, 0.13679151, 3.2, 1, -0.17469886, -0.94194674, -0.25419405, 0.13267335, 3.2333333, 1, -0.16860105, -0.9421134, -0.25956303, 0.12893039, 3.2666667, 1, -0.16313994, -0.94219863, -0.2643438, 0.12557663, 3.3, 1, -0.15833627, -0.9422238, -0.26852754, 0.122625254, 3.3333333, 1, -0.15421098, -0.94220847, -0.27210435, 0.1200896, 3.3666666, 1, -0.15078487, -0.9421697, -0.27506396, 0.117982976, 3.4, 1, -0.14807957, -0.94212264, -0.2773938, 0.116319254, 3.4333334, 1, -0.14611728, -0.94207937, -0.27907953, 0.11511223, 3.4666667, 1, -0.14492172, -0.94204926, -0.28010517, 0.11437662, 3.5333333, 1, -0.14492169, -0.94204926, -0.28010517, 0.11437663, 3.5666666, 1, -0.14611736, -0.94207937, -0.2790796, 0.11511225, 3.6, 1, -0.14807954, -0.9421226, -0.2773938, 0.116319224, 3.6333334, 1, -0.15078487, -0.9421697, -0.27506396, 0.11798299, 3.6666667, 1, -0.15421094, -0.94220835, -0.2721045, 0.1200896, 3.7, 1, -0.15833627, -0.94222385, -0.26852745, 0.122625194, 3.7333333, 1, -0.16313998, -0.94219863, -0.2643437, 0.12557657, 3.7666667, 1, -0.16860111, -0.9421134, -0.259563, 0.1289304, 3.8, 1, -0.17469887, -0.9419467, -0.25419414, 0.1326733, 3.8333333, 1, -0.18141203, -0.94167507, -0.24824557, 0.13679148, 3.8666666, 1, -0.18871851, -0.9412739, -0.2417256, 0.14127086, 3.9, 1, -0.1965955, -0.9407171, -0.23464298, 0.14609665, 3.9333334, 1, -0.20501873, -0.93997747, -0.22700717, 0.15125331, 3.9666667, 1, -0.21396242, -0.93902713, -0.21882828, 0.15672399, 4, 1, -0.22339924, -0.9378378, -0.21011816, 0.16249135, 4.0333333, 1, -0.23329969, -0.9363812, -0.20089014, 0.16853648, 4.0666666, 1, -0.24363226, -0.9346297, -0.19115956, 0.17483924, 4.1, 1, -0.2543632, -0.932556, -0.18094401, 0.1813782, 4.133333, 1, -0.26545668, -0.9301344, -0.17026363, 0.18813051, 4.1666665, 1, -0.27687433, -0.9273411, -0.15914144, 0.19507214, 4.2, 1, -0.2885759, -0.9241545, -0.14760321, 0.20217757, 4.233333, 1, -0.3005189, -0.92055583, -0.13567767, 0.20942047, 4.266667, 1, -0.31265905, -0.9165299, -0.123396695, 0.21677296, 4.3, 1, -0.32495072, -0.9120652, -0.11079494, 0.22420673, 4.3333335, 1, -0.33734712, -0.9071544, -0.09791004, 0.2316928, 4.366667, 1, -0.34980032, -0.90179497, -0.084782295, 0.23920181, 4.4333334, 1, -0.37468633, -0.8897451, -0.05797115, 0.2541716, 4.6, 1, -0.43463576, -0.8525731, 0.010125953, 0.29001433, 4.633333, 1, -0.44590235, -0.8441439, 0.023545807, 0.29671153, 4.6666665, 1, -0.45684442, -0.83546865, 0.036789786, 0.30320278, 4.7, 1, -0.46743292, -0.82659096, 0.049813803, 0.30947134, 4.733333, 1, -0.4776424, -0.8175574, 0.06257573, 0.3155027, 4.766667, 1, -0.48745131, -0.8084162, 0.0750362, 0.32128507, 4.8, 1, -0.49684176, -0.799217, 0.087158136, 0.32680875, 4.8333335, 1, -0.50579965, -0.79001015, 0.09890767, 0.33206627, 4.866667, 1, -0.514314, -0.7808463, 0.11025334, 0.3370525, 4.9, 1, -0.52237725, -0.77177596, 0.12116678, 0.34176388, 4.9333334, 1, -0.5299848, -0.76284844, 0.13162267, 0.34619927, 4.9666667, 1, -0.53713435, -0.75411254, 0.14159827, 0.35035825, 5, 1, -0.5438261, -0.74561554, 0.15107323, 0.35424227, 5.0333333, 1, -0.550062, -0.737403, 0.16002975, 0.35785368, 5.0666666, 1, -0.5558456, -0.72951835, 0.16845177, 0.36119616, 5.1, 1, -0.56118125, -0.7220042, 0.1763253, 0.36427316, 5.133333, 1, -0.56607443, -0.71490026, 0.18363748, 0.36708945, 5.1666665, 1, -0.5705308, -0.7082449, 0.19037674, 0.3696492, 5.2, 1, -0.5745556, -0.70207494, 0.1965322, 0.37195668, 5.233333, 1, -0.5781544, -0.6964247, 0.20209344, 0.37401655, 5.266667, 1, -0.58133143, -0.691328, 0.20705, 0.37583196, 5.3, 1, -0.5840904, -0.68681633, 0.21139099, 0.37740636, 5.3333335, 1, -0.5864333, -0.6829207, 0.21510518, 0.37874147, 5.366667, 1, -0.58836055, -0.67967063, 0.21818009, 0.37983838, 5.4, 1, -0.5898705, -0.67709476, 0.22060186, 0.38069722, 5.4333334, 1, -0.5909592, -0.67522144, 0.2223548, 0.38131568, 5.4666667, 1, -0.59161973, -0.67407763, 0.22342178, 0.38169113, 5.5, 1, -0.59184283, -0.6736904, 0.22378226, 0.3818178, 5.5333333, 1, -0.59149396, -0.6751014, 0.2222646, 0.38075122, 5.5666666, 1, -0.59045094, -0.67917585, 0.21795417, 0.37760282, 5.6, 1, -0.5886996, -0.6856463, 0.21121101, 0.37244043, 5.633333, 1, -0.5862068, -0.6942181, 0.20239125, 0.36532268, 5.6666665, 1, -0.5829288, -0.70458287, 0.19184673, 0.35630304, 5.7, 1, -0.5788196, -0.71642864, 0.17992622, 0.3454337, 5.733333, 1, -0.57383573, -0.72945005, 0.16697477, 0.33276814, 5.766667, 1, -0.567941, -0.7433556, 0.15333411, 0.31836173, 5.8, 1, -0.56110865, -0.75787413, 0.13934071, 0.3022716, 5.8333335, 1, -0.5533214, -0.77275985, 0.12532501, 0.28455463, 5.866667, 1, -0.54457086, -0.78779495, 0.11160993, 0.2652638, 5.9, 1, -0.53485465, -0.8027909, 0.09850997, 0.24444465, 5.9333334, 1, -0.5241729, -0.8175867, 0.08633184, 0.22212951, 5.9666667, 1, -0.512523, -0.8320474, 0.07537525, 0.19833289, 6, 1, -0.4998944, -0.8460576, 0.065936565, 0.17304501, 6.0333333, 1, -0.48626232, -0.8595152, 0.05831296, 0.14622672, 6.0666666, 1, -0.47158086, -0.8723216, 0.05280894, 0.11780424, 6.1, 1, -0.45577535, -0.88436955, 0.049744345, 0.08766343, 6.133333, 1, -0.43873385, -0.8955274, 0.04946427, 0.05564601, 6.1666665, 1, -0.4202981, -0.9056185, 0.05234941, 0.021546122, 6.2, 1, 0.39922854, 0.914876, -0.058454838, 0.014195923, 6.233333, 1, 0.37399593, 0.9235268, -0.0675877, 0.05154807, 6.266667, 1, 0.34382483, 0.9311634, -0.079866685, 0.09132689, 6.3, 1, 0.30775088, 0.9370897, -0.09548572, 0.13429362, 6.3333335, 1, 0.2646367, 0.9402217, -0.11466927, 0.18111177, 6.366667, 1, 0.21323931, 0.93896693, -0.137601, 0.23224154, 6.4, 1, 0.1523755, 0.93111986, -0.16430777, 0.28775105, 6.4333334, 1, 0.081242435, 0.9138599, -0.1944894, 0.34703556, 6.4666667, 1, -7.6810786e-05, 0.88400173, -0.22731423, 0.4084962, 6.5, 1, -0.09000823, 0.8386671, -0.26126298, 0.46933764, 6.5333333, 1, -0.18508083, 0.7763889, -0.29417858, 0.5257609, 6.6, 1, -0.36960644, 0.6082969, -0.34771255, 0.6102966, 6.633333, 1, -0.44873843, 0.51262885, -0.3653638, 0.6343144, 6.6666665, 1, -0.5150135, 0.41768095, -0.37678325, 0.6467906, 6.7, 1, -0.5680934, 0.3286316, -0.38298157, 0.65007406, 6.733333, 1, -0.60919976, 0.24872652, -0.38531405, 0.64694965, 6.766667, 1, -0.64027965, 0.17943306, -0.3850912, 0.63996136, 6.8, 1, -0.66337657, 0.12098528, -0.38338587, 0.6311176, 6.8333335, 1, -0.68029577, 0.07294221, -0.3809928, 0.62186944, 6.866667, 1, -0.6924847, 0.034608006, -0.3784668, 0.61321294, 6.9, 1, -0.70102966, 0.005295693, -0.37618077, 0.6058196, 6.9333334, 1, -0.706693, -0.015516844, -0.3743819, 0.6001521, 6.9666667, 1, -0.70995545, -0.028093798, -0.3732316, 0.5965502, 7, 1, -0.71103776, -0.03236639, -0.3728334, 0.5952924)
+tracks/30/type = "rotation_3d"
+tracks/30/imported = false
+tracks/30/enabled = true
+tracks/30/path = NodePath("Armature/Skeleton3D:Os.Aile.r")
+tracks/30/interp = 1
+tracks/30/loop_wrap = true
+tracks/30/keys = PackedFloat32Array(0, 1, -0.73398536, 0.012153844, 0.2334981, 0.6376491, 0.033333335, 1, -0.73016936, 0.01758567, 0.25027382, 0.63553643, 0.06666667, 1, -0.7183135, 0.032633282, 0.2964079, 0.62857234, 0.1, 1, -0.69669276, 0.0554407, 0.3653692, 0.6148585, 0.13333334, 1, -0.66365796, 0.08363751, 0.44896182, 0.59244925, 0.2, 1, -0.5684406, 0.1431514, 0.61866987, 0.52309704, 0.23333333, 1, -0.5167457, 0.16791345, 0.6860929, 0.48379287, 0.26666668, 1, -0.4721517, 0.18649231, 0.7351476, 0.44927883, 0.3, 1, -0.4414173, 0.19806495, 0.76492316, 0.42522204, 0.36666667, 1, -0.44141725, 0.19806494, 0.7649231, 0.425222, 0.4, 1, -0.47215167, 0.18649225, 0.7351476, 0.44927886, 0.43333334, 1, -0.5167457, 0.16791342, 0.6860929, 0.48379287, 0.46666667, 1, -0.5684406, 0.14315143, 0.61866987, 0.52309704, 0.53333336, 1, -0.66365796, 0.08363744, 0.44896182, 0.59244925, 0.56666666, 1, -0.6966928, 0.0554407, 0.36536926, 0.6148584, 0.6, 1, -0.71831346, 0.032633297, 0.29640797, 0.62857234, 0.6333333, 1, -0.73016936, 0.017585712, 0.2502738, 0.63553643, 0.7, 1, -0.73016936, 0.01758567, 0.2502738, 0.63553643, 0.73333335, 1, -0.7183135, 0.032633282, 0.2964079, 0.62857234, 0.76666665, 1, -0.69669276, 0.0554407, 0.3653692, 0.6148585, 0.8, 1, -0.66365796, 0.08363751, 0.44896182, 0.59244925, 0.8666667, 1, -0.5684406, 0.14315143, 0.61866987, 0.52309704, 0.9, 1, -0.5167457, 0.16791345, 0.6860929, 0.48379287, 0.93333334, 1, -0.47215167, 0.1864922, 0.7351476, 0.44927886, 0.96666664, 1, -0.44141722, 0.19806492, 0.7649232, 0.42522198, 1.0333333, 1, -0.44141725, 0.19806494, 0.7649231, 0.425222, 1.0666667, 1, -0.4721517, 0.18649226, 0.7351476, 0.44927886, 1.1, 1, -0.5167457, 0.16791345, 0.6860929, 0.48379287, 1.1333333, 1, -0.5684406, 0.14315143, 0.61866987, 0.52309704, 1.2, 1, -0.66365796, 0.08363748, 0.44896182, 0.59244925, 1.2333333, 1, -0.6966928, 0.0554407, 0.36536926, 0.6148584, 1.2666667, 1, -0.71831346, 0.032633264, 0.29640794, 0.62857234, 1.3, 1, -0.73016936, 0.01758567, 0.25027376, 0.63553643, 1.3666667, 1, -0.73016936, 0.01758568, 0.25027382, 0.63553643, 1.4, 1, -0.71831346, 0.032633264, 0.29640794, 0.62857234, 1.4333333, 1, -0.69669276, 0.055440728, 0.36536926, 0.6148584, 1.4666667, 1, -0.66365796, 0.08363752, 0.44896182, 0.59244925, 1.5333333, 1, -0.5684406, 0.1431514, 0.61866987, 0.52309704, 1.5666667, 1, -0.5167457, 0.16791345, 0.6860929, 0.48379287, 1.6, 1, -0.4721517, 0.18649231, 0.7351476, 0.44927883, 1.6333333, 1, -0.4414173, 0.19806495, 0.76492316, 0.42522204, 1.7, 1, -0.44141725, 0.19806494, 0.7649231, 0.425222, 1.7333333, 1, -0.4721517, 0.18649226, 0.7351476, 0.44927886, 1.7666667, 1, -0.5167457, 0.16791345, 0.6860929, 0.48379287, 1.8, 1, -0.5684406, 0.14315143, 0.61866987, 0.52309704, 1.8666667, 1, -0.66365796, 0.08363748, 0.44896182, 0.59244925, 1.9, 1, -0.6966928, 0.0554407, 0.36536926, 0.6148584, 1.9333333, 1, -0.71831346, 0.032633264, 0.29640794, 0.62857234, 1.9666667, 1, -0.73016936, 0.01758567, 0.25027376, 0.63553643, 2.0333333, 1, -0.73016936, 0.01758567, 0.25027382, 0.63553643, 2.0666666, 1, -0.71831346, 0.032633297, 0.296408, 0.62857234, 2.1, 1, -0.69669276, 0.055440728, 0.36536932, 0.6148584, 2.1333334, 1, -0.6636579, 0.08363752, 0.44896194, 0.59244925, 2.2, 1, -0.56844056, 0.14315148, 0.61867, 0.523097, 2.2333333, 1, -0.51674557, 0.16791342, 0.68609303, 0.4837928, 2.2666667, 1, -0.47215164, 0.18649231, 0.73514766, 0.44927874, 2.3, 1, -0.44141722, 0.19806492, 0.7649232, 0.42522198, 2.3666666, 1, -0.44141725, 0.19806494, 0.7649231, 0.425222, 2.4, 1, -0.47215164, 0.18649231, 0.73514766, 0.44927877, 2.4333334, 1, -0.5167456, 0.16791345, 0.686093, 0.48379275, 2.4666667, 1, -0.56844056, 0.14315145, 0.6186699, 0.52309704, 2.5333333, 1, -0.66365796, 0.08363744, 0.44896182, 0.59244925, 2.5666666, 1, -0.6966928, 0.0554407, 0.36536926, 0.6148584, 2.6, 1, -0.71831346, 0.032633286, 0.296408, 0.62857234, 2.6333334, 1, -0.73016936, 0.017585712, 0.2502738, 0.63553643, 2.7, 1, -0.73016936, 0.01758566, 0.2502738, 0.63553643, 2.7333333, 1, -0.7183135, 0.032633282, 0.29640788, 0.62857234, 2.7666667, 1, -0.69669276, 0.055440687, 0.3653691, 0.61485845, 2.8, 1, -0.66365796, 0.08363751, 0.44896182, 0.59244925, 2.8666666, 1, -0.5684406, 0.14315143, 0.61866987, 0.52309704, 2.9, 1, -0.5167457, 0.16791344, 0.6860929, 0.48379284, 2.9333334, 1, -0.4721517, 0.18649226, 0.7351476, 0.44927886, 2.9666667, 1, -0.44141722, 0.19806492, 0.7649232, 0.42522198, 3.0333333, 1, -0.44141725, 0.19806494, 0.7649231, 0.425222, 3.0666666, 1, -0.47215164, 0.18649231, 0.73514766, 0.44927877, 3.1, 1, -0.5167456, 0.16791345, 0.686093, 0.48379275, 3.1333334, 1, -0.56844056, 0.14315145, 0.6186699, 0.52309704, 3.2, 1, -0.66365796, 0.08363744, 0.44896182, 0.59244925, 3.2333333, 1, -0.6966928, 0.0554407, 0.36536926, 0.6148584, 3.2666667, 1, -0.71831346, 0.032633286, 0.296408, 0.62857234, 3.3, 1, -0.73016936, 0.017585712, 0.2502738, 0.63553643, 3.3666666, 1, -0.73016936, 0.01758566, 0.2502738, 0.63553643, 3.4, 1, -0.7183135, 0.032633282, 0.29640788, 0.62857234, 3.4333334, 1, -0.69669276, 0.055440687, 0.3653691, 0.61485845, 3.4666667, 1, -0.66365796, 0.08363751, 0.44896182, 0.59244925, 3.5333333, 1, -0.5684406, 0.14315143, 0.61866987, 0.52309704, 3.5666666, 1, -0.5167457, 0.16791344, 0.6860929, 0.48379284, 3.6, 1, -0.4721517, 0.18649226, 0.7351476, 0.44927886, 3.6333334, 1, -0.44141722, 0.19806492, 0.7649232, 0.42522198, 3.7, 1, -0.44141725, 0.19806494, 0.7649231, 0.425222, 3.7333333, 1, -0.47215164, 0.18649231, 0.73514766, 0.44927877, 3.7666667, 1, -0.5167456, 0.16791345, 0.686093, 0.48379275, 3.8, 1, -0.56844056, 0.14315145, 0.6186699, 0.52309704, 3.8666666, 1, -0.66365796, 0.08363744, 0.44896182, 0.59244925, 3.9, 1, -0.6966928, 0.0554407, 0.36536926, 0.6148584, 3.9333334, 1, -0.71831346, 0.032633286, 0.296408, 0.62857234, 3.9666667, 1, -0.73016936, 0.017585712, 0.2502738, 0.63553643, 4.0333333, 1, -0.73016936, 0.01758566, 0.2502738, 0.63553643, 4.0666666, 1, -0.7183135, 0.032633282, 0.29640788, 0.62857234, 4.1, 1, -0.69669276, 0.055440687, 0.3653691, 0.61485845, 4.133333, 1, -0.66365796, 0.08363751, 0.44896182, 0.59244925, 4.2, 1, -0.5684406, 0.14315143, 0.61866987, 0.52309704, 4.233333, 1, -0.5167457, 0.16791344, 0.6860929, 0.48379284, 4.266667, 1, -0.4721517, 0.18649226, 0.7351476, 0.44927886, 4.3, 1, -0.44141722, 0.19806492, 0.7649232, 0.42522198, 4.366667, 1, -0.44141725, 0.19806494, 0.7649231, 0.425222, 4.4, 1, -0.4721518, 0.18649228, 0.73514754, 0.4492789, 4.4333334, 1, -0.51674575, 0.16791342, 0.6860929, 0.48379287, 4.4666667, 1, -0.5684407, 0.1431514, 0.6186698, 0.5230971, 4.5333333, 1, -0.66365796, 0.08363759, 0.44896197, 0.59244925, 4.5666666, 1, -0.69669276, 0.055440713, 0.36536932, 0.6148584, 4.6, 1, -0.71831346, 0.032633305, 0.29640806, 0.62857234, 4.633333, 1, -0.7301693, 0.01758568, 0.2502739, 0.6355364, 4.7, 1, -0.73016936, 0.01758567, 0.25027385, 0.63553643, 4.733333, 1, -0.71831346, 0.032633286, 0.29640803, 0.62857234, 4.766667, 1, -0.69669276, 0.05544075, 0.36536935, 0.6148584, 4.8, 1, -0.66365796, 0.08363754, 0.4489619, 0.5924492, 4.866667, 1, -0.5684407, 0.14315136, 0.61866975, 0.52309716, 4.9, 1, -0.51674575, 0.16791347, 0.6860929, 0.48379284, 4.9333334, 1, -0.4721518, 0.18649226, 0.7351475, 0.44927895, 4.9666667, 1, -0.44141734, 0.19806495, 0.76492304, 0.42522204, 5.0333333, 1, -0.44141725, 0.19806494, 0.7649231, 0.425222, 5.0666666, 1, -0.4721518, 0.18649228, 0.73514754, 0.4492789, 5.1, 1, -0.51674575, 0.16791342, 0.6860929, 0.48379287, 5.133333, 1, -0.5684407, 0.1431514, 0.6186698, 0.5230971, 5.2, 1, -0.66365796, 0.08363759, 0.44896197, 0.59244925, 5.233333, 1, -0.69669276, 0.055440713, 0.36536932, 0.6148584, 5.266667, 1, -0.71831346, 0.032633305, 0.29640806, 0.62857234, 5.3, 1, -0.7301693, 0.01758568, 0.2502739, 0.6355364, 5.366667, 1, -0.73016936, 0.01758567, 0.25027385, 0.63553643, 5.4, 1, -0.71831346, 0.032633286, 0.29640803, 0.62857234, 5.4333334, 1, -0.69669276, 0.05544075, 0.36536935, 0.6148584, 5.4666667, 1, -0.66365796, 0.08363754, 0.4489619, 0.5924492, 5.5333333, 1, -0.5684407, 0.14315136, 0.61866975, 0.52309716, 5.5666666, 1, -0.51674575, 0.16791347, 0.6860929, 0.48379284, 5.6, 1, -0.4721518, 0.18649226, 0.7351475, 0.44927895, 5.633333, 1, -0.44141734, 0.19806495, 0.76492304, 0.42522204, 5.7, 1, -0.44141725, 0.19806494, 0.7649231, 0.425222, 5.733333, 1, -0.4721518, 0.18649228, 0.73514754, 0.4492789, 5.766667, 1, -0.51674575, 0.16791342, 0.6860929, 0.48379287, 5.8, 1, -0.5684407, 0.1431514, 0.6186698, 0.5230971, 5.866667, 1, -0.66365796, 0.08363759, 0.44896197, 0.59244925, 5.9, 1, -0.69669276, 0.055440713, 0.36536932, 0.6148584, 5.9333334, 1, -0.71831346, 0.032633305, 0.29640806, 0.62857234, 5.9666667, 1, -0.7301693, 0.01758568, 0.2502739, 0.6355364, 6.0333333, 1, -0.73016936, 0.01758567, 0.25027385, 0.63553643, 6.0666666, 1, -0.71831346, 0.032633286, 0.29640803, 0.62857234, 6.1, 1, -0.69669276, 0.05544075, 0.36536935, 0.6148584, 6.133333, 1, -0.66365796, 0.08363754, 0.4489619, 0.5924492, 6.2, 1, -0.5684407, 0.14315136, 0.61866975, 0.52309716, 6.233333, 1, -0.51674575, 0.16791347, 0.6860929, 0.48379284, 6.266667, 1, -0.4721518, 0.18649226, 0.7351475, 0.44927895, 6.3, 1, -0.44141734, 0.19806495, 0.76492304, 0.42522204, 6.366667, 1, -0.44141725, 0.19806494, 0.7649231, 0.425222, 6.4, 1, -0.4721518, 0.18649228, 0.73514754, 0.4492789, 6.4333334, 1, -0.51674575, 0.16791342, 0.6860929, 0.48379287, 6.4666667, 1, -0.5684407, 0.1431514, 0.6186698, 0.5230971, 6.5333333, 1, -0.66365796, 0.08363759, 0.44896197, 0.59244925, 6.5666666, 1, -0.69669276, 0.055440713, 0.36536932, 0.6148584, 6.6, 1, -0.71831346, 0.032633305, 0.29640806, 0.62857234, 6.633333, 1, -0.7301693, 0.01758568, 0.2502739, 0.6355364, 6.7, 1, -0.73016936, 0.01758567, 0.25027385, 0.63553643, 6.733333, 1, -0.71831346, 0.032633286, 0.29640803, 0.62857234, 6.766667, 1, -0.69669276, 0.05544075, 0.36536935, 0.6148584, 6.8, 1, -0.66365796, 0.08363754, 0.4489619, 0.5924492, 6.866667, 1, -0.5684407, 0.14315136, 0.61866975, 0.52309716, 6.9, 1, -0.51674575, 0.16791347, 0.6860929, 0.48379284, 6.9333334, 1, -0.4721518, 0.18649226, 0.7351475, 0.44927895, 6.9666667, 1, -0.44141734, 0.19806495, 0.76492304, 0.42522204, 7, 1, -0.4300701, 0.20211056, 0.775173, 0.4162906)
+tracks/31/type = "scale_3d"
+tracks/31/imported = false
+tracks/31/enabled = true
+tracks/31/path = NodePath("Armature/Skeleton3D:Os.Aile.r")
+tracks/31/interp = 0
+tracks/31/loop_wrap = true
+tracks/31/keys = PackedFloat32Array(0, 1, 1, 0.99999994, 1)
+tracks/32/type = "position_3d"
+tracks/32/imported = false
+tracks/32/enabled = true
+tracks/32/path = NodePath("Armature/Skeleton3D:IK.PattePosterieur.l")
+tracks/32/interp = 0
+tracks/32/loop_wrap = true
+tracks/32/keys = PackedFloat32Array(0, 1, 5.5603642, 0.35630882, -1.9688616)
+tracks/33/type = "rotation_3d"
+tracks/33/imported = false
+tracks/33/enabled = true
+tracks/33/path = NodePath("Armature/Skeleton3D:IK.PattePosterieur.l")
+tracks/33/interp = 0
+tracks/33/loop_wrap = true
+tracks/33/keys = PackedFloat32Array(0, 1, -0.3139489, -0.108941026, -0.68825245, 0.6448849)
+tracks/34/type = "position_3d"
+tracks/34/imported = false
+tracks/34/enabled = true
+tracks/34/path = NodePath("Armature/Skeleton3D:IK.PatteAvant.l")
+tracks/34/interp = 0
+tracks/34/loop_wrap = true
+tracks/34/keys = PackedFloat32Array(0, 1, 5.0030518, 0.3572446, 9.322628)
+tracks/35/type = "rotation_3d"
+tracks/35/imported = false
+tracks/35/enabled = true
+tracks/35/path = NodePath("Armature/Skeleton3D:IK.PatteAvant.l")
+tracks/35/interp = 0
+tracks/35/loop_wrap = true
+tracks/35/keys = PackedFloat32Array(0, 1, 0.5344935, -0.24624766, -0.537681, 0.603803)
+tracks/36/type = "position_3d"
+tracks/36/imported = false
+tracks/36/enabled = true
+tracks/36/path = NodePath("Armature/Skeleton3D:IK.PatteMilieu.l")
+tracks/36/interp = 0
+tracks/36/loop_wrap = true
+tracks/36/keys = PackedFloat32Array(0, 1, 6.5424385, 0.37558192, 3.5469024)
+tracks/37/type = "rotation_3d"
+tracks/37/imported = false
+tracks/37/enabled = true
+tracks/37/path = NodePath("Armature/Skeleton3D:IK.PatteMilieu.l")
+tracks/37/interp = 0
+tracks/37/loop_wrap = true
+tracks/37/keys = PackedFloat32Array(0, 1, 0.7365093, 0.59918207, -0.18393013, 0.2543713)
+tracks/38/type = "position_3d"
+tracks/38/imported = false
+tracks/38/enabled = true
+tracks/38/path = NodePath("Armature/Skeleton3D:IK.PattePosterieur.r")
+tracks/38/interp = 0
+tracks/38/loop_wrap = true
+tracks/38/keys = PackedFloat32Array(0, 1, -5.559694, 0.35364386, -1.9760832)
+tracks/39/type = "rotation_3d"
+tracks/39/imported = false
+tracks/39/enabled = true
+tracks/39/path = NodePath("Armature/Skeleton3D:IK.PattePosterieur.r")
+tracks/39/interp = 0
+tracks/39/loop_wrap = true
+tracks/39/keys = PackedFloat32Array(0, 1, -0.3139492, 0.108941235, 0.6882523, 0.64488494)
+tracks/40/type = "position_3d"
+tracks/40/imported = false
+tracks/40/enabled = true
+tracks/40/path = NodePath("Armature/Skeleton3D:IK.PatteMilieu.r")
+tracks/40/interp = 0
+tracks/40/loop_wrap = true
+tracks/40/keys = PackedFloat32Array(0, 1, -6.5424395, 0.3755822, 3.546903)
+tracks/41/type = "rotation_3d"
+tracks/41/imported = false
+tracks/41/enabled = true
+tracks/41/path = NodePath("Armature/Skeleton3D:IK.PatteMilieu.r")
+tracks/41/interp = 0
+tracks/41/loop_wrap = true
+tracks/41/keys = PackedFloat32Array(0, 1, 0.7365093, -0.59918207, 0.18393014, 0.25437126)
+tracks/42/type = "position_3d"
+tracks/42/imported = false
+tracks/42/enabled = true
+tracks/42/path = NodePath("Armature/Skeleton3D:IK.PatteAvant.r")
+tracks/42/interp = 0
+tracks/42/loop_wrap = true
+tracks/42/keys = PackedFloat32Array(0, 1, -5.0030527, 0.35724473, 9.322629)
+tracks/43/type = "rotation_3d"
+tracks/43/imported = false
+tracks/43/enabled = true
+tracks/43/path = NodePath("Armature/Skeleton3D:IK.PatteAvant.r")
+tracks/43/interp = 0
+tracks/43/loop_wrap = true
+tracks/43/keys = PackedFloat32Array(0, 1, 0.5283339, 0.23555066, 0.5465091, 0.6055634)
+tracks/44/type = "position_3d"
+tracks/44/imported = false
+tracks/44/enabled = true
+tracks/44/path = NodePath("Armature/Skeleton3D:IK.FemurPosterieur.l")
+tracks/44/interp = 0
+tracks/44/loop_wrap = true
+tracks/44/keys = PackedFloat32Array(0, 1, 11.868459, 8.897945, -1.8206409)
+tracks/45/type = "rotation_3d"
+tracks/45/imported = false
+tracks/45/enabled = true
+tracks/45/path = NodePath("Armature/Skeleton3D:IK.FemurPosterieur.l")
+tracks/45/interp = 0
+tracks/45/loop_wrap = true
+tracks/45/keys = PackedFloat32Array(0, 1, 0.045424886, -0.69962776, -0.7115963, 0.04569866)
+tracks/46/type = "position_3d"
+tracks/46/imported = false
+tracks/46/enabled = true
+tracks/46/path = NodePath("Armature/Skeleton3D:IK.FemurMilieu.l")
+tracks/46/interp = 0
+tracks/46/loop_wrap = true
+tracks/46/keys = PackedFloat32Array(0, 1, 11.868461, 8.897947, 2.2572396)
+tracks/47/type = "rotation_3d"
+tracks/47/imported = false
+tracks/47/enabled = true
+tracks/47/path = NodePath("Armature/Skeleton3D:IK.FemurMilieu.l")
+tracks/47/interp = 0
+tracks/47/loop_wrap = true
+tracks/47/keys = PackedFloat32Array(0, 1, 0.045424804, -0.6996277, -0.71159637, 0.045698572)
+tracks/48/type = "position_3d"
+tracks/48/imported = false
+tracks/48/enabled = true
+tracks/48/path = NodePath("Armature/Skeleton3D:IK.FemurAnterieur.l")
+tracks/48/interp = 0
+tracks/48/loop_wrap = true
+tracks/48/keys = PackedFloat32Array(0, 1, 11.868462, 8.897946, 6.5098867)
+tracks/49/type = "rotation_3d"
+tracks/49/imported = false
+tracks/49/enabled = true
+tracks/49/path = NodePath("Armature/Skeleton3D:IK.FemurAnterieur.l")
+tracks/49/interp = 0
+tracks/49/loop_wrap = true
+tracks/49/keys = PackedFloat32Array(0, 1, 0.045424722, -0.69962776, -0.7115963, 0.045698494)
+tracks/50/type = "position_3d"
+tracks/50/imported = false
+tracks/50/enabled = true
+tracks/50/path = NodePath("Armature/Skeleton3D:IK.FemurPosterieur.r")
+tracks/50/interp = 0
+tracks/50/loop_wrap = true
+tracks/50/keys = PackedFloat32Array(0, 1, -11.868459, 8.897945, -1.8206409)
+tracks/51/type = "rotation_3d"
+tracks/51/imported = false
+tracks/51/enabled = true
+tracks/51/path = NodePath("Armature/Skeleton3D:IK.FemurPosterieur.r")
+tracks/51/interp = 0
+tracks/51/loop_wrap = true
+tracks/51/keys = PackedFloat32Array(0, 1, 0.045424886, 0.69962776, 0.7115963, 0.04569866)
+tracks/52/type = "position_3d"
+tracks/52/imported = false
+tracks/52/enabled = true
+tracks/52/path = NodePath("Armature/Skeleton3D:IK.FemurMilieu.r")
+tracks/52/interp = 0
+tracks/52/loop_wrap = true
+tracks/52/keys = PackedFloat32Array(0, 1, -11.868461, 8.897947, 2.2572396)
+tracks/53/type = "rotation_3d"
+tracks/53/imported = false
+tracks/53/enabled = true
+tracks/53/path = NodePath("Armature/Skeleton3D:IK.FemurMilieu.r")
+tracks/53/interp = 0
+tracks/53/loop_wrap = true
+tracks/53/keys = PackedFloat32Array(0, 1, 0.045424804, 0.6996277, 0.71159637, 0.045698572)
+tracks/54/type = "position_3d"
+tracks/54/imported = false
+tracks/54/enabled = true
+tracks/54/path = NodePath("Armature/Skeleton3D:IK.FemurAnterieur.r")
+tracks/54/interp = 0
+tracks/54/loop_wrap = true
+tracks/54/keys = PackedFloat32Array(0, 1, -11.868462, 8.897946, 6.5098867)
+tracks/55/type = "rotation_3d"
+tracks/55/imported = false
+tracks/55/enabled = true
+tracks/55/path = NodePath("Armature/Skeleton3D:IK.FemurAnterieur.r")
+tracks/55/interp = 0
+tracks/55/loop_wrap = true
+tracks/55/keys = PackedFloat32Array(0, 1, 0.045424722, 0.69962776, 0.7115963, 0.045698494)
+tracks/56/type = "bezier"
+tracks/56/imported = false
+tracks/56/enabled = false
+tracks/56/path = NodePath("../../FireZoneArea/FireZoneSprite:hframes")
+tracks/56/interp = 1
+tracks/56/loop_wrap = true
+tracks/56/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(10, -0.25, 0, 0.25, 0, 1, -0.33333334, 1.5, 0, 0, 1, -0.33333334, 1.5, 0, 0, 10, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.5, 1, 6, 6.5)
+}
+tracks/57/type = "bezier"
+tracks/57/imported = false
+tracks/57/enabled = false
+tracks/57/path = NodePath("../../FireZoneArea/FireZoneSprite:vframes")
+tracks/57/interp = 1
+tracks/57/loop_wrap = true
+tracks/57/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(10, -0.25, 0, 0.25, 0, 1, -0.33333334, 1.5, 0, 0, 1, -0.33333334, 1.5, 0, 0, 10, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.5, 1, 6, 6.5)
+}
+tracks/58/type = "bezier"
+tracks/58/imported = false
+tracks/58/enabled = false
+tracks/58/path = NodePath("../../FireZoneArea/FireZoneSprite:modulate:r")
+tracks/58/interp = 1
+tracks/58/loop_wrap = true
+tracks/58/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.5, 1, 6, 6.5)
+}
+tracks/59/type = "bezier"
+tracks/59/imported = false
+tracks/59/enabled = false
+tracks/59/path = NodePath("../../FireZoneArea/FireZoneSprite:modulate:g")
+tracks/59/interp = 1
+tracks/59/loop_wrap = true
+tracks/59/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.5, 1, 6, 6.5)
+}
+tracks/60/type = "bezier"
+tracks/60/imported = false
+tracks/60/enabled = false
+tracks/60/path = NodePath("../../FireZoneArea/FireZoneSprite:modulate:b")
+tracks/60/interp = 1
+tracks/60/loop_wrap = true
+tracks/60/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.5, 1, 6, 6.5)
+}
+tracks/61/type = "bezier"
+tracks/61/imported = false
+tracks/61/enabled = false
+tracks/61/path = NodePath("../../FireZoneArea/FireZoneSprite:modulate:a")
+tracks/61/interp = 1
+tracks/61/loop_wrap = true
+tracks/61/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0.5, 1, 6, 6.5)
+}
+tracks/62/type = "value"
+tracks/62/imported = false
+tracks/62/enabled = true
+tracks/62/path = NodePath("../../FireZoneArea:visible")
+tracks/62/interp = 1
+tracks/62/loop_wrap = true
+tracks/62/keys = {
+"times": PackedFloat32Array(0, 0.5, 6.5, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+tracks/63/type = "value"
+tracks/63/imported = false
+tracks/63/enabled = true
+tracks/63/path = NodePath("../../FireZoneArea:monitoring")
+tracks/63/interp = 1
+tracks/63/loop_wrap = true
+tracks/63/keys = {
+"times": PackedFloat32Array(0, 1, 6, 6.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+tracks/64/type = "value"
+tracks/64/imported = false
+tracks/64/enabled = false
+tracks/64/path = NodePath("../../FireZoneArea/FireZoneSprite/DecalFireZone:visible")
+tracks/64/interp = 1
+tracks/64/loop_wrap = true
+tracks/64/keys = {
+"times": PackedFloat32Array(0, 0.5, 6.5, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+tracks/65/type = "value"
+tracks/65/imported = false
+tracks/65/enabled = false
+tracks/65/path = NodePath("../../FireZoneArea/FireZoneSprite/DecalFireZone:modulate")
+tracks/65/interp = 1
+tracks/65/loop_wrap = true
+tracks/65/keys = {
+"times": PackedFloat32Array(0.5, 1, 6, 6.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/66/type = "value"
+tracks/66/imported = false
+tracks/66/enabled = false
+tracks/66/path = NodePath("../../FireZoneArea/FireZoneSprite/DecalFireZone:emission_energy")
+tracks/66/interp = 1
+tracks/66/loop_wrap = true
+tracks/66/keys = {
+"times": PackedFloat32Array(0.5, 1, 2, 3, 4, 5, 6, 6.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.5, 1.0, 0.2, 1.2, 0.5, 0.3, 0.0]
+}
+tracks/67/type = "value"
+tracks/67/imported = false
+tracks/67/enabled = false
+tracks/67/path = NodePath("../../FireZoneArea/FireZoneSprite/DecalFireZone:process_mode")
+tracks/67/interp = 1
+tracks/67/loop_wrap = true
+tracks/67/keys = {
+"times": PackedFloat32Array(0, 0.5, 6.5, 7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 0, 0, 4]
+}
+tracks/68/type = "value"
+tracks/68/imported = false
+tracks/68/enabled = true
+tracks/68/path = NodePath("../../../../SoundManager/MachineGunAudio:playing")
+tracks/68/interp = 1
+tracks/68/loop_wrap = true
+tracks/68/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1.1095694),
+"update": 1,
+"values": [true]
+}
+tracks/69/type = "value"
+tracks/69/imported = false
+tracks/69/enabled = false
+tracks/69/path = NodePath("../../FireZoneArea/CollisionMesh:visible")
+tracks/69/interp = 1
+tracks/69/loop_wrap = true
+tracks/69/keys = {
+"times": PackedFloat32Array(0, 1, 5.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/70/type = "value"
+tracks/70/imported = false
+tracks/70/enabled = false
+tracks/70/path = NodePath("../../FireZoneArea/CollisionMesh:rotation")
+tracks/70/interp = 1
+tracks/70/loop_wrap = true
+tracks/70/keys = {
+"times": PackedFloat32Array(1, 1.5, 2.25, 3.5, 4.75, 5.5, 5.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1.5707964, 3.0543263, 0), Vector3(1.5707964, 3.0543263, 0), Vector3(1.5707964, 1.5271631, 0), Vector3(1.5707964, 0, 0), Vector3(1.5707964, 1.5271631, 0), Vector3(1.5707964, 2.443461, 0), Vector3(1.5707964, 2.3561945, 0)]
+}
+tracks/71/type = "value"
+tracks/71/imported = false
+tracks/71/enabled = true
+tracks/71/path = NodePath("../../FireZoneArea/VisualMesh:rotation")
+tracks/71/interp = 1
+tracks/71/loop_wrap = true
+tracks/71/keys = {
+"times": PackedFloat32Array(1, 1.5, 2.25, 3.5, 4.75, 5.5, 5.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1.5707964, 3.0543263, 0), Vector3(1.5707964, 3.0543263, 0), Vector3(1.5707964, 1.5271631, 0), Vector3(1.5707964, 0, 0), Vector3(1.5707964, 1.5271631, 0), Vector3(1.5707964, 2.443461, 0), Vector3(1.5707964, 2.3561945, 0)]
+}
+tracks/72/type = "value"
+tracks/72/imported = false
+tracks/72/enabled = true
+tracks/72/path = NodePath("../../FireZoneArea/FZCollisionPhaseinit:rotation")
+tracks/72/interp = 1
+tracks/72/loop_wrap = true
+tracks/72/keys = {
+"times": PackedFloat32Array(1, 1.5, 2.25, 3.5, 4.75, 5.5, 5.75),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(1.5707964, 3.0543263, 0), Vector3(1.5707964, 3.0543263, 0), Vector3(1.5707964, 1.5271631, 0), Vector3(1.5707964, 0, 0), Vector3(1.5707964, 1.5271631, 0), Vector3(1.5707964, 2.443461, 0), Vector3(1.5707964, 2.3561945, 0)]
+}
+tracks/73/type = "value"
+tracks/73/imported = false
+tracks/73/enabled = true
+tracks/73/path = NodePath("../../FireZoneArea/FZCollisionPhaseinit:process_mode")
+tracks/73/interp = 1
+tracks/73/loop_wrap = true
+tracks/73/keys = {
+"times": PackedFloat32Array(0, 1, 5.75),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [4, 0, 4]
+}
+tracks/74/type = "value"
+tracks/74/imported = false
+tracks/74/enabled = true
+tracks/74/path = NodePath("../../FireZoneArea/VisualMesh:visible")
+tracks/74/interp = 1
+tracks/74/loop_wrap = true
+tracks/74/keys = {
+"times": PackedFloat32Array(0, 1, 5.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/75/type = "value"
+tracks/75/imported = false
+tracks/75/enabled = true
+tracks/75/path = NodePath("../../FireZoneArea/FZCollisionPhaseinit:visible")
+tracks/75/interp = 1
+tracks/75/loop_wrap = true
+tracks/75/keys = {
+"times": PackedFloat32Array(0, 1, 5.75),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/76/type = "value"
+tracks/76/imported = false
+tracks/76/enabled = true
+tracks/76/path = NodePath("Armature/Skeleton3D/BoneAttachElytreR/Sprite3DPropulseurDroit/GPULasersBleus:emitting")
+tracks/76/interp = 1
+tracks/76/loop_wrap = true
+tracks/76/keys = {
+"times": PackedFloat32Array(0, 0.8, 5.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/77/type = "value"
+tracks/77/imported = false
+tracks/77/enabled = true
+tracks/77/path = NodePath("Armature/Skeleton3D/BoneAttachElytreL/Sprite3DPropulseurGauche/GPULasersBleus:emitting")
+tracks/77/interp = 1
+tracks/77/loop_wrap = true
+tracks/77/keys = {
+"times": PackedFloat32Array(0, 0.8, 5.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/78/type = "value"
+tracks/78/imported = false
+tracks/78/enabled = true
+tracks/78/path = NodePath("../../FireZoneArea/FZCollisionPhase1:visible")
+tracks/78/interp = 1
+tracks/78/loop_wrap = true
+tracks/78/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/79/type = "value"
+tracks/79/imported = false
+tracks/79/enabled = true
+tracks/79/path = NodePath("../../FireZoneArea/FZCollisionPhase1:process_mode")
+tracks/79/interp = 1
+tracks/79/loop_wrap = true
+tracks/79/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/80/type = "value"
+tracks/80/imported = false
+tracks/80/enabled = true
+tracks/80/path = NodePath("../../FireZoneArea/FZCollisionPhase1:disabled")
+tracks/80/interp = 1
+tracks/80/loop_wrap = true
+tracks/80/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/81/type = "value"
+tracks/81/imported = false
+tracks/81/enabled = true
+tracks/81/path = NodePath("../../FireZoneArea/FZCollisionPhaseinit:disabled")
+tracks/81/interp = 1
+tracks/81/loop_wrap = true
+tracks/81/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_mnxqs"]
 resource_name = "WeakPointGlowing"
@@ -15888,11 +16577,11 @@ _data = {
 &"Idle": SubResource("Animation_lvd6c"),
 &"Marche": SubResource("Animation_dyl8s"),
 &"Mitraillage": SubResource("Animation_tkn8y"),
-&"RESET": SubResource("Animation_0alwg"),
 &"Stun": SubResource("Animation_aqr3o"),
 &"Vol": SubResource("Animation_3t0xx"),
 &"Vol&Atterrissage": SubResource("Animation_tf3wb"),
 &"Vol&Mitraillage": SubResource("Animation_g66e1"),
+&"Vol&Mitraillage2": SubResource("Animation_1w7a5"),
 &"WeakPointGlowing": SubResource("Animation_mnxqs")
 }
 
@@ -16329,6 +17018,7 @@ size = Vector3(8.811523, 2.7075043, 11.472656)
 
 [sub_resource type="Animation" id="Animation_3hpuu"]
 resource_name = "WeakPointGlowing"
+length = 4.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -16362,6 +17052,18 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_5q2ao"]
 size = Vector3(16.933594, 8.800297, 24.567871)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2fdoy"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_3lm21"]
+lightmap_size_hint = Vector2i(14, 21)
+add_uv2 = true
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_kn8ik"]
+points = PackedVector3Array(0, 0.5, 0.5, 0.5, -0.5, 0.5, 0, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gkpb1"]
+albedo_texture = ExtResource("114_rtb0i")
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5q2ao"]
 bg_color = Color(0.7294118, 0.7294118, 0.7294118, 0.7058824)
 
@@ -16381,6 +17083,13 @@ size = Vector3(8.282227, 5.720337, 8.636475)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jcgp5"]
 size = Vector3(4.515503, 3.2938232, 4.463745)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_l8dev"]
+
+[sub_resource type="Theme" id="Theme_rbmsi"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7safw"]
+font_size = 80
 
 [node name="World1" type="Node3D"]
 
@@ -16513,6 +17222,7 @@ max_distance = 50.0
 parameters/looping = true
 
 [node name="MachineGunAudio" type="AudioStreamPlayer" parent="SoundManager"]
+process_mode = 1
 stream = ExtResource("24_kcrxu")
 pitch_scale = 0.6
 
@@ -17591,7 +18301,7 @@ checkPointAnnouncement = NodePath("AreaRespawnPoint1/CheckPointAnnouncement")
 [node name="AreaRespawnPoint1" type="Area3D" parent="Env/RespawnPoints/RespawnPoint3"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Env/RespawnPoints/RespawnPoint3/AreaRespawnPoint1"]
-transform = Transform3D(0.72924334, 0, 0.6842544, 0, 1, 0, -0.6842544, 0, 0.72924334, 0.64260864, 2.272461, 0.17015076)
+transform = Transform3D(0.34339738, 0, 0.93919015, 0, 1, 0, -0.93919015, 0, 0.34339738, 0.3232193, 2.272461, 0.14392853)
 shape = SubResource("BoxShape3D_7d2yp")
 
 [node name="CheckPointAnnouncement" type="Label" parent="Env/RespawnPoints/RespawnPoint3/AreaRespawnPoint1"]
@@ -17611,9 +18321,9 @@ text = "Point de réapparition activé !"
 label_settings = ExtResource("57_ikveq")
 
 [node name="PlayerBotCtrl" parent="." node_paths=PackedStringArray("noyade", "teleportMarkerSG1", "teleportMarkerSG2", "heartContainer", "quitMenu", "sceneGameOver") groups=["Player"] instance=ExtResource("14_8c3pt")]
-transform = Transform3D(-1.2630293, 0, -0.80917007, 0, 1.5000001, 0, 0.80917007, 0, -1.2630293, -81.68868, 5.9156866, 3.7184968)
+transform = Transform3D(-6.5567065e-08, 0, -1.4999996, 0, 1.5000004, 0, 1.4999996, 0, -6.5567065e-08, -80.518715, 5.920639, 2.7679086)
 collision_mask = 39
-life = 4
+life = 10
 speed = 5.0
 acceleration = 2.0
 airAcceleration = 1.75
@@ -17629,58 +18339,8 @@ heartContainer = NodePath("../UIControlHeartCoin/UIHeartCoin/VBoxContainer/VCont
 quitMenu = NodePath("../QuitMenu")
 sceneGameOver = NodePath("../GameOverScene")
 
-[node name="CollisionShape3D" parent="PlayerBotCtrl/Area3DPlayer" index="0"]
-debug_color = Color(0.51360685, 0.38222682, 0.17875236, 0.41960785)
-
-[node name="Skeleton3D" parent="PlayerBotCtrl/PlayerBot/gdbot/Armature" index="0"]
-bones/2/position = Vector3(0, 0, 0.636145)
-bones/2/rotation = Quaternion(3.3767087e-08, 0.6350127, 0.7725017, 2.7757286e-08)
-bones/3/rotation = Quaternion(0.9850176, -1.3020008e-08, -7.4366845e-08, -0.1724541)
-bones/4/rotation = Quaternion(-0.20308809, 1.2828906e-08, 7.315134e-08, 0.97916055)
-bones/5/rotation = Quaternion(0.34739795, 5.0717194e-08, -9.409349e-08, 0.93771785)
-bones/7/rotation = Quaternion(-0.7340656, 2.5790568e-08, -2.139569e-07, 0.6790786)
-bones/8/rotation = Quaternion(0.7809641, -3.1925698e-08, 2.6787e-07, 0.62457603)
-bones/10/rotation = Quaternion(-0.46210814, -0.39264208, -0.65578413, 0.44970614)
-bones/11/rotation = Quaternion(1.3545006e-08, 2.199231e-08, -0.0017602694, 0.99999845)
-bones/13/rotation = Quaternion(0.009595223, 1.6149902e-07, 1.79202e-08, 0.999954)
-bones/14/rotation = Quaternion(-0.15729205, 1.4816804e-09, -1.9478506e-08, 0.9875522)
-bones/16/rotation = Quaternion(-0.6469818, -0.10822997, -0.6912539, 0.30309895)
-bones/17/rotation = Quaternion(-3.311879e-08, 2.0906297e-08, -0.27527398, 0.9613658)
-bones/19/rotation = Quaternion(-0.12036103, -0.008025292, 0.0009730642, 0.9926973)
-bones/20/rotation = Quaternion(-2.60946e-07, -2.52199e-07, -4.06002e-08, 1)
-bones/21/rotation = Quaternion(-0.11636798, -0.12440297, 0.03842879, 0.9846348)
-bones/22/rotation = Quaternion(6.38189e-07, 6.45407e-07, -2.47732e-07, 1)
-bones/23/rotation = Quaternion(-0.12036503, 0.004102641, -0.0004974021, 0.9927212)
-bones/24/rotation = Quaternion(5.81309e-07, 5.80454e-07, -5.80964e-08, 1)
-bones/25/rotation = Quaternion(-0.11698599, 0.075853474, -0.045561194, 0.9891839)
-bones/26/rotation = Quaternion(8.61473e-09, -1.58325e-08, -7.35745e-08, 1)
-bones/27/rotation = Quaternion(-0.13787197, 0.7338849, -0.3220739, 0.58195597)
-bones/28/rotation = Quaternion(2.40281e-07, -4.99189e-07, -3.99537e-07, 1)
-bones/29/rotation = Quaternion(-0.6469818, -0.10822997, -0.6912539, 0.30309895)
-bones/30/rotation = Quaternion(-3.311879e-08, 2.0906297e-08, -0.27527398, 0.9613658)
-bones/32/rotation = Quaternion(0.119571045, 0.07529853, -0.46345317, 0.8747823)
-bones/33/rotation = Quaternion(-0.46210808, 0.39264205, 0.6557841, 0.44970608)
-bones/34/rotation = Quaternion(1.9748711e-08, 9.842855e-09, 0.0017602694, 0.99999845)
-bones/37/rotation = Quaternion(-0.64698184, 0.10822997, 0.6912539, 0.3030989)
-bones/38/rotation = Quaternion(-8.648619e-09, 7.934268e-09, 0.27527398, 0.9613658)
-bones/40/rotation = Quaternion(-0.12036103, 0.008025292, -0.0009730642, 0.9926973)
-bones/41/rotation = Quaternion(-2.60989e-07, 2.51937e-07, 4.05417e-08, 1)
-bones/42/rotation = Quaternion(-0.11636798, 0.12440297, -0.03842879, 0.9846348)
-bones/43/rotation = Quaternion(6.37723e-07, -6.44941e-07, 2.47732e-07, 1)
-bones/44/rotation = Quaternion(-0.12036503, -0.004102641, 0.0004974021, 0.9927212)
-bones/45/rotation = Quaternion(5.81331e-07, -5.80483e-07, 5.80963e-08, 1)
-bones/46/rotation = Quaternion(-0.11698599, -0.075853474, 0.045561194, 0.9891839)
-bones/47/rotation = Quaternion(9.31322e-09, 1.67638e-08, 7.54371e-08, 1)
-bones/48/rotation = Quaternion(-0.13787197, -0.7338849, 0.3220739, 0.58195597)
-bones/49/rotation = Quaternion(2.38419e-07, 4.88013e-07, 4.06988e-07, 1)
-bones/50/rotation = Quaternion(-0.64698184, 0.10822997, 0.6912539, 0.3030989)
-bones/51/rotation = Quaternion(-8.648619e-09, 7.934268e-09, 0.27527398, 0.9613658)
-bones/53/rotation = Quaternion(0.119571045, -0.07529843, 0.46345317, 0.8747823)
-bones/54/position = Vector3(-0.130811, -0.0729293, 0.237244)
-bones/54/rotation = Quaternion(-0.4669198, -1.0367696e-16, 1.8708193e-24, 0.8842997)
-bones/58/position = Vector3(0.130811, 0.0726211, 0.358246)
-bones/58/rotation = Quaternion(0.042274203, 9.3867505e-18, -2.7166203e-25, 0.9991061)
-bones/59/position = Vector3(-2.7856e-08, -1.02461e-05, -3.34572e-05)
+[node name="CamPivot" parent="PlayerBotCtrl" index="0"]
+transform = Transform3D(0.99583834, 0, -0.09113663, 0, 1, 0, 0.09113663, 0, 0.99583834, 0, 0.89894843, 0)
 
 [node name="gdbot_mesh" parent="PlayerBotCtrl/PlayerBot/gdbot/Armature/Skeleton3D" index="0"]
 surface_material_override/1 = null
@@ -17868,6 +18528,7 @@ offset_right = 297.0
 offset_bottom = 247.0
 grow_horizontal = 2
 text = "Touche (E) pour ouvrir le coffre."
+label_settings = ExtResource("57_ikveq")
 horizontal_alignment = 1
 
 [node name="Coffre5" type="Node3D" parent="InteractItems" node_paths=PackedStringArray("_lootTimer", "avertissementCoffre")]
@@ -17982,7 +18643,7 @@ transform = Transform3D(2.6224976, 0, 1.2950252, 0, 1.144353, 0, -2.6224976, 0, 
 transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.99999994, 0, 0.0044841766, 0)
 
 [node name="PathFollow3D" parent="InteractItems/MovingPlatformAnimated/Path3D" index="0"]
-transform = Transform3D(2.980223e-08, 0.9999951, -0.0010711855, -0.00072206126, -0.0010711823, -0.9999975, -0.99999666, 8.3446145e-07, 0.0007220618, 0, 0.0044846847, 0)
+transform = Transform3D(2.980223e-08, 0.9999944, -0.0010711855, -0.00072206126, -0.0010711815, -0.9999975, -0.99999666, 8.344608e-07, 0.0007220618, 0, 0.0044846847, 0)
 
 [node name="PlatformStep" type="Node3D" parent="InteractItems"]
 transform = Transform3D(1.1234617, 0, 1.135439, 0, 1.144353, 0, -1.1234617, 0, 1.135439, -110.29272, 10.299649, 20.949379)
@@ -19561,7 +20222,7 @@ bones/30/parent = 0
 bones/30/rest = Transform3D(0.8964237, 0.31983843, 0.30680317, -0.26057082, -0.17962503, 0.9485978, 0.3585076, -0.93028927, -0.07767956, 7.4499242e-09, 6.0550676e-11, 7.4784623e-13)
 bones/30/enabled = true
 bones/30/position = Vector3(7.4499242e-09, 6.0550676e-11, 7.4784623e-13)
-bones/30/rotation = Quaternion(-0.4277508, -0.20681499, -0.7706738, 0.4246394)
+bones/30/rotation = Quaternion(-0.7337793, -0.020192584, -0.22667262, 0.6401404)
 bones/30/scale = Vector3(1.0000001, 0.9999999, 1)
 bones/31/name = "Os.SupportElytre.r"
 bones/31/parent = 0
@@ -19596,7 +20257,7 @@ bones/35/parent = 0
 bones/35/rest = Transform3D(0.8906619, -0.31562117, -0.32726863, 0.27993825, -0.18651174, 0.941726, -0.35826817, -0.9303744, -0.07776445, 7.4499242e-09, 6.0550676e-11, 7.4784623e-13)
 bones/35/enabled = true
 bones/35/position = Vector3(7.4499242e-09, 6.0550676e-11, 7.4784623e-13)
-bones/35/rotation = Quaternion(-0.4300701, 0.20211051, 0.77517295, 0.41629058)
+bones/35/rotation = Quaternion(-0.7339854, 0.01215384, 0.23349813, 0.6376491)
 bones/35/scale = Vector3(1, 0.99999994, 1)
 bones/36/name = "IK.PattePosterieur.l"
 bones/36/parent = -1
@@ -19716,11 +20377,21 @@ texture = ExtResource("95_3friu")
 
 [node name="GPUParticles3D2" type="GPUParticles3D" parent="SceneBossLvl1/CombatFinal/BossCombat/Boss Coxane Anim 1_19/Armature/Skeleton3D/BoneAttachElytreR/Sprite3DPropulseurDroit"]
 transform = Transform3D(0.559731, -0.037795715, 0.82781196, 0.8237658, -0.08322151, -0.5607903, 0.09008636, 0.995815, -0.015446413, 0.23839349, 0.70506006, -7.9968634)
+emitting = false
 amount = 20
 lifetime = 0.5
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_s8do7")
-draw_pass_1 = SubResource("CylinderMesh_xttgf")
+draw_pass_1 = ExtResource("113_1w7a5")
+
+[node name="GPULasersBleus" type="GPUParticles3D" parent="SceneBossLvl1/CombatFinal/BossCombat/Boss Coxane Anim 1_19/Armature/Skeleton3D/BoneAttachElytreR/Sprite3DPropulseurDroit"]
+transform = Transform3D(0.559731, -0.037795715, 0.82781196, 0.8237658, -0.08322151, -0.5607903, 0.09008636, 0.995815, -0.015446413, 0.23839349, 0.70506006, -7.9968634)
+emitting = false
+amount = 20
+lifetime = 0.5
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_1comf")
+draw_pass_1 = SubResource("CylinderMesh_5b0n0")
 
 [node name="BoneAttachElytreL" type="BoneAttachment3D" parent="SceneBossLvl1/CombatFinal/BossCombat/Boss Coxane Anim 1_19/Armature/Skeleton3D"]
 transform = Transform3D(0.2940485, 0.17292275, 0.9400175, -0.94860315, -0.06759778, 0.30916896, 0.11700651, -0.9826133, 0.14415741, 2.2277353, 10.615736, 7.2311177)
@@ -19735,11 +20406,21 @@ texture = ExtResource("95_3friu")
 
 [node name="GPUParticles3D2" type="GPUParticles3D" parent="SceneBossLvl1/CombatFinal/BossCombat/Boss Coxane Anim 1_19/Armature/Skeleton3D/BoneAttachElytreL/Sprite3DPropulseurGauche"]
 transform = Transform3D(0.559731, -0.037795715, 0.82781196, 0.8237658, -0.08322151, -0.5607903, 0.09008636, 0.995815, -0.015446413, 0.24390697, 0.7172001, -8.142129)
+emitting = false
 amount = 20
 lifetime = 0.5
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_s8do7")
-draw_pass_1 = SubResource("CylinderMesh_xttgf")
+draw_pass_1 = ExtResource("113_1w7a5")
+
+[node name="GPULasersBleus" type="GPUParticles3D" parent="SceneBossLvl1/CombatFinal/BossCombat/Boss Coxane Anim 1_19/Armature/Skeleton3D/BoneAttachElytreL/Sprite3DPropulseurGauche"]
+transform = Transform3D(0.559731, -0.037795715, 0.82781196, 0.8237658, -0.08322151, -0.5607903, 0.09008636, 0.995815, -0.015446413, 0.23839349, 0.70506006, -7.9968634)
+emitting = false
+amount = 20
+lifetime = 0.5
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_1comf")
+draw_pass_1 = SubResource("CylinderMesh_5b0n0")
 
 [node name="BoneAttachCouOeilR" type="BoneAttachment3D" parent="SceneBossLvl1/CombatFinal/BossCombat/Boss Coxane Anim 1_19/Armature/Skeleton3D"]
 transform = Transform3D(0.99999976, 2.0580956e-08, 8.189436e-07, 8.2005135e-07, -2.1606684e-07, -1.0000013, -1.9044137e-08, 1.0000001, 9.760261e-07, 1.7881393e-07, 8.100198, 8.43379)
@@ -19938,6 +20619,7 @@ libraries = {
 
 [node name="WeakPointArea" type="Area3D" parent="SceneBossLvl1/CombatFinal/BossCombat" node_paths=PackedStringArray("bossCombat")]
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0, 0, 0)
+visible = false
 script = ExtResource("99_3hpuu")
 bossCombat = NodePath("..")
 player = ExtResource("14_8c3pt")
@@ -19952,25 +20634,29 @@ libraries = {
 }
 
 [node name="Decal" type="Decal" parent="SceneBossLvl1/CombatFinal/BossCombat"]
-transform = Transform3D(0.99999934, 0, 0, 0, 1, 0, 0, 0, 0.99999934, 0.20602417, 12.250732, 1.5434418)
+transform = Transform3D(0.99999934, 0, 0, 0, 1, 0, 0, 0, 0.99999934, 0.20605469, 12.062431, 2.5766754)
 visible = false
-size = Vector3(12, 2, 12)
+size = Vector3(7.2888184, 1.6772461, 6.9414063)
 texture_albedo = ExtResource("100_4c67r")
 texture_emission = ExtResource("100_4c67r")
-emission_energy = 0.1
+emission_energy = 1.5
 
 [node name="FireZoneArea" type="Area3D" parent="SceneBossLvl1/CombatFinal"]
 transform = Transform3D(-0.7071067, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071067, 0, 0, 0)
 visible = false
 monitoring = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="SceneBossLvl1/CombatFinal/FireZoneArea"]
+[node name="FZCollisionPhase1" type="CollisionShape3D" parent="SceneBossLvl1/CombatFinal/FireZoneArea"]
+process_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.32740593, 0)
+visible = false
 shape = SubResource("BoxShape3D_5q2ao")
+disabled = true
 debug_color = Color(1.4164544, 0, 1.0554621, 0.76862746)
 
 [node name="FireZoneSprite" type="Sprite3D" parent="SceneBossLvl1/CombatFinal/FireZoneArea"]
 transform = Transform3D(-2.928663e-08, 0, 0.8, 0, 0.8, 0, -0.67, 0, -3.4969112e-08, 0, 0, 0)
+visible = false
 modulate = Color(1, 1, 1, 0)
 pixel_size = 0.02
 axis = 1
@@ -19981,17 +20667,40 @@ vframes = 10
 region_rect = Rect2(0.93, 0, 0, 0)
 
 [node name="DecalFireZone" type="Decal" parent="SceneBossLvl1/CombatFinal/FireZoneArea/FireZoneSprite"]
+process_mode = 4
 transform = Transform3D(0, -2.9802322e-08, -0.44776118, 0.3749999, -1.6391768e-08, 0, -1.639177e-08, -0.375, 0, 0.32928467, 0.1969738, 8.032181)
+visible = false
 size = Vector3(26.750475, 27.70708, 51.537815)
 texture_albedo = ExtResource("96_3w4b0")
 texture_emission = ExtResource("96_3w4b0")
-emission_energy = 0.5
+emission_energy = 0.0
+modulate = Color(1, 1, 1, 0)
 normal_fade = 0.2
 upper_fade = 0.013725809
 lower_fade = 0.014209846
 cull_mask = 1047553
 
 [node name="FireDotTimer" type="Timer" parent="SceneBossLvl1/CombatFinal/FireZoneArea"]
+
+[node name="CollisionMesh" type="MeshInstance3D" parent="SceneBossLvl1/CombatFinal/FireZoneArea"]
+process_mode = 4
+transform = Transform3D(-3.984779, 2.178891, -1.1429082e-08, 0, -1.0927847e-06, -3, -0.34862256, -24.904867, 1.3063516e-07, -1.9577675, 0, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_2fdoy")
+mesh = SubResource("PrismMesh_3lm21")
+
+[node name="FZCollisionPhaseinit" type="CollisionShape3D" parent="SceneBossLvl1/CombatFinal/FireZoneArea"]
+process_mode = 4
+transform = Transform3D(-3.4866815, 2.178891, -5.714541e-09, 0, -1.0927847e-06, -1.5, -0.30504474, -24.904867, 6.531758e-08, -1.9577675, 0, 0)
+visible = false
+shape = SubResource("ConvexPolygonShape3D_kn8ik")
+debug_color = Color(0, 0.6, 0.69803923, 0.85490197)
+
+[node name="VisualMesh" type="MeshInstance3D" parent="SceneBossLvl1/CombatFinal/FireZoneArea"]
+transform = Transform3D(-3.984779, 2.178891, -7.619388e-09, 0, -1.0927847e-06, -2, -0.34862256, -24.904867, 8.709011e-08, -1.958, 0, 0)
+visible = false
+mesh = SubResource("PrismMesh_3lm21")
+surface_material_override/0 = SubResource("StandardMaterial3D_gkpb1")
 
 [node name="FinCombat" type="Node3D" parent="SceneBossLvl1"]
 
@@ -20448,11 +21157,88 @@ visible = false
 [node name="Label" parent="EndLevel/EndLevelScreen" index="0"]
 text = ""
 
-[node name="GameOverScene" parent="." node_paths=PackedStringArray("prelude", "introJeu", "playerBotCtrl") instance=ExtResource("40_42bk8")]
+[node name="GameOverScene" type="Control" parent="." node_paths=PackedStringArray("prelude", "introJeu", "playerBotCtrl", "playerStartLVL1")]
+process_mode = 2
 visible = false
+material = SubResource("CanvasItemMaterial_l8dev")
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_rbmsi")
+script = ExtResource("138_1w7a5")
 prelude = NodePath("../PreludeStudio")
 introJeu = NodePath("../IntroJeu")
 playerBotCtrl = NodePath("../PlayerBotCtrl")
+playerStartLVL1 = NodePath("")
+
+[node name="ColorRect" type="ColorRect" parent="GameOverScene"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.22352941, 0.22352941, 0.22352941, 0.8)
+
+[node name="Label" type="Label" parent="GameOverScene/ColorRect"]
+layout_mode = 0
+offset_left = 383.0
+offset_top = 197.0
+offset_right = 817.0
+offset_bottom = 307.0
+text = "Game Over"
+label_settings = SubResource("LabelSettings_7safw")
+
+[node name="ButtonContinue" type="Button" parent="GameOverScene"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -441.0
+offset_top = -200.0
+offset_right = -41.0
+offset_bottom = -137.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "CONTINUER"
+
+[node name="ButtonQuit" type="Button" parent="GameOverScene"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -111.0
+offset_right = 200.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "QUITTER"
+
+[node name="ButtonRestart" type="Button" parent="GameOverScene"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 79.0
+offset_top = -204.0
+offset_right = 479.0
+offset_bottom = -141.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 40
+text = "RECOMMENCER"
 
 [node name="QuitMenu" parent="." instance=ExtResource("34_18ox3")]
 process_mode = 3
@@ -20507,6 +21293,7 @@ visible = false
 [connection signal="area_entered" from="SceneBossLvl1/PorteBoss1" to="SceneBossLvl1" method="_on_porte_boss_1_area_entered"]
 [connection signal="IntroBossOn" from="SceneBossLvl1/BossIntroSceneFinal/BossCoxaneIntro" to="ControlInventaire" method="_on_boss_coxane_intro_intro_boss_on"]
 [connection signal="animation_finished" from="SceneBossLvl1/BossIntroSceneFinal/BossCoxaneIntro/AnimPlayerIntroCombat" to="SceneBossLvl1/BossIntroSceneFinal/BossCoxaneIntro" method="_on_anim_player_intro_combat_animation_finished"]
+[connection signal="BombeUtilisey" from="SceneBossLvl1/CombatFinal/BossCombat" to="ControlInventaire" method="_on_boss_combat_bombe_utilisey"]
 [connection signal="BossFightStarted" from="SceneBossLvl1/CombatFinal/BossCombat" to="GameOverScene" method="_on_boss_combat_boss_fight_started"]
 [connection signal="CombatFini" from="SceneBossLvl1/CombatFinal/BossCombat" to="InteractItems/DoorSystem3" method="_on_boss_combat_combat_fini"]
 [connection signal="body_entered" from="SceneBossLvl1/CombatFinal/BossCombat/Boss Coxane Anim 1_19/Armature/Skeleton3D/BoneAttachMandibuleR/AreaDmgMandibR" to="SceneBossLvl1/CombatFinal/BossCombat" method="_on_area_dmg_mandib_r_body_entered"]
@@ -20520,6 +21307,9 @@ visible = false
 [connection signal="body_entered" from="UIControlHeartCoin/UIHeartCoin/VBoxContainer/VContainerHeart/ControlHearts/Area3D" to="UIControlHeartCoin/UIHeartCoin/VBoxContainer/VContainerHeart/ControlHearts" method="_on_area_3d_body_entered"]
 [connection signal="body_entered" from="EndLevel" to="EndLevel" method="_on_body_entered"]
 [connection signal="BackFromDeath" from="GameOverScene" to="SceneBossLvl1/CombatFinal/BossCombat" method="_on_game_over_scene_back_from_death"]
+[connection signal="button_down" from="GameOverScene/ButtonContinue" to="GameOverScene" method="_on_button_continue_button_down"]
+[connection signal="button_down" from="GameOverScene/ButtonQuit" to="GameOverScene" method="_on_button_quit_button_down"]
+[connection signal="button_down" from="GameOverScene/ButtonRestart" to="GameOverScene" method="_on_button_restart_button_down"]
 
 [editable path="Env/Deco/BarrieresMursPlateformes/Boss1Gate"]
 [editable path="Env/Deco/Vegetation"]

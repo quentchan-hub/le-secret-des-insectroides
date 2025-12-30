@@ -8,19 +8,18 @@ public partial class GameOverScene : Control
 	[Export] Control prelude;
 	[Export] Node3D introJeu;
 	[Export] PlayerBotCtrl playerBotCtrl;
+	[Export] Marker3D playerStartLVL1;
 	
 	GameState gameState;
 	public SoundManager soundManager;
 	
 	private bool isInFight = false;
-	private Vector3 startPlayerPosition; 
+
 	
 	public override void _Ready()
 	{
 		gameState = GetNode<GameState>("/root/GameState");
 		soundManager = GetNode<SoundManager>("/root/World1/SoundManager");
-		
-		startPlayerPosition = playerBotCtrl.GlobalPosition;
 	}
 	
 	private void _on_boss_combat_boss_fight_started()
@@ -61,7 +60,7 @@ public partial class GameOverScene : Control
 	
 	public void ReloadScene()
 	{
-		playerBotCtrl.GlobalPosition = startPlayerPosition;
+		RespawnManager.Reset();
 		gameState.HardReset();
 		GetTree().ReloadCurrentScene();
 	}

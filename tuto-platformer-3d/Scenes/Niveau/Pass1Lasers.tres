@@ -1,0 +1,16 @@
+[gd_resource type="CylinderMesh" load_steps=4 format=3 uid="uid://djreekn1na7eu"]
+
+[ext_resource type="Texture2D" uid="uid://b54liq4ntmi13" path="res://Assets Persos/zoneenfeu/vecteezy_light-orange-shining-triangular-background-geometric_.jpg" id="1_hem0j"]
+[ext_resource type="Texture2D" uid="uid://c6mx6k5hnysxr" path="res://Assets Persos/zoneenfeu/vecteezy_vector-colorful-polygonal-background_260637.jpg" id="2_2bpce"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xrnuh"]
+albedo_texture = ExtResource("1_hem0j")
+emission_enabled = true
+emission_texture = ExtResource("2_2bpce")
+uv1_offset = Vector3(1, 0.6, 0)
+
+[resource]
+material = SubResource("StandardMaterial3D_xrnuh")
+top_radius = 0.1
+bottom_radius = 0.1
+height = 15.0

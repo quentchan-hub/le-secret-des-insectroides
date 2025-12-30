@@ -22,16 +22,11 @@ public partial class PlayerBotCtrl : CharacterBody3D
 	// < Paramètres Environnement >
 	
 	[Export] float gravity = 1f; 				// gravité
-	
-
-	public Vector3 ExternalPushVelocity { get; set; } = Vector3.Zero;
-	// force du vent du Boss (coup spécial)
-	// { get; set; } est OBLIGATOIRE pour que le Tween puisse la modifier
-	
 	[Export] Area3D noyade;						// zone mort personnage dans l'eau
 	[Export] Marker3D teleportMarkerSG1; 		// point de sortie tp SG1
 	[Export] Marker3D teleportMarkerSG2; 		// point de sortie tp SG2
 	
+	public Vector3 ExternalPushVelocity { get; set; } = Vector3.Zero;	// force bourrasque Boss
 	
 	// < Souris et Caméra >
 	
@@ -49,30 +44,27 @@ public partial class PlayerBotCtrl : CharacterBody3D
 	[Export] Node3D cameraPivot;				// Support caméra
 	[Export] Camera3D camera;					// Caméra
 	
-	
 	// < Paramètres Feedback combat >
 	
 	[Export] MeshInstance3D playerMesh;			// modelisation graphique personnage
 	public StandardMaterial3D hitFlashMat;    	// feedback visuel de dommage
 		
-	
 	// < Paramètres UI >
 	
 	[Export] PackedScene lifeHeart; 			// gestion UI Heart couplé à vie perso
 	[Export] HBoxContainer heartContainer;
-	
 	[Export] public QuitMenu quitMenu;
 	[Export] public GameOverScene sceneGameOver;
 	
-	
 	//  < Sons et Musiques >
+	
 	public SoundManager soundManager;			// gestion musiques/sons
 	
-	
 	//  < Game Manager >
+	
 	public GameState gameState;					// autoload game manager
 
-	
+
 	public override void _Ready()
 	{
 		//Input.MouseMode = Input.MouseModeEnum.Captured;
@@ -254,32 +246,19 @@ public partial class PlayerBotCtrl : CharacterBody3D
 		
 		MoveAndSlide();
 		
-		for (int i = 0; i < GetSlideCollisionCount(); i++)
-		{
-			var collision = GetSlideCollision(i);
-	// GD.Print("I collided with ", ((Node)collision.GetCollider()).Name);
-		}
-	
-			//if (direction != new Vector3(0,0,0) && IsOnFloor())
+		//for (int i = 0; i < GetSlideCollisionCount(); i++)
 		//{
-			//animationPlayer.Play("walk");
-		//} // Idle, fall, walk, jump, run, ground_impact, simple_punch
-		//else if (direction == new Vector3(0,0,0) && IsOnFloor())
-		//{
-			//animationPlayer.Play("Idle");
+			//var collision = GetSlideCollision(i);
+			//GD.Print("I collided with ", ((Node)collision.GetCollider()).Name);
 		//}
 	}
 	
-
 	private void _on_area_3d_area_entered(Area3D area)
 	{
-		//GD.Print("Area détectée : ", area.Name);
-		
 		if (area.Name == "Area3DTop")				// Si c'est le dessus d'un ennemi
 		{
 			bounce = true;
 		}
-		
 	}
 	
 	private void _on_area_3d_noyade_body_entered(Node3D body)
@@ -287,7 +266,6 @@ public partial class PlayerBotCtrl : CharacterBody3D
 		life = 0;
 		die();
 	}
-	
 	
 	public void TakeDamages()
 	{
@@ -316,7 +294,6 @@ public partial class PlayerBotCtrl : CharacterBody3D
 			life = 0;
 			die();
 		}
-		
 	}
 	
 	public void AddLife(int amount)

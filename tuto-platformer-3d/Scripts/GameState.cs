@@ -61,12 +61,12 @@ public partial class GameState : Node
 	public bool facingDoor = false;
 	public bool facingDoor2 = false;
 
-	public bool aLaCle = true;
+	public bool aLaCle = false;
 	public bool aLaCleRose = false;
 
 	public bool aLaBomba = false;
 	public bool aLeRessort = false;
-	public bool aLeFouet = true;
+	public bool aLeFouet = false;
 
 	public int destroyedMobs = 0;
 	public int nbCoins = 0;

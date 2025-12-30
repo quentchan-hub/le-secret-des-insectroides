@@ -27,6 +27,7 @@ public partial class BossCombat : Node3D
 	
 	[Signal] public delegate void BossFightStartedEventHandler();
 	[Signal] public delegate void CombatFiniEventHandler();
+	[Signal] public delegate void BombeUtiliseyEventHandler();
 	
 	// ============================================
 	// VARIABLES EXPORTÉES (modifiables dans l'éditeur)
@@ -260,6 +261,7 @@ public partial class BossCombat : Node3D
 				gameState.aLaBomba = false;
 				CombatAnimPlayer.Play("Explosion");
 				GD.Print("Bomba Explosa !");
+				EmitSignal(SignalName.BombeUtilisey);
 			}
 
 		}
@@ -389,13 +391,18 @@ public partial class BossCombat : Node3D
 	// La validité de la zone est contrôlée par l'AnimationPlayer (Monitoring).
 	public void _on_fire_zone_area_body_entered(Node3D body)
 	{
-		if (currentState == BossState.Mitraillaging)
+		if (currentState == BossState.Mitraillaging && body is PlayerBotCtrl)
 		{
-			if (body is PlayerBotCtrl)
+			if (currentPhase == 1)
 			{
-				////A décommenter pour infliger 1 dommage puis DOT 1s après, 
-				//// sinon c'est DOT au bout d'1s (grace period)
+				//// A décommenter pour infliger 1 dommage puis DOT 1s après, 
 				//_on_fire_dot_timer_timeout()					 
+				fireDotTimer.Start();
+			}
+			else if (currentPhase == 2)
+			{
+				//// A commenter pour infliger DOT au bout d'1s (grace period)
+				_on_fire_dot_timer_timeout();
 				fireDotTimer.Start();
 			}
 		}
@@ -521,6 +528,9 @@ public partial class BossCombat : Node3D
 		
 		// Arrêter l'animation en cours
 		bossAnimPlayer.Stop();
+		
+		// Arrêter le son du mitraillage en cours
+		
 		
 		// Désactiver les effets visuels
 		if (propulseurGauche != null) propulseurGauche.Emitting = false;
@@ -888,7 +898,7 @@ public partial class BossCombat : Node3D
 			
 			case 5: // Vol&Mitraillage (7s)
 				currentState = BossState.Mitraillaging;
-				bossAnimPlayer.Play("Vol&Mitraillage");
+				bossAnimPlayer.Play("Vol&Mitraillage2");
 				stateTimer = 7f;
 				isVulnerableToStun = false; 			// INVULNERABLE EN PHASE 2
 				
@@ -988,6 +998,7 @@ public void _on_game_over_scene_back_from_death()
 	bossAnimPlayer?.Stop();
 	CombatAnimPlayer?.Stop();
 	weakPointPlayer?.Stop();
+	_on_timer_end_bourrasque_timeout();
 
 	// ==========================
 	// Reset effets visuels
@@ -1027,7 +1038,9 @@ public void _on_game_over_scene_back_from_death()
 		
 		// Arrêter toutes les animations
 		bossAnimPlayer.Stop();
-		
+		CombatAnimPlayer.Stop();
+		weakPointPlayer.Stop();
+		uIAnimPlayer.Stop();
 		
 		EmitSignal(SignalName.CombatFini);
 	}

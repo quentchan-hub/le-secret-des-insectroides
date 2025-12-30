@@ -143,6 +143,16 @@ public partial class ControlInventaire : Control
 				fondItem1.SelfModulate = new Color(144, 144, 144, 0.8f);
 				item1.Visible = true;
 			}
+			
 		}
 	}
+	
+	private void _on_boss_combat_bombe_utilisey()
+	{
+		toucheItem4.Visible = false;
+		fondToucheItem4.SelfModulate = new Color(1, 1, 1, 0);
+		fondItem4.SelfModulate = new Color(144, 144, 144, 0f);
+		item4.Visible = false;
+	}
+	
 }

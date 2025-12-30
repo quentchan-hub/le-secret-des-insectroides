@@ -22,7 +22,7 @@ public partial class ButtonRound : Node3D
 		
 	private void _on_area_3d_area_entered(Area3D area)
 	{
-		if (toggled == false)
+		if (toggled == false && area.Name == "Area3DPlayer")
 		{
 			soundManager.PlayButtonRound();
 			animationPlayer.Play("toggle-on");
