@@ -1,4 +1,4 @@
-[gd_scene load_steps=371 format=4 uid="uid://dbtwrsnn3kwts"]
+[gd_scene load_steps=369 format=4 uid="uid://dbtwrsnn3kwts"]
 
 [ext_resource type="Script" uid="uid://boo0sbhe6vd7i" path="res://Scenes/Niveau/Debug.cs" id="1_kwwme"]
 [ext_resource type="PackedScene" uid="uid://tdkoyyd6teoe" path="res://AAPrelude/scenes/prelude_studio.tscn" id="1_u08lv"]
@@ -89,8 +89,6 @@
 [ext_resource type="Texture2D" uid="uid://dpx5soqbmceny" path="res://Assets Persos/Fontaine/6490.jpg" id="64_kcrxu"]
 [ext_resource type="PackedScene" uid="uid://b2hrumkpya61b" path="res://Scenes/PlayerEnnemy/Shark/mob_shark_final.tscn" id="66_1s8rm"]
 [ext_resource type="Script" uid="uid://boica5rv2dcmd" path="res://Scripts/ControlHearts.cs" id="66_5whru"]
-[ext_resource type="Script" uid="uid://w52y6cbjwh76" path="res://Scripts/MovingPlatformAnimated.cs" id="72_3friu"]
-[ext_resource type="PackedScene" uid="uid://4i0udwgpbjnb" path="res://Scenes/ObjetsInteractifs/movingblock.tscn" id="73_3w4b0"]
 [ext_resource type="Script" uid="uid://djkvv60vx20va" path="res://Scenes/Niveau/DoorSystem3.cs" id="74_kwwme"]
 [ext_resource type="PackedScene" uid="uid://dc4giriqklvay" path="res://Scenes/ObjetsInteractifs/coeur_bonus.tscn" id="75_btuph"]
 [ext_resource type="PackedScene" uid="uid://bx7i6njcgmh2v" path="res://Scenes/ObjetsInteractifs/platf_disapear.tscn" id="76_5whru"]
@@ -17096,7 +17094,7 @@ font_size = 80
 [node name="DEBUG" type="Node3D" parent="."]
 script = ExtResource("1_kwwme")
 
-[node name="SoundManager" type="Node" parent="." node_paths=PackedStringArray("menuThemeMusic", "introJeuThemeMusic", "mainThemeMusic", "newIslandThemeMusic", "gameOverThemeMusic", "mobDamagedAudio", "mobDamaged2Audio", "bossDamagedAudio", "playerDamagedAudio", "deathMobAudio", "chestOpenAudio", "coinPickAudio", "heartPickAudio", "teleportAudio", "boutonMenuAudio", "bombExplosionAudio", "highJumpAudio", "jumpAudio", "secretItemFoundAudio", "gameOverAudio", "fountainAudio", "buttonRoundAudio")]
+[node name="SoundManager" type="Node" parent="." node_paths=PackedStringArray("menuThemeMusic", "introJeuThemeMusic", "mainThemeMusic", "newIslandThemeMusic", "gameOverThemeMusic", "mobDamagedAudio", "mobDamaged2Audio", "bossDamagedAudio", "playerDamagedAudio", "deathMobAudio", "chestOpenAudio", "coinPickAudio", "heartPickAudio", "teleportAudio", "boutonMenuAudio", "bombExplosionAudio", "highJumpAudio", "jumpAudio", "secretItemFoundAudio", "gameOverAudio", "fountainAudio", "buttonRoundAudio", "MachineGunAudio")]
 process_mode = 3
 script = ExtResource("81_fi6mt")
 menuThemeMusic = NodePath("MenuThemeMusic")
@@ -17121,6 +17119,7 @@ secretItemFoundAudio = NodePath("SecretItemFoundAudio")
 gameOverAudio = NodePath("GameOverAudio")
 fountainAudio = NodePath("FountainAudio")
 buttonRoundAudio = NodePath("ButtonRoundAudio")
+MachineGunAudio = NodePath("MachineGunAudio")
 
 [node name="MenuThemeMusic" type="AudioStreamPlayer" parent="SoundManager"]
 stream = ExtResource("2_8nbp3")
@@ -18643,15 +18642,7 @@ transform = Transform3D(2.6224976, 0, 1.2950252, 0, 1.144353, 0, -2.6224976, 0, 
 transform = Transform3D(1, 0, 0, 0, 0.9999999, 0, 0, 0, 0.99999994, 0, 0.0044841766, 0)
 
 [node name="PathFollow3D" parent="InteractItems/MovingPlatformAnimated/Path3D" index="0"]
-transform = Transform3D(2.980223e-08, 0.9999944, -0.0010711855, -0.00072206126, -0.0010711815, -0.9999975, -0.99999666, 8.344608e-07, 0.0007220618, 0, 0.0044846847, 0)
-
-[node name="PlatformStep" type="Node3D" parent="InteractItems"]
-transform = Transform3D(1.1234617, 0, 1.135439, 0, 1.144353, 0, -1.1234617, 0, 1.135439, -110.29272, 10.299649, 20.949379)
-visible = false
-script = ExtResource("72_3friu")
-
-[node name="movingblock" parent="InteractItems/PlatformStep" instance=ExtResource("73_3w4b0")]
-transform = Transform3D(0.99999833, 0, 0, 0, 0.9999996, 0, 0, 0, 0.9999998, 0, 0.0044841766, 0)
+transform = Transform3D(2.980223e-08, 0.9999942, -0.0010711855, -0.00072206126, -0.0010711813, -0.9999975, -0.99999666, 8.344607e-07, 0.0007220618, 0, 0.0044846847, 0)
 
 [node name="CoffresBonus" type="Node" parent="InteractItems" node_paths=PackedStringArray("coffreRessort", "coffreBomba", "bonusDebloque")]
 script = ExtResource("43_o5akm")
@@ -21157,7 +21148,7 @@ visible = false
 [node name="Label" parent="EndLevel/EndLevelScreen" index="0"]
 text = ""
 
-[node name="GameOverScene" type="Control" parent="." node_paths=PackedStringArray("prelude", "introJeu", "playerBotCtrl", "playerStartLVL1")]
+[node name="GameOverScene" type="Control" parent="." node_paths=PackedStringArray("prelude", "introJeu", "playerBotCtrl")]
 process_mode = 2
 visible = false
 material = SubResource("CanvasItemMaterial_l8dev")
@@ -21172,7 +21163,6 @@ script = ExtResource("138_1w7a5")
 prelude = NodePath("../PreludeStudio")
 introJeu = NodePath("../IntroJeu")
 playerBotCtrl = NodePath("../PlayerBotCtrl")
-playerStartLVL1 = NodePath("")
 
 [node name="ColorRect" type="ColorRect" parent="GameOverScene"]
 layout_mode = 1

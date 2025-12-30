@@ -12,7 +12,7 @@ font_color = Color(0.3137255, 0.8745098, 0.8745098, 1)
 outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
-[node name="QuitMenu" type="Control" node_paths=PackedStringArray("boutonValider")]
+[node name="QuitMenu" type="Control" node_paths=PackedStringArray("boutonValider", "boutonAnnuler")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,6 +21,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_enubt")
 boutonValider = NodePath("MarginContainer/VBoxContainer/PanelContainer0/CouleurFond/MarginContainer/VBoxContainer/MarginContainer/ArrangementBoutons/BoutonValider")
+boutonAnnuler = NodePath("MarginContainer/VBoxContainer/PanelContainer0/CouleurFond/MarginContainer/VBoxContainer/MarginContainer/ArrangementBoutons/BoutonAnnuler")
 
 [node name="FondViolet" type="ColorRect" parent="."]
 layout_mode = 1

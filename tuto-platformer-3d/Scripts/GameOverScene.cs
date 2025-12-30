@@ -8,7 +8,6 @@ public partial class GameOverScene : Control
 	[Export] Control prelude;
 	[Export] Node3D introJeu;
 	[Export] PlayerBotCtrl playerBotCtrl;
-	[Export] Marker3D playerStartLVL1;
 	
 	GameState gameState;
 	public SoundManager soundManager;
